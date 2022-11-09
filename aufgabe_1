@@ -1,1 +1,13 @@
+DIDCommunications vs. OIDC
+
+Vorschläge zu technischen Themen (entnommen aus der DIDCommunications Doku):
+- Nimbus Jose JWT
+- Uniform DID Method
+- streamlined connection handshaking
+- DID rotation
+- forward protocol to route messages
+- encrypted DID message
+- Threads
+- DID-protocols
+- authcrypt vs. anoncrypt
 
