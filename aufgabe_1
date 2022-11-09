@@ -2,9 +2,24 @@ DIDCommunications vs. OIDC
 
 Vorschläge zu technischen Themen (entnommen aus der DIDCommunications Doku):
 - Nimbus Jose JWT
+  - Begriffe
+    - JOSE = Javascript Object Signing and Encryption
+    - JWT = JSON Web Token
+  - Einsatz
+    - Signieren & entschlüsseln von token
+    - stateless session (Request wird danach wieder vergessen; es wird sich nichts von den Anfragen gemerkt) 
 - Uniform DID Method
 - streamlined connection handshaking
-- DID rotation
+- DID rotation (DIDComm messaging) 
+  - kommt beim wechsel einer DID-Methode zum Einsatz
+  - DID sendet beliebigen Nachrichtentyp an Empfänger, welcher so über die anstehende Rotation informiert wird
+  - Nachricht muss: verschlüsselt sein, neue DID enthalten & nachfolgendes Attribut im header haben
+    - from_prior: REQUIRED. A JWT, with sub: new DID and iss: prior DID, with a signature from a key authorized by prior DID. Standard JWT Practices for creating and signing the JWT MUST be followed.
+  - Gefahren 
+    - Verlust eintreffender Nachrichten, wenn Nachrichtenfrequenz sehr hoch ist
+    - synchronisieren mit anderen "Agents" welche die selbe DID vertreten, muss gewährleistet werden 
+      - ist der Fall wenn ein Agent zB auf 2 verschiedenen Handys vertreten ist, aber das selbe Wallet darstellt. 
+    
 - forward protocol to route messages
 - encrypted DID message
 - Threads
