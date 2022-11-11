@@ -1,0 +1,68 @@
+SSI = self sovereign identity
+DID = decentralized identifier
+
+Was soll damit erreicht werden? 
+    - schaffen einer Möglichkeit dem Nutzer die volle Verantwortung über seine Daten zu geben 
+    - Datenschutz auf eine neue Ebene befördern 
+    - wichtigste Prinzipien:
+        - persistence - erhalten der Daten "auf ewig"
+        - consent - user muss Datenabfrage zustimmen 
+        - protection - Rechte der Nutzer werden geschützt
+        - minimization - offengelegte Daten bei "Abfragen" reduzieren
+        - control - Kontrollierbare Identität des Nutzers
+
+Welche Komponenten werden für die Identität(SSI) benötigt? 
+    - Holder
+        - Besitzer digital Wallet
+        - Verwalter der Zertifikate
+    - Verifier  
+        - Entität welche Zertifikat von Holder erhält
+    - Issuer
+        - Entität welche Aussagen über Entität trifft
+        - stellt überprüfbare Berechtigungsnachweise aus 
+        - signiert & verpackt Behauptungen & stellt sie an holder aus 
+
+Was ist ein verifiable credential(VC)?
+    - Attribute welche Nachweise belegen
+        - wer hat wann & wo Daten verifiziert? 
+    - werden an verifier ausgestellt, aber nicht in originialform
+    - abgespeckte Version VP (verifiable presentation)
+        - so kann verifier sicher über Echtheit der Daten sein, tieferliegende Strukturen bleiben aber verborgen, zB Geburtsdatum wird nicht gezeigt - nur ["over_18": true]
+    - verschiedene Signaturmöglichkeiten
+        - JSON-JWT (Signatur nur über alle key-val Paare möglich)
+        - JSON-LD (Signatur nur über alle key-val Paare möglich)
+        - JSON-ZKP(zero knowledge proof)-CL (ausgewählte Offenlegung)
+        - JSON-JWP (individuelles signieren jedes key-val Paares möglich)
+
+wie erhalten die verifier die credentials? (credential exchange) 
+    - Presentation exchange
+        - standardisiertes Format um Nachweisanforderungen zu formulieren -> alle Anfragen von verifiern sollen ein einheitliches Format besitzen
+    - verifiable presentation request
+        - Requests von wallets & agents durchführen 
+        - Ergebnisse in verifiable presentation darstellen 
+    - DIDComm Messaging
+    - WACI
+    - CHAPI
+        - vc's von Holdern abfragen 
+        - Nutzerunterstützung bei der Aufbewahrung der VC's
+        - Verbindung zw. verifier & holder herstellen (Handy + QR-Code)
+
+Wie bleiben die Daten wirklich "sicher" 
+    - decentralized key management
+        - keine zentralisierten Autoritäten
+        - root of trust = jeder verteilte ledger welcher DID untersützt
+
+Governance
+    - business rules
+    - legal rules
+    - technical rules
+
+Beispielablauf: 
+    - Daten werden in Portal einmalig verifiziert (im portal eines issuers)
+    - if valid: erstellen eines digitalen Nachweises und speichern in wallet (holder)
+    - Verbindung herstellen zwischen holder und verifier
+    - in wallet/app anzeigen des verifier-requests
+        - einsehen welche Daten abgefragt werden sollen 
+        - Annehmen/Ablehnen des request
+            - erstellen einer Prüfsumme und in Blockchain nach dieser suchen zum "verifizieren" der Daten - existieren diese wirklich oder wurden nur vom holder selbst erstellt? 
+
