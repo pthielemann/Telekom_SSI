@@ -1,11 +1,11 @@
 = A deep dive into DIDComm and OIDC (OpenID4VC / VP) in terms of communication workflows
 
 Team members:
-Kenneth Keil,
+*Kenneth Keil,
 Luca Stiegel,
 Ludwig Schönthier,
 Pascal Thielemann,
-Roman Patzig
+Roman Patzig*
 
 === Contents
 . A technical comparison of DIDComm and OIDC
@@ -15,6 +15,34 @@ Roman Patzig
 . Code example POC
 
 == 1. A technical comparison of DIDComm and OIDC
+.What is DIDComm?
+* messaging protocol that provides utility for DID based relationships 
+** which are the foundation of SSI
+* Exchange of DIDs to form a connection
+** both parties have a self-certifying and mutually authenticated relationship
+* *secure, interoperable & flexible* general messaging overlay for the entire internet
+
+//bild mit beispiel
+
+.Properties of DIDComm
+* secure
+* private
+* interoperable
+* transport-agnostic
+* extensible
+
+* not dependent on a specific operating system, programming language, vendor, network or hardware
+* aims to become the common language of any secure, private, self-sovereign interaction on and off the internet
+* makes use of any transport mechanisms _(HTTP(s), Websockets, IRC, Bluetooth, NFC, Signal, email, push notifications on a smartphone, etc.)_
+
+.DIDComm protocols
+core applications:
+* connecting with others
+* requesting and issuing credentials
+* proving things using credentials
+
+
+
 
 == 2. If OIDC already exists, then why OIDC for Verifiable Credentials?
 
