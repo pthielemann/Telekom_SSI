@@ -1,0 +1,30 @@
+properties of a DID
+    - persistent identifier 
+    - resolvable identifier
+    - cryptographically-verfiable identifier 
+    - decentralized
+
+wie funktioniert eine DID? 
+    - jede did hat eine einzigartige Struktur, ist somit eindeutig auffindbar
+        - did:example:123abc (Scheme:DID Method: DID Method-Specific Identifier)
+        - keine "URL" -> did = abstrakte Funtion / Algorithmus
+    - suche nach DID liefert DID Document
+        - nach erhalten did document erhält man Antwort, diese enthält einen Proof in Form eines Token/einer Signatur -> diese dann mit public key entschlüsseln & prüfen ob von der richtigen Instanz ausgestellt
+    - DID subject = Person, Organisation, ...
+
+Aufbau DID document
+    - public keys um DID subject zu authentifizieren 
+    - service endpoints -> wie kann mit dem DID subject interagiert werden? - welche Protokolle & Endpunkte sind vorhanden (wie kann eine Verbindung hergestellt werden)
+    - Metadaten (Zeitstempel, digitale Signaturen, Kryptografische Nachweise,...)
+
+DID methods 
+    - blockchain
+    - other distributed ledgers
+    - theres nothing "central" that contains all the did documents 
+
+DID controller generiert public/private key pair & DID 
+DID controller veröffentlicht DID & public key
+did rotation -> veröffentlicht neues DID Dokument welches mit originalem private key signiert wird -> "chain of trust" -> somit ist jedes DID Dokument automatisch in der Lage eine CA(certified authority) zu werden 
+
+
+

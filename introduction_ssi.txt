@@ -1,5 +1,6 @@
 SSI = self sovereign identity
 DID = decentralized identifier
+ZKP = zero knowledge proof
 
 Was soll damit erreicht werden? 
     - schaffen einer Möglichkeit dem Nutzer die volle Verantwortung über seine Daten zu geben 
@@ -31,7 +32,7 @@ Was ist ein verifiable credential(VC)?
     - verschiedene Signaturmöglichkeiten
         - JSON-JWT (Signatur nur über alle key-val Paare möglich)
         - JSON-LD (Signatur nur über alle key-val Paare möglich)
-        - JSON-ZKP(zero knowledge proof)-CL (ausgewählte Offenlegung)
+        - JSON-ZKP-CL (ausgewählte Offenlegung)
         - JSON-JWP (individuelles signieren jedes key-val Paares möglich)
 
 wie erhalten die verifier die credentials? (credential exchange) 
