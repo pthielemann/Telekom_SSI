@@ -26,3 +26,50 @@ Vorschläge zu technischen Themen (entnommen aus der DIDCommunications Doku):
 - DID-protocols
 - authcrypt vs. anoncrypt
 
+OIDC: 
+  Was ist OpenID Connect?
+    - claim spaced authenticated -> claim = Behauptung; jeder request enthält "claims" -> Rolle, Daten, Kontaktdaten, ...
+    - in Dokumentenform; muss verifiziert werden von Identity Provider
+    - Echtheit der Dokumente wird durch digitale Signatur sichergestellt -> private/public key 
+    - requests müssen immer per redirect an oidc gesenden werden -> nicht in einer mobile app; nur für Browseranwendungen 
+
+    Stichpunkte: 
+      - basierend auf oAuth2 Protokoll
+      - erhält standard Profilinformationen der User per REST-API
+      - oidc gibt Informationen über Wann, Wo, Wer der authentifizierung 
+      - Participants, ID-Token, Endpoints, Scopes, Claims
+
+    Participants: 
+      - wessen Identität wird abgefragt? 
+    
+    ID Token: 
+      - Subject - username
+      - Issuing authority - wer hat den Token ausgestellt
+      - audience - wer kann das Token nutzen
+      - issue date - wann erstellt
+      - expiration date - wann läuft es ab 
+      additional: name, email 
+      -> send with jwt, signature by jws, head = payload 
+      claim = individual piece of information
+      scope = spezifsche "Informationssets" -> standards zu bestimmten Informationen 
+
+    Endpoints: 
+      - authorization endpoint
+        - OIDC fragt ob Anwendung wirklich Nutzerdaten abfragen darf / ob authentifizierung des Users wirklich stattgegeben wird + Email/Adresse falls benötigt
+      - token endpoint
+        - authentifizieren des Clients (der Anwendung)
+      - userInfo endpoint
+        - private / sensitive Informationen, können nur mit einem Token abgefragt werden
+    
+"Flows"
+  - authorization code flow
+    - Anmelden per Google -> weiterleitung auf Google Login Seite -> nach erfolgreichem Login redirect zur Website; Website fragt nun bei googles API an & sendet einen Code mit um zu verifizieren, dass es sich um einen echten request handelt & Daten wirklich abgefragt werden dürfen 
+    - google returns access token 
+    - mit access token können Daten von Googles /userinfo endpoint abgefragt werden 
+  - implicit flow
+    - Cleint Anfrage an authentifizierungsendpoint -> aber response kein code sondern token 
+    - Server sendet accesstoken zurück; in Form von Fragment in URL -> "http://redirect#access_token=tokenabc" 
+    - request is done afterwards, cause fragment stays in browser -> so token is stored and used to authenticated 
+  - hybrid flow
+
+
