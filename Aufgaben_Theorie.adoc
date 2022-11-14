@@ -1,0 +1,25 @@
+= A deep dive into DIDComm and OIDC (OpenID4VC / VP) in terms of communication workflows
+
+Team members:
+Kenneth Keil,
+Luca Stiegel,
+Ludwig Schönthier,
+Pascal Thielemann,
+Roman Patzig
+
+=== Contents
+. A technical comparison of DIDComm and OIDC
+. If OIDC already exists, then why OIDC for Verifiable Credentials?
+. Difference between traditional OIDS and OpenID4VC / VC. How does OpenID4VC support the idea of SSI?
+. Does OpenID4VC support selective disclosure / ZKP?
+. Code example POC
+
+== 1. A technical comparison of DIDComm and OIDC
+
+== 2. If OIDC already exists, then why OIDC for Verifiable Credentials?
+
+== 3. Difference between traditional OIDS and OpenID4VC / VC. How does OpenID4VC support the idea of SSI?
+
+== 4. Does OpenID4VC support selective disclosure / ZKP?
+
+== 5. Code example POC
