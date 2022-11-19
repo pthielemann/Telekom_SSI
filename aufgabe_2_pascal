@@ -1,0 +1,48 @@
+source: https://openid.net/wordpress-content/uploads/2022/06/OIDF-Whitepaper_OpenID-for-Verifiable-Credentials-V2_2022-06-23.pdf
+
+● Identifier: Value that uniquely points to an Entity in a specific context. / Wert welcher auf eine Entität in einem bestimmten Kontext zeigt 
+● Identity: A set of attributes that uniquely identifies a person in a defined context. / Menge an Attributen welche eine Person in einem bestimmten Kontext identifiziert
+● Verifiable Credential (VC)3: W3C Verifiable Credentials Data Model
+● Entity: Something that has a separate and distinct existence and that can be identified in a context. An End-User is one example of an Entity. / Person, Unternehmen, ... -> etwas dass durch verifiable credentials beschrieben werden kann 
+● End-User: Human participant. / Mensch
+● Wallet: Entity that receives, stores, presents, and manages credentials and key material of the End-User. There is no single deployment model of a wallet: credentials and keys can both be stored/managed locally by the end-user, or by using a remote self-hosted
+service, or a remote third party service. / Entität welche Credentials und key material der Nutzer erhält, speichert, darstellt und verwaltet
+● Verifier: Entity that verifies the credential to make a decision regarding providing a service to the End-User. Also called Relying Party (RP) or Client. / Entität welche durch erhaltene/erfragte credentials eine Entscheidung trifft
+● Credential Issuer: Entity that issues verifiable credentials. / Entität welche Credentials anfragt 
+● Identity Provider (IdP) / OpenID Provider (OP): OAuth 2.0 Authorization Server that is capable of Authenticating the End-User and providing Claims to a Relying Party about the Authentication event and the End-User, given the End-User’s consent. Identity Providers can be government entities, identity service providers, digital platforms, mobile networks, wallet providers, financial institutions or any entity a user trusts to set-up and present identity claims. / kann Ansprüche an relying Party stellen wie Authentifizierung auszusehen hat, insofern der Nutzer zustimmt; 
+● Self-Issued OpenID Provider: An OpenID Provider (OP) used by the End-users to prove control over a cryptographically verifiable identifier.
+● Relying Party (RP): OAuth 2.0 Client application requiring End-User Authentication and Claims from an OpenID Provider.
+● Client: Application making protected resource requests on behalf of the End-User and with its authorization. The term "client" does not imply any particular implementation characteristics (e.g., whether the application executes on a server, a desktop, or other devices).
+● Wallet Provider: Entity that is responsible for building, deploying, and running a wallet implementation.
+
+
+OIDC Grundkonzept: Identity provider gibt die angefragten Daten über den Nutzer an eine Relying Party, nach dessen Zustimmung. 
+2 Typen von identity provider: kontrolliert von Nutzer; bereitgestellt durch third parties
+
+OIDC4VC Grundkonzept: Nutzer präsentiert relying party selbst seine Daten 
+-> Nutzer bekommt Kontrolle über Entscheidung wann & welche Daten mit wem geteilt werden sollen 
+Identity provider verlieren Einblick in die Aktivitäten der Nutzer 
+
+Was können Nutzer durch OIDC4VC? 
+- Nutzer können ihre Credentials zum Authentifizieren nutzen, ohne dass die Entität bei welcher diese Credentials vorgelegt werden sollen, mit dem Credential Issuer sprechen muss -> Credentials ab Ausstellung unabhängig des Issuers prüfbar
+- an keinen Identity provider gebunden 
+- Verifier & identity provider haben nichts miteinander zu tun 
+
+Nutzer = besitzt Credentials
+Verifier = prüft Credentials
+Issuer = stellt Credentials aus / erstellt sie 
+
+verifier erhält credentials direkt aus der Wallet des Nutzers; durch kryptografische Berechnungen kann geprüft werden ob: 
+    - credential wurde von einem issuer erstellt, welchem der verifier vertraut 
+    - Nutzerwallet welches die Daten "zeigt" & Nutzerwallet welches Daten bei Ausstellung erhalten hat stimmen überein
+
+-> innerhalb einer Präsentation kann der Nutzer mehrere Credentials für verschiedene Issuer anlegen 
+
+OIDC4VP (verifiable presentations)
+1. Nutzer möchte auf einen gesperrten Bereich Zugreifen 
+2. Issuer fragt Credentials an 
+3. Credentials werden als verifiable presentation in Form eines VP Tokens an Issuer ausgestellt
+4. Issuer prüft auf Integrität & authentifiziert Nutzer
+
+OIDC4VC - simpel, entwicklerfreundlich, sicher, flexibel mit Blick auf die Identifier 
+
