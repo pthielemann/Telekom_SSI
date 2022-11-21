@@ -1,3 +1,7 @@
+source: 
+https://www.youtube.com/watch?v=RllH91rcFdE
+
+
 SSI = self sovereign identity
 DID = decentralized identifier
 ZKP = zero knowledge proof
