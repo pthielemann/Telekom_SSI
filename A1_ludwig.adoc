@@ -1,33 +1,42 @@
-= 1. A technical comparison of DIDComm and OIDC
+:imagesdir: img
+
+= 1. Ein technischer Vergleich von DIDComm und Open ID Connect
 
 == DIDComm
-.What is DIDComm?
-* messaging protocol that provides utility for DID based relationships 
-** which are the foundation of SSI
-* Exchange of DIDs to form a connection
-** both parties have a self-certifying and mutually authenticated relationship
-* *secure, interoperable & flexible* general messaging overlay for the entire internet
+.Was ist DIDComm?
+* Protokoll für die Kommunikation bei DID basierten Kommunikationsverbindungen
+** diese Verbindungen sind der Kern von SSI
+* um eine Verbindung herzustellen werden DIDs (Decentralized Identifiers) ausgetauscht
+** beide Kommunikationspartner sind selbst zertifiziert und sind sich einig über die gegenseitige Authentizität
+* *ein sicheres, interoperables und flexibles* Kommunikationstool für das gesamte Internet
+.Beispiel
+//image::
 
-//bild mit beispiel
+.Eigenschaften von DIDComm
+* sicher
+* privat
+* interoperabel
+* Art der Verbindung ist unwichtig
+* erweiterbar
 
-.Properties of DIDComm
-* secure
-* private
-* interoperable
-* transport-agnostic
-* extensible
+* kein bestimnmtes Betriebssystem, Progrtammiersprache, Anbieter, Netzwerk oder hardware
+* Ziel ist es, die standardmäßige Kommunikation bei sicheren, privaten Interaktionen im und außerhalb des Internets zu werden
+* es können alle Arten von Verbindungen genutzt werden _(HTTP(s), Websockets, IRC, Bluetooth, NFC, Signal, email, push benachrichtigungen, etc.)_
 
-* not dependent on a specific operating system, programming language, vendor, network or hardware
-* aims to become the common language of any secure, private, self-sovereign interaction on and off the internet
-* makes use of any transport mechanisms _(HTTP(s), Websockets, IRC, Bluetooth, NFC, Signal, email, push notifications on a smartphone, etc.)_
+.DIDComm Protokolle
+Kernfunktionen:
+* Verbindung mit Partnern
+* Credentials anfordern und ausstellen
+* mithilfe von Credentials authentifizieren
 
-.DIDComm protocols
-core applications:
-* connecting with others
-* requesting and issuing credentials
-* proving things using credentials
+== Open ID Connect
+.Was ist OIDC?
+* einfachte Identitäts Layer über dem OAuth 2.0 Protokoll
+* Ermöglicht es dem Client, Endbenutzer zu identifizieren und einfache Informationen über ihn zu erhalten.
+* alle Arten von Clients sind möglich
 
-==Open ID Connect
+.Wie funktioniert OIDC?
+image::IMG_0019.jpg[]
 
 
 
