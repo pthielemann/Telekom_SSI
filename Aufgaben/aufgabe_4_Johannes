@@ -1,0 +1,34 @@
+Does OpenID4VC / VP supports selective attribute disclosure / ZKP?
+
+Was ist ZKP?
+
+- ZKP steht für Zero Knowledge Proof
+- beschreibt eine Kryptographietechnik
+- Ziel ist, die Menge an zusätzlichen Informationen zu reduzieren, welche der Issuer über den Prover bekommt
+- kann unterteilt werden in interactive und non-interactive ZKPs (SNARK)
+
+interactive ZKP:
+
+- basiert auf Beweis durch eine Reihe von Interaktionen zwischen Prover und Verifier, wobei Wahrscheinlichkeit niemals 100% erreichen kann
+- Prover beweist Verifier die Kenntnis, ohne das Verifier anderen die Kenntnis des Provers beweisen kann
+
+non-interactive ZKP (SNARK):
+
+- soll die Anzahl der Interaktionen zwischen Prover und Verifier minimalisieren
+- Prover sendet nur eine Nachricht an Verifier
+- Verifier lernt nur, dass Prover den Fakt kennt
+
+
+Was ist selective attribute disclosure? 
+
+- Nutzer entscheidet selbst, welche Informationen er weitergeben möchte
+
+
+Unterstützt OpenID4VC / VP selective attribute disclosure?
+
+- Nutzung von ZKPs durch Verifiable Credentials möglich
+
+
+sources:
+https://www.windley.com/archives/2021/11/zero_knowledge_proofs.shtml
+https://openid.net/specs/openid-connect-4-verifiable-presentations-1_0-10.html
