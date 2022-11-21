@@ -38,6 +38,7 @@ Kernfunktionen:
 .Wie funktioniert OIDC?
 image::IMG_0019.jpg[]
 
+== Vergleich
 
 
 

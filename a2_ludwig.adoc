@@ -1,0 +1,24 @@
+https://openid.net/wordpress-content/uploads/2022/05/OIDF-Whitepaper_OpenID-for-Verifiable-Credentials_FINAL_2022-05-12.pdf
+https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html#name-terminology
+https://medium.com/mattr-global/verifiable-credential-based-authentication-via-openid-connect-cd2943b17aa4
+
+OIDC Verifiable Credentials
+
+Was ist ein vc
+A verifiable credential is essentially a set of one or more attributes of data (aka ‘claims’) that are issued by some authority who is known as the ‘issuer’. These claims are made about a subject (such as a person) in a way that, when presented to a verifier, their authenticity can be ‘verified’ cryptographically.
+
+beispiel:
+führerschein ist ein credential
+die führerschein stellt diesen aus = issuer
+subjekt ist der inhaber des führerscheins
+die polizei ist beispielsweide sin verifier
+
+diese art der verifizierung soll nun digitalisiert sein
+The idea behind verifiable credentials is to take physical credentials like a driver’s license and others and convert them to a digital format. In this form, rather than verifiers trusting security ink and paper documents for proof of authenticity, cryptography is used instead. Most commonly, the storage and exchange of these ‘credentials’ for individuals are achieved via a mobile app called a digital identity wallet.
+
+
+Problem:
+
+With OpenID Connect, a user can leverage an account they hold with an OpenID provider to authenticate to another website/service. However, in this process, the user often unknowingly reveals important information to the provider like what online services they use, how often they use them and what they use them for. This model also puts an OpenID provider at the centre of these digital relationships, effectively handing over much of the control of the relationship to the provider.
+
+The ability within OpenID Connect to leverage an account held at one provider to authenticate with another website/service is often referred to as identity federation and because of this model, many use cases are difficult to support. Take the example of proving to a website your first and last name from your passport and your address verified by your utility provider. Using OpenID Connect would first require you to have an active account with both the passport authority and your utility provider. The website you are trying to disclose this information to must also support connecting to these two particular OpenID providers and finally you would have to login to both of these services separately when you want to disclose this information. This mix of having to support a delicate federation model and tricky user experience is at odds with how we use credentials in the physical world. Here, we are issued credentials such as a passport that we are free to combine with other credentials and present wherever, without further involvement from the issuer(s).
