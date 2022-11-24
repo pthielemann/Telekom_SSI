@@ -1,0 +1,15 @@
+# If OIDC already exists, then why OIDC for Verifiable Credentials?
+
+* Warum gibt es überhaupt DIDComm? 
+
+* Weleches versucht DIDComm von OIDC zu lösen?
+
+* Was sind Verfifiable Credentials?
+
+* Wo lohnt es sich DIDComm einzusetzen und wo nicht?
+
+## Zusatzfragen
+
+* Wie unterstützt DIDComm das Konzept von SSI?
+
+* Wie kann man DIDComm integrieren?

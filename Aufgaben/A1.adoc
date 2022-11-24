@@ -6,3 +6,9 @@
 - Objekte / Schnittstellen im Workflow
 - Vergleich
 - Fazit
+
+## Fragen
+
+- Warum gibt es DIDComm?
+- Wo lohnt es sich DIDComm einzusetzen und wo nicht?
+- Wie ist die Schnittstelle zwischen DIDComm und OIDC?
