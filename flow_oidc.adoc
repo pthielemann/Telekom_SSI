@@ -1,0 +1,14 @@
+# OIDC Flow
+
+image::img/oidc-basic-flow.png[]
+
+1. Der User startet eine Session mit der Client Anwendung (Relying Party) und wird an den OpenID Provider (OneLogin) weitergeleitet
+- passing Client_id (eindeutige Identifizierung des Users beim Provider)
+
+2. OpenID Provider authentifiziert und autorisiert User für eine bestimmte Anwendungsinstanz
+
+3. Es wird eine ein einmalig verwendbarer Code über eine vordefinierte Redirect_URI an den Webserver (Client) zurückgegeben
+
+4. Client übergibt den Code, die Client-ID und das Client-Secret an den Token-Endpunkt des OpenID Providers, der den Code validiert und ein einstündiges Zugriffstoken zurückgibt
+
+5. Der Client nutzt den Zugriffstoken um weitere Details über den Benutzer zu erhalten (falls erforderlich) und baut eine Sitzung für den Benutzer auf
