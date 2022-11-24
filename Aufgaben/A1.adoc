@@ -1,14 +1,12 @@
-# Anforderungen
+# A technical comparison of DIDComm and OIDC
 
-- Kurz: Was ist OIDC und DIDComm?
-- Beispiel
-- Workflow
-- Objekte / Schnittstellen im Workflow
-- Vergleich
-- Fazit
+* Was ist OIDC? (kurz)
 
-## Fragen
+* Was ist DIDComm? (kurz)
 
-- Warum gibt es DIDComm?
-- Wo lohnt es sich DIDComm einzusetzen und wo nicht?
-- Wie ist die Schnittstelle zwischen DIDComm und OIDC?
+* Beispiele für OIDC und DIDComm
+
+* Workflow von OIDC und DIDComm darstellen
+** Teilnehmer (zb. OpenID Provider) und Objekte (zb. Redirect URI oder Client Secret) erklären
+
+* Technischen Vergleich

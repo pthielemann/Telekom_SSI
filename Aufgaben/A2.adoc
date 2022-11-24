@@ -2,7 +2,7 @@
 
 * Warum gibt es überhaupt DIDComm? 
 
-* Weleches versucht DIDComm von OIDC zu lösen?
+* Weleches Problem versucht DIDComm von OIDC zu lösen?
 
 * Was sind Verfifiable Credentials?
 
