@@ -1,0 +1,37 @@
+[cols="1,1"]
+|===
+|Synonym
+|Bedeutung
+
+|Entität
+|Eine juristische Person. Dabei handelt es sich beispielsweise um Unternehmen, einzelne Personen oder Vereine, welche klar identifiziert werden können.
+
+|Holder
+|Entität welche die Zertifikate anfordert, verwaltet & zum Identitätsnachweis ausstellt. Besitzer der digital wallet.
+
+|Verifier
+|Entität welche Zertifikate anfordert, um mit ihnen zu arbeiten. Dabei handelt es sich z.B. um eine Universität, welche den Nachweis über ein Zeugnis benötigt. 
+
+|Issuer
+|Entität welche sich mit dem prüfen der Nachweise und dem anschließenden Ausstellen der Zertfikate auseinandersetzt. 
+
+|Identifier
+|Wert welcher eine Entität, in einem bestimmten Kontext beschreibt.
+
+|Identity
+|Menge an Attributen, welche eine Entität eindeutig beschreiben. 
+
+|Claim
+|Indivuiduelle Informationsanfrage eines Verifiers. Legt z.B. fest es werden zum prüfen der Name, Alter & Wohnort benötigt. 
+
+|Scope
+|Vorgefertigte Sets von Attributen, entsprechen einem Standard. z.B. Nachweis Führerschein benötigt: Bild, Name & Daten der Führerscheinausstellung. 
+
+|SSI
+|self-sovereign-identity
+
+|DID
+|decentralized identifier
+
+|ZKP
+|zero knowledge proof
