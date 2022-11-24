@@ -1,0 +1,8 @@
+# Anforderungen
+
+- Kurz: Was ist OIDC und DIDComm?
+- Beispiel
+- Workflow
+- Objekte / Schnittstellen im Workflow
+- Vergleich
+- Fazit
