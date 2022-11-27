@@ -3,6 +3,16 @@
 * Was ist OIDC? (kurz)
 
 * Was ist DIDComm? (kurz)
+source: https://www.windley.com/archives/2020/11/didcomm_and_the_self-sovereign_internet.shtml
+https://medium.com/decentralized-identity/understanding-didcomm-14da547ca36b
+- DIDComm ist ein Nachrichtenprotokoll für DID basierte Dienste
+- allgemeines Protokoll, welches durch anwendungsspezifische Besonderheiten ergänzt werden kann -> diese Spezifikation wird dann erst in der Softwareebene ausgewertet, DIDComm bietet nur einen Dienst wie die Nachrichten ausgetauscht werden können 
+- hat keine spezifischen Vorgaben zur Implementierung, sondern kann für jede SSI-Interaktion verwendet werden -> bildet Grundlage/einen Standard
+- zum Datentausch wird nichts außer die DID des anderen Users benötigt 
+- DIDComm = "Grundlage"; DIDComm Protocols = "Was soll in der Kommunikation ausgetauscht werden?" -> vergleichbar mit HTTPS und API's welche im Web geschrieben werden, sind unabhängig voneinander, aber API's ohne HTTPS funktionieren nicht, DIDComm Protocols funktionieren ohne DIDComm genauso wenig 
+- 
+
+
 
 * Beispiele für OIDC und DIDComm
 

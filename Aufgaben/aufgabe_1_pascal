@@ -68,14 +68,14 @@ OIDC:
         - authentifizieren des Clients (der Anwendung)
       - userInfo endpoint
         - private / sensitive Informationen, können nur mit einem Token abgefragt werden
-    
+
 "Flows"
   - authorization code flow
     - Anmelden per Google -> weiterleitung auf Google Login Seite -> nach erfolgreichem Login redirect zur Website; Website fragt nun bei googles API an & sendet einen Code mit um zu verifizieren, dass es sich um einen echten request handelt & Daten wirklich abgefragt werden dürfen 
     - google returns access token 
     - mit access token können Daten von Googles /userinfo endpoint abgefragt werden 
   - implicit flow
-    - Cleint Anfrage an authentifizierungsendpoint -> aber response kein code sondern token 
+    - Client Anfrage an authentifizierungsendpoint -> aber response kein code sondern token 
     - Server sendet accesstoken zurück; in Form von Fragment in URL -> "http://redirect#access_token=tokenabc" 
     - request is done afterwards, cause fragment stays in browser -> so token is stored and used to authenticated 
   - hybrid flow
