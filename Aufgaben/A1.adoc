@@ -1,6 +1,14 @@
-# A technical comparison of DIDComm and OIDC
+:imagesdir: img
 
-* Was ist OIDC? (kurz)
+= A technical comparison of DIDComm and OIDC
+
+== Was ist OIDC?
+* einfachte Identitäts Layer über dem OAuth 2.0 Protokoll
+* Ermöglicht es dem Client, Endbenutzer zu identifizieren und einfache Informationen über ihn zu erhalten.
+* alle Arten von Clients sind möglich
+
+.Wie funktioniert OIDC?
+image::IMG_0019.jpg[]
 OIDC steht für OpenID-Connect und ist ein Service zur Authentifizierung von Usern anhand bestimmter "flows". In OIDC werden 3 Endpunkte benötigt um die Authentifizierung durchzuführen. Diese Endpunkte sind: ein Authentifizierungsserver (OpenID Connect Provider), der Client(OpenID Connect Application) und der Endnutzer. 
 Möchte der User nun einer Website ermöglichen seine Daten von einem Authentifierungsserver zu holen, so muss er sich auf dem Server zuerst Authentifizieren & Autorisieren. 
 Sind beide Schritte erledigt, kann er Übergabe seiner Daten an den Client zustimmen. Die erhaltenen Daten müssen vor der Abfrage schon beschrieben sein, dies geschieht in Form eines Claims. 
@@ -43,19 +51,29 @@ Bsp. für access_token:
   "scope": "openid profile read:patients read:admin"
 }
 
-* Was ist DIDComm? (kurz)
-source: https://www.windley.com/archives/2020/11/didcomm_and_the_self-sovereign_internet.shtml
-https://medium.com/decentralized-identity/understanding-didcomm-14da547ca36b
-- DIDComm ist ein Nachrichtenprotokoll für DID basierte Dienste
-- allgemeines Protokoll, welches durch anwendungsspezifische Besonderheiten ergänzt werden kann -> diese Spezifikation wird dann erst in der Softwareebene ausgewertet, DIDComm bietet nur einen Dienst wie die Nachrichten ausgetauscht werden können 
-- hat keine spezifischen Vorgaben zur Implementierung, sondern kann für jede SSI-Interaktion verwendet werden -> bildet Grundlage/einen Standard
-- zum Datentausch wird nichts außer die DID des anderen Users benötigt 
-- DIDComm = "Grundlage"; DIDComm Protocols = "Was soll in der Kommunikation ausgetauscht werden?" -> vergleichbar mit HTTPS und API's welche im Web geschrieben werden, sind unabhängig voneinander, aber API's ohne HTTPS funktionieren nicht, DIDComm Protocols funktionieren ohne DIDComm genauso wenig 
-- 
+== Was ist DIDComm?
+//source: https://www.windley.com/archives/2020/11/didcomm_and_the_self-sovereign_internet.shtml
+//https://medium.com/decentralized-identity/understanding-didcomm-14da547ca36b
+* DIDComm ist ein Nachrichtenprotokoll für DID (Decentralized Identifiers) basierte Dienste / Kommunikationsverbindungen
+** diese Verbindungen sind der Kern von SSI
+* allgemeines Protokoll, welches durch anwendungsspezifische Besonderheiten ergänzt werden kann -> diese Spezifikation wird dann erst in der Softwareebene ausgewertet, DIDComm bietet nur einen Dienst wie die Nachrichten ausgetauscht werden können 
+* hat keine spezifischen Vorgaben zur Implementierung, sondern kann für jede SSI-Interaktion verwendet werden -> bildet Grundlage/einen Standard
+* zum Datentausch werden nur die DID des  jeweils anderen Users benötigt
+** beide Kommunikationspartner sind selbst zertifiziert und sind sich einig über die gegenseitige Authentizität
+* DIDComm = "Grundlage"; DIDComm Protocols = "Was soll in der Kommunikation ausgetauscht werden?" -> vergleichbar mit HTTPS und API's welche im Web geschrieben werden, sind unabhängig voneinander, aber API's ohne HTTPS funktionieren nicht, DIDComm Protocols funktionieren ohne DIDComm genauso wenig 
 
+.Eigenschaften von DIDComm
+* sicher
+* privat
+* interoperabel
+* Art der Verbindung ist unwichtig
+* erweiterbar
 
+* kein bestimnmtes Betriebssystem, Progrtammiersprache, Anbieter, Netzwerk oder hardware
+* Ziel ist es, die standardmäßige Kommunikation bei sicheren, privaten Interaktionen im und außerhalb des Internets zu werden
+* es können alle Arten von Verbindungen genutzt werden _(HTTP(s), Websockets, IRC, Bluetooth, NFC, Signal, email, push benachrichtigungen, etc.)_
 
-* Beispiele für OIDC und DIDComm
+== Beispiele für OIDC und DIDComm
 
 * Workflow von OIDC und DIDComm darstellen
 OIDC Workflow: 
