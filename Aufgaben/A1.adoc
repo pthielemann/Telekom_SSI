@@ -9,6 +9,7 @@
 
 .Wie funktioniert OIDC?
 image::IMG_0019.jpg[]
+
 OIDC steht für OpenID-Connect und ist ein Service zur Authentifizierung von Usern anhand bestimmter "flows". In OIDC werden 3 Endpunkte benötigt um die Authentifizierung durchzuführen. Diese Endpunkte sind: ein Authentifizierungsserver (OpenID Connect Provider), der Client(OpenID Connect Application) und der Endnutzer. 
 Möchte der User nun einer Website ermöglichen seine Daten von einem Authentifierungsserver zu holen, so muss er sich auf dem Server zuerst Authentifizieren & Autorisieren. 
 Sind beide Schritte erledigt, kann er Übergabe seiner Daten an den Client zustimmen. Die erhaltenen Daten müssen vor der Abfrage schon beschrieben sein, dies geschieht in Form eines Claims. 
