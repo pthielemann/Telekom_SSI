@@ -6,6 +6,7 @@
 
 * Was sind Verfifiable Credentials?
 
+
 * Wo lohnt es sich DIDComm einzusetzen und wo nicht?
 
 ## Zusatzfragen

@@ -36,7 +36,7 @@ Kernfunktionen:
 * alle Arten von Clients sind möglich
 
 .Wie funktioniert OIDC?
-image::IMG_0019.jpg[]
+image::IMG_0019jpg[]
 
 == Vergleich
 

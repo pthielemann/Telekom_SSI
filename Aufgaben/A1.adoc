@@ -1,6 +1,47 @@
 # A technical comparison of DIDComm and OIDC
 
 * Was ist OIDC? (kurz)
+OIDC steht für OpenID-Connect und ist ein Service zur Authentifizierung von Usern anhand bestimmter "flows". In OIDC werden 3 Endpunkte benötigt um die Authentifizierung durchzuführen. Diese Endpunkte sind: ein Authentifizierungsserver (OpenID Connect Provider), der Client(OpenID Connect Application) und der Endnutzer. 
+Möchte der User nun einer Website ermöglichen seine Daten von einem Authentifierungsserver zu holen, so muss er sich auf dem Server zuerst Authentifizieren & Autorisieren. 
+Sind beide Schritte erledigt, kann er Übergabe seiner Daten an den Client zustimmen. Die erhaltenen Daten müssen vor der Abfrage schon beschrieben sein, dies geschieht in Form eines Claims. 
+OpenID Connect Provider: returns access_token and ID_token 
+access_token = benötigt der Client um später auf den UserInfo Endpoint zuzugreifen, da dieser geschützt wird. 
+ID_token = dient zur Authentifizierung, sollte aber keine größeren Informationen enthalten 
+Ist der Prozess ist der Nutzer beim Client bekannt, somit weiß die Applikation es handelt sich um die Daten einer echten Entität. Werden noch weitere Informationen des Users benötigt müssen weitere UserInfo Requests versendet werden. 
+User: Muss sich nur beim Server anmelden
+OpenID Connect Appplication: 
+Nutzung des access_tokens(opaque strings oder JWT) bei UserInfo Requests um zu beweisen, dass er zur Abfrage weiterer Credentials des Users berechtigt ist -> Zugriff auf API + legt scope für "initiale" Abfrage fest; Credentials aus dem Claim welcher gleich zum Anfang gesendet wird, werden in form des id_tokens zurückgesendet
+ID_token(JWT) -> nutzen um ersten Credentials des Users zu haben; signiert mit JWS 
+
+Bsp. für id_token: 
+{
+  "iss": "http://my-domain.auth0.com",
+  "sub": "auth0|123456",
+  "aud": "my_client_id",
+  "exp": 1311281970,
+  "iat": 1311280970,
+  "name": "Jane Doe",
+  "given_name": "Jane",
+  "family_name": "Doe",
+  "gender": "female",
+  "birthdate": "0000-10-31",
+  "email": "janedoe@example.com",
+  "picture": "http://example.com/janedoe/me.jpg"
+}
+
+Bsp. für access_token: 
+{
+  "iss": "https://my-domain.auth0.com/",
+  "sub": "auth0|123456",
+  "aud": [
+    "https://example.com/health-api",
+    "https://my-domain.auth0.com/userinfo"
+  ],
+  "azp": "my_client_id",
+  "exp": 1311281970,
+  "iat": 1311280970,
+  "scope": "openid profile read:patients read:admin"
+}
 
 * Was ist DIDComm? (kurz)
 source: https://www.windley.com/archives/2020/11/didcomm_and_the_self-sovereign_internet.shtml
@@ -17,6 +58,62 @@ https://medium.com/decentralized-identity/understanding-didcomm-14da547ca36b
 * Beispiele für OIDC und DIDComm
 
 * Workflow von OIDC und DIDComm darstellen
-** Teilnehmer (zb. OpenID Provider) und Objekte (zb. Redirect URI oder Client Secret) erklären
+OIDC Workflow: 
+Die Flows dienen in diesem Fall zur Beschreibung der Übertragung der Token an den Client. Dabei unterscheidet man den Implicit Flow, den Authorization Code Flow & den Hybrid Flow. 
+Authorization Code Flow: 
+Sollte verwendet werden wenn serverseitig secrets gespeichert werden können.
+GET-Request des Clients welcher User zum authorization endpoint weiterleitet
+Location: domain-des-endpoints/authorize?
+          client_id=abc&
+          response_type=code&
+          scope=openID_scope&
+          redirect_uri=redirect_to_Client
+-> An authorization-endpoint angekommen, Nutzer muss sich einloggen & bestätigen dass Daten weitergegeben werden dürfen
+-> Endpoint erzeugt redirect: domain/login?
+                              provider=<endpoint>
+                              state=12345&
+                              code=issuecode
+
+Client muss authorization code nehmen um access_token zu erhalten 
+POST-Request an domain/token
+                client_id=abc&
+                client_secret=secret&
+                grant_type=authorization_code&
+                code=issuecode
+
+Endpoint answer: 
+"access_token":"access_token",
+"refresh_token":"refresh_token",
+"expires_in":36000,
+"scope":"granted_scope",
+"id_token":"idtoken"
+
+userinfo endpoint kann nun mit access_token aufgerufen werden und Daten werden abgerufen
+
+Antwort: "sub":"abc",
+         "name":"Pascal",
+         "username":"testUser"
+
+Implicit Flow: 
+Client: GET /authorize?
+            response_type=token&
+            scope=openid mail name&
+            client_id=123&
+            state=abc&
+            redirect_uri=client&
+            nonce=<random string>
+
+Endpoint: Location /redirect_uri#access_token=anAccessToken& -> access_token wird als fragment angelegt & bleibt somit im Browser
+                                 expires_in=36000&
+                                 state=abc&
+                                 id_token=eyJ&
+                                 refresh_token=avc&
+                                 token_type=bearer
+                                 
+Client: kann nun protected ressources wie zB userinfo endpoint anfragen 
+
+** Teilnehmer erklären
+- OpenID Provider ist ein eingerichteter Endpoint welcher sich um die Authentifizierung der User kümmert, eine Schnittstelle für token, authentifizierung & userinfo bereitstellt
+
 
 * Technischen Vergleich
