@@ -86,8 +86,105 @@ RESULT:
 -i issuer (stellt Credential aus; daher kommt der Key zum verifizieren)
 -s subject-did (für welche DID wird Credential erzeugt?)
 
+{
+  "type" : [ "VerifiableCredential", "VerifiableAttestation", "VerifiableId" ],
+  "@context" : [ "https://www.w3.org/2018/credentials/v1", "https://w3id.org/security/suites/jws-2020/v1" ],
+  "id" : "urn:uuid:6a60c0b8-7d11-4bee-97f7-8aae65dd6a9c",
+  "issuer" : "did:ebsi:zvpTcQBFrNjVznR8ipGLzki",
+  "issuanceDate" : "2022-12-07T21:02:28Z",
+  "issued" : "2022-12-07T21:02:28Z",
+  "validFrom" : "2022-12-07T21:02:28Z",
+  "credentialSchema" : {
+    "id" : "https://api.preprod.ebsi.eu/trusted-schemas-registry/v1/schemas/0xb77f8516a965631b4f197ad54c65a9e2f9936ebfb76bae4906d33744dbcc60ba",
+    "type" : "FullJsonSchemaValidator2021"
+  },
+  "credentialSubject" : {
+    "id" : "did:ebsi:zxXz3KjR2K9nMg6RJrfZx9J",
+    "currentAddress" : [ "Reisewitzer Straße 65" ],
+    "dateOfBirth" : "30.04.2000",
+    "familyName" : "Thielemann",
+    "firstName" : "Pascal",
+    "gender" : "Mal",
+    "nameAndFamilyNameAtBirth" : "Jane DOE",
+    "personalIdentifier" : "0904008084H",
+    "placeOfBirth" : "Freiberg"
+  },
+  "evidence" : [ {
+    "documentPresence" : [ "Physical" ],
+    "evidenceDocument" : [ "Passport" ],
+    "subjectPresence" : "Physical",
+    "type" : [ "DocumentVerification" ],
+    "verifier" : "did:ebsi:2A9BZ9SUe6BatacSpvs1V5CdjHvLpQ7bEsi2Jb6LdHKnQxaN"
+  } ],
+  "proof" : {
+    "type" : "JsonWebSignature2020",
+    "creator" : "did:ebsi:zvpTcQBFrNjVznR8ipGLzki",
+    "created" : "2022-12-07T21:02:28Z",
+    "proofPurpose" : "assertionMethod",
+    "verificationMethod" : "did:ebsi:zvpTcQBFrNjVznR8ipGLzki#7021752e590b4ead9e90d190e811f76a",
+    "jws" : 
+"eyJiNjQiOmZhbHNlLCJjcml0IjpbImI2NCJdLCJhbGciOiJQUzI1NiJ9..aPVw0ykxJrFxyF0DAfiKSh-QjgH5tfxOVqUB69GZmz4480sAe_ER79xUASHJjlauNOJWA8_AebX5wnF89duaHIo2PuHvRlWmPWfykGQcRKjwBxSBoaZP4d8baXmPt5Z9qDgbGAJRkF-aq8ZzElenxWsoSUMZ78gh4IqhIcT6jFWd-17R6EwH5Z3hyCOQtzyY7lzxXqOJYugPO8jr2uYg23Ri-7UzYvZqKbzPHD7jlHjIYmhJJDN9v5ZrY-iIhlnNa6UzKksefHI9PkF8FiZn7BurvHnw6pvYfSTulFup2tkgJmRgJMCfBbRNI12evJUAr1tRsxKNpuZLcUJppY0_6A"
+  }
+}
+
+verifiable presentation: 
+{
+  "type" : [ "VerifiablePresentation" ],
+  "@context" : [ "https://www.w3.org/2018/credentials/v1", "https://w3id.org/security/suites/jws-2020/v1" ],
+  "id" : "urn:uuid:dd818d64-3419-4697-96f6-b88526eedfb9",
+  "holder" : "did:ebsi:zvpTcQBFrNjVznR8ipGLzki",
+  "verifiableCredential" : [ {
+    "type" : [ "VerifiableCredential", "VerifiableAttestation", "VerifiableId" ],
+    "@context" : [ "https://www.w3.org/2018/credentials/v1", "https://w3id.org/security/suites/jws-2020/v1" ],
+    "id" : "urn:uuid:6a60c0b8-7d11-4bee-97f7-8aae65dd6a9c",
+    "issuer" : "did:ebsi:zvpTcQBFrNjVznR8ipGLzki",
+    "issuanceDate" : "2022-12-07T21:02:28Z",
+    "issued" : "2022-12-07T21:02:28Z",
+    "validFrom" : "2022-12-07T21:02:28Z",
+    "proof" : {
+      "type" : "JsonWebSignature2020",
+      "creator" : "did:ebsi:zvpTcQBFrNjVznR8ipGLzki",
+      "created" : "2022-12-07T21:02:28Z",
+      "proofPurpose" : "assertionMethod",
+      "verificationMethod" : "did:ebsi:zvpTcQBFrNjVznR8ipGLzki#7021752e590b4ead9e90d190e811f76a",
+      "jws" : "eyJiNjQiOmZhbHNlLCJjcml0IjpbImI2NCJdLCJhbGciOiJQUzI1NiJ9..aPVw0ykxJrFxyF0DAfiKSh-QjgH5tfxOVqUB69GZmz4480sAe_ER79xUASHJjlauNOJWA8_AebX5wnF89duaHIo2PuHvRlWmPWfykGQcRKjwBxSBoaZP4d8baXmPt5Z9qDgbGAJRkF-aq8ZzElenxWsoSUMZ78gh4IqhIcT6jFWd-17R6EwH5Z3hyCOQtzyY7lzxXqOJYugPO8jr2uYg23Ri-7UzYvZqKbzPHD7jlHjIYmhJJDN9v5ZrY-iIhlnNa6UzKksefHI9PkF8FiZn7BurvHnw6pvYfSTulFup2tkgJmRgJMCfBbRNI12evJUAr1tRsxKNpuZLcUJppY0_6A"
+    },
+    "credentialSchema" : {
+      "id" : "https://api.preprod.ebsi.eu/trusted-schemas-registry/v1/schemas/0xb77f8516a965631b4f197ad54c65a9e2f9936ebfb76bae4906d33744dbcc60ba",
+      "type" : "FullJsonSchemaValidator2021"
+    },
+    "credentialSubject" : {
+      "id" : "did:ebsi:zxXz3KjR2K9nMg6RJrfZx9J",
+      "currentAddress" : [ "Reisewitzer Straße 65" ],
+      "dateOfBirth" : "30.04.2000",
+      "familyName" : "Thielemann",
+      "firstName" : "Pascal",
+      "gender" : "Mal",
+      "nameAndFamilyNameAtBirth" : "Jane DOE",
+      "personalIdentifier" : "0904008084H",
+      "placeOfBirth" : "Freiberg"
+    },
+    "evidence" : [ {
+      "documentPresence" : [ "Physical" ],
+      "evidenceDocument" : [ "Passport" ],
+      "subjectPresence" : "Physical",
+      "type" : [ "DocumentVerification" ],
+      "verifier" : "did:ebsi:2A9BZ9SUe6BatacSpvs1V5CdjHvLpQ7bEsi2Jb6LdHKnQxaN"
+    } ]
+  } ],
+  "proof" : {
+    "type" : "JsonWebSignature2020",
+    "creator" : "did:ebsi:zvpTcQBFrNjVznR8ipGLzki",
+    "created" : "2022-12-07T21:08:15Z",
+    "proofPurpose" : "authentication",
+    "verificationMethod" : "did:ebsi:zvpTcQBFrNjVznR8ipGLzki#7021752e590b4ead9e90d190e811f76a",
+    "jws" : "eyJiNjQiOmZhbHNlLCJjcml0IjpbImI2NCJdLCJhbGciOiJQUzI1NiJ9..Y2KTiKSTI770YaTh__DCqOdpgjP_LYysTsGXVK3Aze_9CZC8hi59JzwTP4WPupeEpS382AD5nyyGEMBfhgPf2C_v2bcIA11p_ypCOTVO4myRqGwjteMungEcz5bSV3QXacX8fTdFGHq281Ld2IwlQoxLYBv749N8N9ZbLJQ6szZcdmjvEgp4Cy4N9u4iqkudJZbEXBgwT7rHmYxfiHXUyhLlaxyoNkvQZg0kplgIrHHfaoHi5qNI4lCqjgf76QyUwccDiA2yFGKwT2OE81QJ-DSWXFfPxL1EPIkhOnXstuY6aa1RS8l1SXwbTnRIoH9E9lfVDpzalfv3_QUGoeV3EA"
+  }
+}
 
 
+Quellen: 
+https://www.youtube.com/watch?v=wJ-fQBSCwbA
 
 
 
