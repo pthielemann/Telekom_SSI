@@ -214,3 +214,7 @@ Routing Protocol 2.0 vereinfacht dass senden von Nachrichten
 
 
 * Technischen Vergleich
+
+
+Quellen: 
+https://identity.foundation/didcomm-messaging/spec

@@ -2,15 +2,25 @@
 
 * Warum gibt es überhaupt DIDComm? 
 
-* Weleches Problem versucht DIDComm von OIDC zu lösen?
+
+* Welches Problem versucht DIDComm von OIDC zu lösen?
+OIDC hat das Problem dass viel traffic erzeugt wird. Bei den Workflows von OIDC ist immer ein Datenaustausch mit einer Certification Authority(CA) notwendig um sich die Dokumente/die Gültigkeit bestätigen zu lassen.
+zB Bestätigen dass man Ü18 ist per Google Authentication: 
+    - von der Client-Anwendung(Verifier) aus zu Google(Issuer) weiterleiten. Nutzer(Holder) muss sich mit seinen Daten anmelden, bestätigen dass diese verwendet werden dürfen & redirected zur Client-Anwendung zurück
+    - im Hintergrund passieren 1-3 weitere Anfragen an Google (je nach Workflow & benötigten Daten), nur um von dem Google userinfo-Endpoint eine Abfrage zu stellen und sich Daten der User ausgeben zu lassen 
+-> bei VC muss nur der Credential an den Verifier übergeben werden & dieser kann dann checken ob es zertifiziert ist 
+
+Des weiteren hat der Nutzer bei OIDC seine Daten nicht selbst in der Hand. Er kann sich zwar bei einem Authentication Endpoint registrieren, seine Daten hinterlegen & bei der Abfrage sehen was angefordert wird & dem zustimmen / ablehnen. Die Daten sind nicht dezentral handhabbar sondern werden zentral von einer Authority gespeichert und weitergegeben. 
+
 
 * Was sind Verfifiable Credentials?
-
+Verifiable Credentials sind digitaliserte Nachweise eines physischen Dokumentes. Sie werden online durch den Holder angefordert. Dieser stellt eine Anfrage an einen Issuer, übermittelt seine Nachweise & bekommt ein Credential/einen digitalen Nachweis ausgestellt. Möchte der Holder sich nun verifizieren kann der Credential von einem Verifier angefordert werden & durch den Holder zur Verarbeitung freigegeben werden. Durch die Signatur des Issuers kann die Gültigkeit des Dokumentes sichergestellt werden. Die Datensicherheit wird dabei weiterhin gewährt, da die Nachweise (optional) nicht gespeichert/ausgewertet werden können
 
 * Wo lohnt es sich DIDComm einzusetzen und wo nicht?
 
 ## Zusatzfragen
 
 * Wie unterstützt DIDComm das Konzept von SSI?
+
 
 * Wie kann man DIDComm integrieren?
