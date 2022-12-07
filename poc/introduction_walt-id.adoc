@@ -1,0 +1,96 @@
+1. git clone https://github.com/walt-id/waltid-ssikit.git
+2. cd waltid-ssikit
+
+workflow: 
+
+./ssikit.sh key gen --algorithm RSA -> returns Key ID  #es wird ein Key erstellt welcher dann einem DID Dokument zugewiesen werden kann
+RESULTS:
+    "Generating RSA key pair...
+    Key "d17872ae863944ab82539f7e38db1f10" generated."
+    d17872ae863944ab82539f7e38db1f10 = Key-ID
+
+
+
+./ssikit.sh did create -m ebsi -k d17872ae863944ab82539f7e38db1f10 #es wird ein DID erstellt des Formates "ebsi"
+RESULTS: 
+
+    DID created: did:ebsi:zxXz3KjR2K9nMg6RJrfZx9J
+    DID document (below, JSON):
+
+    {
+        "assertionMethod" : [
+            "did:ebsi:zxXz3KjR2K9nMg6RJrfZx9J#d17872ae863944ab82539f7e38db1f10"
+        ],
+        "authentication" : [
+            "did:ebsi:zxXz3KjR2K9nMg6RJrfZx9J#d17872ae863944ab82539f7e38db1f10"
+        ],
+        "@context" : "https://www.w3.org/ns/did/v1",
+        "id" : "did:ebsi:zxXz3KjR2K9nMg6RJrfZx9J",
+        "verificationMethod" : [
+            {
+                "controller" : "did:ebsi:zxXz3KjR2K9nMg6RJrfZx9J",
+                "id" : "did:ebsi:zxXz3KjR2K9nMg6RJrfZx9J#d17872ae863944ab82539f7e38db1f10",
+                "publicKeyJwk" : {
+                    "alg" : "RS256",
+                    "e" : "AQAB",
+                    "kid" : "d17872ae863944ab82539f7e38db1f10",
+                    "kty" : "RSA",
+                    "n" : "pb7yV-Mkp4BiZ0GdORnozWH7a1ZvnWdLm_JlCTz06bktfht3ilZyFswaOje8V2xiVIDyYPS0oVbSIAfZN2w4_nVqjoEIUA-YkbpNpE5uqZiNTZtxXB_E8lZBuQAsf5IE9Gtai4OwdTue6WdVgsLU5DelhJ-et7kXieKmXkjYsIvTtkmKWRVn5tEJDGNUHnCRil82BjmXCBB5vqkZQXz6HbKsEr2wJkBoLt3OxrFZUj89vMRdB57jEcPYrX6B4UBjJCI5vS3VK1uePnA60vgvQFlIrC4R6iyXtEu6sNT9teNgeS1lLurH86otPdIVaxkc8185MifmxPgilwx2eGVdGQ",
+                    "use" : "sig"
+                },
+                "type" : "RsaVerificationKey2018"
+            }
+        ]
+    }
+
+./ssikit.sh did create -m key #erzeugen eines keys + DID
+RESULT: 
+    DID created: did:key:z6MkgmzBxmtj52TzGc1zccNPBqJAk3tvxgrePsRAV4GLXAPa
+    DID document (below, JSON):
+    {
+        "assertionMethod" : [
+            "did:key:z6MkgmzBxmtj52TzGc1zccNPBqJAk3tvxgrePsRAV4GLXAPa#z6MkgmzBxmtj52TzGc1zccNPBqJAk3tvxgrePsRAV4GLXAPa"
+        ],
+        "authentication" : [
+            "did:key:z6MkgmzBxmtj52TzGc1zccNPBqJAk3tvxgrePsRAV4GLXAPa#z6MkgmzBxmtj52TzGc1zccNPBqJAk3tvxgrePsRAV4GLXAPa"
+        ],
+        "capabilityDelegation" : [
+            "did:key:z6MkgmzBxmtj52TzGc1zccNPBqJAk3tvxgrePsRAV4GLXAPa#z6MkgmzBxmtj52TzGc1zccNPBqJAk3tvxgrePsRAV4GLXAPa"
+        ],
+        "capabilityInvocation" : [
+            "did:key:z6MkgmzBxmtj52TzGc1zccNPBqJAk3tvxgrePsRAV4GLXAPa#z6MkgmzBxmtj52TzGc1zccNPBqJAk3tvxgrePsRAV4GLXAPa"
+        ],
+        "@context" : "https://www.w3.org/ns/did/v1",
+        "id" : "did:key:z6MkgmzBxmtj52TzGc1zccNPBqJAk3tvxgrePsRAV4GLXAPa",
+        "keyAgreement" : [
+            "did:key:z6MkgmzBxmtj52TzGc1zccNPBqJAk3tvxgrePsRAV4GLXAPa#z6LSdZN9fL2ZYSA4SvZX8Gw7ND2cersLRm2SieGiXPREPboc"
+        ],
+        "verificationMethod" : [
+            {
+                "controller" : "did:key:z6MkgmzBxmtj52TzGc1zccNPBqJAk3tvxgrePsRAV4GLXAPa",
+                "id" : "did:key:z6MkgmzBxmtj52TzGc1zccNPBqJAk3tvxgrePsRAV4GLXAPa#z6MkgmzBxmtj52TzGc1zccNPBqJAk3tvxgrePsRAV4GLXAPa",
+                "publicKeyBase58" : "3Kj9NXeHjUyXA7BHw3QYLjkAvUd5YocHhrWEenJKbwcC",
+                "type" : "Ed25519VerificationKey2019"
+            },
+            {
+                "controller" : "did:key:z6MkgmzBxmtj52TzGc1zccNPBqJAk3tvxgrePsRAV4GLXAPa",
+                "id" : "did:key:z6MkgmzBxmtj52TzGc1zccNPBqJAk3tvxgrePsRAV4GLXAPa#z6LSdZN9fL2ZYSA4SvZX8Gw7ND2cersLRm2SieGiXPREPboc",
+                "publicKeyBase58" : "2tBz92DhSySKMYBkbdRA3cp8oiLDj9rHqfZ32vmhgE2r",
+                "type" : "X25519KeyAgreementKey2019"
+            }
+        ]
+    }
+
+./ssikit.sh vc issue -t VerifiableId -i did:ebsi:zxXz3KjR2K9nMg6RJrfZx9J -s did:key:z6MkgmzBxmtj52TzGc1zccNPBqJAk3tvxgrePsRAV4GLXAPa --interactive #anlegen eines Verifiable Credentials 
+-t = VC template 
+-i issuer (stellt Credential aus; daher kommt der Key zum verifizieren)
+-s subject-did (für welche DID wird Credential erzeugt?)
+
+
+
+
+
+
+
+
+
