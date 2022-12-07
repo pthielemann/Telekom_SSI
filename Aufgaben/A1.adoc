@@ -52,6 +52,13 @@ Bsp. für access_token:
   "scope": "openid profile read:patients read:admin"
 }
 
+-> beide token werden per JWS (JSON web keys) verschlüsselt  
+{
+    "alg": "RS256",
+    "kid": "9ac7441d-1c47-49ad-9bb9-740d0f6a1702",
+    "typ": "JWT"
+}
+
 == Was ist DIDComm?
 //source: https://www.windley.com/archives/2020/11/didcomm_and_the_self-sovereign_internet.shtml
 //https://medium.com/decentralized-identity/understanding-didcomm-14da547ca36b
@@ -131,8 +138,79 @@ Endpoint: Location /redirect_uri#access_token=anAccessToken& -> access_token wir
                                  
 Client: kann nun protected ressources wie zB userinfo endpoint anfragen 
 
+DIDComm workflow: 
+DIDComm ist ein Nachrichtenformat, orientiert an dem Konzept für Emails, bei dem zwischen 2 Entitäten eine Verbindung besteht, welche 2 Kanäle beinhaltet. Kanal A, für Nachrichten von Alice zu Bob. Kanal B,
+für Nachrichten von Bob zu Alice. Die Nachrichten können dabei aufeinander aufbauend, als Antworten, oder unabhängig voneinander versendet werden. 
+Man unterscheidet zwischen 3 Nachrichtenformaten: Plaintext, optinal JWS envelope, JWE envelope
+DIDComm Plaintext message: 
+Nachricht welche ohne jegliche Verschlüsselung übermittelt wird.
+DIDComm signed message: 
+Handelt sich dabei um eine signierte JWM(JSON web message). Dies ist ein gängiges Format um Nachrichten über verschiedenste Protokolle zu übertragen, welche per JWE(JSON web encryption) gesichert wird.
+DIDComm encrypted message: 
+Verschlüsselte JWM. 
+
+DIDComm Message Plaintext Beispiel
+{
+  "id": "1234567890",
+  "type": "<message-type-uri>",
+  "from": "did:example:alice",
+  "to": ["did:example:bob"],
+  "created_time": 1516269022,
+  "expires_time": 1516385931,
+  "body": {
+    "message_type_specific_attribute": "and its value",
+    "another_attribute": "and its value"
+  }
+} -> data stored in JSON body
+
+Was muss gegeben sein um 2 Agents miteinander sprechen zu lassen? 
+- serviceEndpoint -> deklariert wie andere Entität sie erreichen kann; besteht aus Set von DIDComm Service Endpoint URI's (wie will der owner seine Nachrichten empfangen), zB 
+{
+    "id": "did:example:123456789abcdefghi#didcomm-1",
+    "type": "DIDCommMessaging",
+    "serviceEndpoint": [{
+        "uri": "https://example.com/path",
+        "accept": [
+            "didcomm/v2", -> welche Typen werden von Aussteller akzeptiert?
+            "didcomm/aip2;env=rfc587"
+        ],
+        "routingKeys": ["did:example:somemediator#somekey"]
+    }]
+}
+- Sicherheit -> DIDComm Message wird immer mit Schlüsseln der empfangenden DID verschlüsselt; gleiche Nachricht an mehrere Sender muss mehrfach verschlüsselt werden (authcrypt / anoncrypt)
+
+DIDComm Rollen:
+sender - 
+mediator - 
+empfänger - 
+
+Nachrichtenaustausch von Alice & Bob
+Alice -> auflösen des DID Documents von Bob 
+      -> erhalt von Bob's public key & Adresse auf welche Art & Weise Bob Nachrichten empfangen kann
+      -> verschlüsseln Plaintext durch Alice mit public key Bob & eigenem private key
+(DIDComm Routing)
+Bob   -> empfangen der Nachricht & entschlüsseln + Alice als Sender authentifizieren (Alice's DID Document abrufen)
+      -> (vorbereiten einer Antwort + versendet)
+
+MessageURI -> id, thid, pthid kombinieren um DIDMessage eindeutig erkennbar zu machen (unique)
+id = Nachrichten ID
+thid = Thread ID
+pthid = Parent_Thread ID 
+
+Transportvoraussetzungen: 
+    format of serviceEndpoint uri: Which URI schemes are used (if URI), or the properties of the object (if object).
+    how to actually send messages: e.g., through HTTPS POST, through dial protocol (libp2p), etc.
+    how IANA media types of the content are provided, e.g., through Content-Type header, etc.
+    where additional context definition is hosted, e.g., in case the serviceEndpoint object has extra properties specific to the transport.
+
+Routing Protocol 2.0 vereinfacht dass senden von Nachrichten
+-> Partie muss immer nur den nächsten hop & Ziel kennen, gesamter Pfad den Nachricht gegangen ist kennt keiner 
+
+
+
+
 ** Teilnehmer erklären
-- OpenID Provider ist ein eingerichteter Endpoint welcher sich um die Authentifizierung der User kümmert, eine Schnittstelle für token, authentifizierung & userinfo bereitstellt
+- OpenID Provider ist ein eingerichteter Endpoint welcher sich um die Authentifizierung der User kümmert, eine Schnittstelle für token, authentifizierung & userinfo
 
 
 * Technischen Vergleich
