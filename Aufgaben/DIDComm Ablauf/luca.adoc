@@ -2,9 +2,11 @@
 
 // Hinweis: edX Schulung nochmal anschauen zum Thema DIDComm
 
-* Wie funktioniert DIDComm?
-* Welche Teilnehmer gibt es?
-* Was ist ein DID? Für was ist es gut?
-* Wie ist der Prozessablauf?
-** Wie tauscht man die Keys aus?
-* konkretes Beispiel
+*Grundfrage:* Wie funktioniert DIDComm?
+
+1. Welche Teilnehmer gibt es?
+2. Was ist ein Agent und für was braucht man diesen?
+3. Was ist ein DID? Für was ist DID gut?
+4. Wie tauscht man die Keys aus?
+
+*einfaches Demo Beispiel:* zb. Bob und Alice tauschen sich über ein DIDComm Protokoll aus. (Bootstraping QR Code als mögliches Beispiel)

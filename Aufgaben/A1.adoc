@@ -321,6 +321,8 @@ Routing Protocol 2.0 vereinfacht dass senden von Nachrichten
 
 === DIDComm Ablauf
 
+// EdX Linux Foundation Schulung
+
 *1. Authentifizierung:* Die beiden Parteien bauen einen sicheren Kanal auf und authentifizieren sich gegenseitig.
 
 *2. Einladung:* Eine der Parteien erstellt eine Einladung an die andere Partei, die einen Einladungsschlüssel enthält.

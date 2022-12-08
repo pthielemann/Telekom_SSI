@@ -4,12 +4,9 @@
 
 *Grundfrage:* Wie funktioniert DIDComm?
 
-* Welche Teilnehmer gibt es?
-** Was ist ein Agent und für was braucht man diesen?
+1. Welche Teilnehmer gibt es?
+2. Was ist ein Agent und für was braucht man diesen?
+3. Was ist ein DID? Für was ist DID gut?
+4. Wie tauscht man die Keys aus?
 
-* Was ist ein DID? Für was ist DID gut?
-
-* Wie ist der Prozessablauf?
-** Wie tauscht man die Keys aus?
-
-* *einfaches Demo Beispiel:* Bob und Alice tauschen sich über ein DIDComm Protokoll aus. Bootstraping über QR Code.
+*einfaches Demo Beispiel:* zb. Bob und Alice tauschen sich über ein DIDComm Protokoll aus. (Bootstraping QR Code als mögliches Beispiel)
