@@ -1,0 +1,10 @@
+= DIDComm
+
+// Hinweis: edX Schulung nochmal anschauen zum Thema DIDComm
+
+* Wie funktioniert DIDComm?
+* Welche Teilnehmer gibt es?
+* Was ist ein DID? Für was ist es gut?
+* Wie ist der Prozessablauf?
+** Wie tauscht man die Keys aus?
+* konkretes Beispiel
