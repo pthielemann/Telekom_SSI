@@ -2,27 +2,64 @@
 
 = A technical comparison of DIDComm and OIDC
 
-== Was ist OIDC?
-* einfachte Identitäts Layer über dem OAuth 2.0 Protokoll
-* Ermöglicht es dem Client, Endbenutzer zu identifizieren und einfache Informationen über ihn zu erhalten.
-* alle Arten von Clients sind möglich
+== OIDC (OpenID Connect)
 
-.Wie funktioniert OIDC?
-image::IMG_0019.jpg[]
+=== Was ist OIDC?
 
-OIDC steht für OpenID-Connect und ist ein Service zur Authentifizierung von Usern anhand bestimmter "flows". In OIDC werden 3 Endpunkte benötigt um die Authentifizierung durchzuführen. Diese Endpunkte sind: ein Authentifizierungsserver (OpenID Connect Provider), der Client(OpenID Connect Application) und der Endnutzer. 
-Möchte der User nun einer Website ermöglichen seine Daten von einem Authentifierungsserver zu holen, so muss er sich auf dem Server zuerst Authentifizieren & Autorisieren. 
-Sind beide Schritte erledigt, kann er Übergabe seiner Daten an den Client zustimmen. Die erhaltenen Daten müssen vor der Abfrage schon beschrieben sein, dies geschieht in Form eines Claims. 
-OpenID Connect Provider: returns access_token and ID_token 
-access_token = benötigt der Client um später auf den UserInfo Endpoint zuzugreifen, da dieser geschützt wird. 
-ID_token = dient zur Authentifizierung, sollte aber keine größeren Informationen enthalten 
-Ist der Prozess ist der Nutzer beim Client bekannt, somit weiß die Applikation es handelt sich um die Daten einer echten Entität. Werden noch weitere Informationen des Users benötigt müssen weitere UserInfo Requests versendet werden. 
-User: Muss sich nur beim Server anmelden
-OpenID Connect Appplication: 
-Nutzung des access_tokens(opaque strings oder JWT) bei UserInfo Requests um zu beweisen, dass er zur Abfrage weiterer Credentials des Users berechtigt ist -> Zugriff auf API + legt scope für "initiale" Abfrage fest; Credentials aus dem Claim welcher gleich zum Anfang gesendet wird, werden in form des id_tokens zurückgesendet
-ID_token(JWT) -> nutzen um ersten Credentials des Users zu haben; signiert mit JWS 
+OpenID Connect ist ein Authentifizierungsprotokoll und eine Erweiterung des OAuth 2.0 Standards. Es ermöglicht Clients die Überprüfung der Identität des Endbenutzers auf der Grundlage der von einem Autorisierungsserver durchgeführten Authentifizierung sowie den Erhalt grundlegender Profilinformationen über den Endbenutzer in einer interoperablen und REST-ähnlichen Schnittstelle. Mit OpenID Connect können Clients aller Art, einschließlich webbasierter, mobiler und JavaScript-Clients, Informationen über authentifizierte Sitzungen und Endbenutzer anfordern und empfangen.
 
-Bsp. für id_token: 
+Bei einer OpenID-Connect-Anfrage wird der Benutzer an einen Identitätsanbieter wie zb. Google oder Facebook weitergeleitet, der die angeforderten Informationen authentifiziert und autorisiert und dann mit einem ID-Token und optional einem Zugriffstoken an die anfordernde Anwendung (zb. eine App) zurückgeschickt.
+
+NOTE: *Authentifizierung:* "Wer bist du?"
+
+NOTE: *Authorizierung:* "Bist du berechtigt das zu tun?"
+
+*UseCase:* SSO (Single Sign-On) für Konsumenten Apps
+
+=== Die Teilnehmer bei OIDC
+
+//image::img/IMG_0019.jpg[]
+
+In OIDC werden 4 Teilnehmer benötigt um eine Authentifizierung durchzuführen. Diese Teinehmer sind der Identity Provider (IdPs), die Relying Parties (RPs) und die OpenID Providers (OPs).
+
+* *Identity Providers (IdPs):* Ein IdP ist ein Dienst (zb. Google oder Facebook), der Benutzer authentifiziert und Identitäts-Token ausstellt, wie z. B. ein OpenID Connect ID Token. Der IdP ist für die sichere Authentifizierung von Benutzern sowie für die Verwaltung und den Schutz ihrer Identitäten verantwortlich.
+
+* *Relying Parties (RPs):* Ein RP ist ein Dienst/Client (zb. eine App), der sich auf den IdP verlässt, um seine Benutzer zu authentifizieren. Der RP ist dafür verantwortlich, die Identitäts-Token vom IdP zu verbrauchen, um seine Benutzer zu identifizieren.
+
+* *OpenID Providers (OPs):* Ein OP ist ein Dienst, der eine OpenID Connect-Schnittstelle zum IdP und RP bereitstellt. Der OP ist verantwortlich für die sichere Bereitstellung der notwendigen Protokoll- und Kommunikationsinfrastruktur, um den Authentifizierungsprozess zu erleichtern.
+
+* *Resource Owner (RO):* Ein RO ist die Entität, die den Zugriff auf eine geschützte Ressource (zb. Personeninformationen) gewährt, z.B. ein Endnutzer. Der RO ist für die Autorisierung des Zugriffs auf die Ressource verantwortlich und kann entweder der Endbenutzer selbst oder eine Entität sein, der die Autorität übertragen wurde, im Namen des Endbenutzers handeln zu dürfen.
+
+=== Der OIDC Ablauf
+
+*Schritt 1:* Ein Endbenutzer (Resource Owner) besucht eine Website (Relying Partie), die OpenID Connect unterstützt und klickt auf eine Schaltfläche "Anmelden".
+
+*Schritt 2:* Die Webseite (auch Client genannt) leitet den Endbenutzer an den OpenID Provider (OP), häufig gleichzeitig auch der Identity Provider, mit einer Anfrage zur Authentifizierung des Benutzers weiter.
+
+*Schritt 3:* Der OP authentifiziert den Benutzer, indem er ihn auffordert, seinen Benutzernamen und sein Passwort einzugeben. Dabei müssen die Daten die angefordert werden, bereits vor der Abfrage beschrieben sein.
+
+*Schritt 4:* Nach erfolgreicher Authentifizierung sendet der OP eine Authentifizierungsantwort an die Website mit einem ID-Token und einem Access Token.
+
+*Schritt 5:* Die Website überprüft das ID-Token, um sicherzustellen, dass es gültig ist und dass der Benutzer derjenige ist, der er vorgibt zu sein.
+
+*Schritt 6:* Die Website kann nun das Access Token verwenden, um im Namen des Benutzers API-Aufrufe an den OP zu tätigen.
+
+*Schritt 7:* Die Website kann nun dadurch dem Nutzer ein personalisiertes Erlebnis auf der Website bieten.
+
+==== Erweiterung des OAuth 2.0 Authorization Request
+
+Der *OAuth 2.0 Authorization Request* wird um den Parameter *Scope* erweitert. Hiermit kann festgelegt werden, auf welche Informationen des Benutzers der Client zugreifen darf. Diese Informationen werden in Form eines Claims zurückgesendet.
+
+NOTE: *Scope:* Ein Scope (Geltungsbereich) ein Satz von Regeln zur Bestimmung des Umfangs der Sichtbarkeit oder Zugänglichkeit einer Abfrage.
+
+NOTE: *Claims:* Aussagen über einen Benutzer, die im ID-Token zurückgegeben werden. Diese Angaben können den Namen des Benutzers, seine E-Mail-Adresse und andere Informationen über den Benutzer wie Alter, Geschlecht oder Standort enthalten. Die Angaben sind in einem JSON Web Token (JWT) kodiert und werden nach erfolgreicher Authentifizierung an die Client-Anwendung gesendet.
+
+==== ID-Token
+
+Ein ID-Token ist ein Token der verwendet wird, um einen Endbenutzer zu identifizieren. Es handelt sich dabei um ein signiertes und optional verschlüsseltes Datenelement, das *Informationen über den Benutzer* enthält, wie z.B. den Namen, die E-Mail-Adresse und andere identifizierende Merkmale. ID-Tokens werden zur Authentifizierung des Benutzers für eine einzige Sitzung verwendet.
+
+Bsp. für einen ID-Token
+----
 {
   "iss": "http://my-domain.auth0.com",
   "sub": "auth0|123456",
@@ -37,8 +74,14 @@ Bsp. für id_token:
   "email": "janedoe@example.com",
   "picture": "http://example.com/janedoe/me.jpg"
 }
+----
 
-Bsp. für access_token: 
+==== Access Token
+
+Ein Zugriffstoken ist ein Token der verwendet wird, um den Zugriff auf eine API oder Ressource zu gewähren. Es handelt sich um ein signiertes und optional verschlüsseltes Datenelement, das *Informationen über den Client und den Ressourcenserver* sowie eine *Berechtigungserteilung* enthält. Zugriffstoken werden für den Zugriff auf geschützte Ressourcen im Namen eines autorisierten Benutzers verwendet.
+
+Bsp. für einen Access Token
+----
 {
   "iss": "https://my-domain.auth0.com/",
   "sub": "auth0|123456",
@@ -51,13 +94,119 @@ Bsp. für access_token:
   "iat": 1311280970,
   "scope": "openid profile read:patients read:admin"
 }
+----
 
--> beide token werden per JWS (JSON web keys) verschlüsselt  
+=== JSON Web Tokens
+
+JWT unterstützt die kryptographische Signatur  und optional die Verschlüsselung. Es kann sowohl für Access und Refresh Tokens als auch zum Informationsaustausch verwendet werden. In OpenID Connect wird es genutzt, um Benutzerinformationen sicher zu übertragen.
+
+Zum Beispiel repräsentiert das folgende Token
+----
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ
+.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+----
+
+nachstehenden JSON-Inhalt
+----
+Header: 
 {
-    "alg": "RS256",
-    "kid": "9ac7441d-1c47-49ad-9bb9-740d0f6a1702",
+    "alg": "HS256",
     "typ": "JWT"
 }
+Payload:
+{
+    "sub": "1234567890",
+    "name": "John Doe",
+    "iat": 1516239022
+}
+----
+
+Der Header gibt Auskunft über Signatur- oder Verschlüsselungsalgorithmus, sowie den Typ des Tokens. Die einzelnen Einträge im Payload sind Claims.
+
+NOTE: *sub:* Steht für den Subject Identifier, d.h. die Instanz auf die sich das JWT bezieht. 
+
+NOTE: *iat:* Representiert den Ausstellungszeitpunkt („Issued At“)
+
+=== Implementierungsbeispiel für OIDC (JavaScript)
+
+----
+// Initial OIDC setup (for authentication and authorization)
+const { OIDCStrategy } = require('passport-azure-ad');
+
+const oidcStrategy = new OIDCStrategy(
+    {
+        // Provide the OIDC client ID and secret
+        clientID: '<client-id-here>',
+        clientSecret: '<client-secret-here>',
+        callbackURL: 'https://localhost:3000/auth/openid/callback',
+
+        // Provide the OIDC scope
+        scope: ['openid'],
+
+        // Provide the OIDC identity provider
+        issuer: 'https://login.microsoftonline.com/<tenant-id-here>/v2.0',
+    },
+    (iss, sub, profile, accessToken, refreshToken, done) => {
+
+        // User authentication and authorization logic
+        if (profile.oid === '<user-id-here>') {
+            return done(null, profile);
+        }
+
+        return done(null, false);
+    }
+);
+
+// Passport registration
+const passport = require('passport');
+passport.use(oidcStrategy);
+
+// Express middleware setup
+const express = require('express');
+const app = express();
+
+// Setup the authentication routes
+app.use(passport.initialize());
+
+// Login route
+app.get('/login', passport.authenticate('azuread-openidconnect', {
+    failureRedirect: '/error',
+}), (req, res) => {
+    res.redirect('/');
+});
+
+// Callback route
+app.get('/auth/openid/callback', passport.authenticate('azuread-openidconnect', {
+    failureRedirect: '/error',
+}),
+(req, res) => {
+    res.redirect('/');
+});
+
+// Error route
+app.get('/error', (req, res) => {
+    res.send('Authentication error!');
+});
+
+// Serve the application
+app.listen(3000, () => {
+    console.log('Application is running on port 3000');
+});
+----
+
+////
+Quellen:
+1. https://www.oose.de/blogpost/oauth-openid-connect-und-jwt-wie-haengt-das-alles-zusammen-teil-1/
+2. https://www.oose.de/blogpost/oauth-openid-connect-und-jwt-wie-haengt-das-alles-zusammen-teil-2/
+////
+
+
+
+
+
+
+
 
 == Was ist DIDComm?
 //source: https://www.windley.com/archives/2020/11/didcomm_and_the_self-sovereign_internet.shtml
