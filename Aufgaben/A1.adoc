@@ -1,5 +1,3 @@
-:imagesdir: img
-
 = A technical comparison of DIDComm and OIDC
 
 == OIDC (OpenID Connect)
@@ -96,7 +94,7 @@ Bsp. für einen Access Token
 }
 ----
 
-=== JSON Web Tokens
+==== JSON Web Tokens
 
 JWT unterstützt die kryptographische Signatur  und optional die Verschlüsselung. Es kann sowohl für Access und Refresh Tokens als auch zum Informationsaustausch verwendet werden. In OpenID Connect wird es genutzt, um Benutzerinformationen sicher zu übertragen.
 
@@ -201,116 +199,75 @@ Quellen:
 2. https://www.oose.de/blogpost/oauth-openid-connect-und-jwt-wie-haengt-das-alles-zusammen-teil-2/
 ////
 
+== DIDComm
 
+=== Was ist DIDComm?
 
+DIDComm ist ein Kommunikationsprotokoll, das von der Decentralized Identity Foundation (DIF) entwickelt wurde, um sichere Peer-to-Peer-Interaktionen zwischen Anwendungen (bzw. Benutzern) mit dezentraler Identität (DID) zu ermöglichen. Es ist als sicheres, offenes und standardbasiertes Nachrichtenprotokoll konzipiert, das ein zuverlässiges und vertrauenswürdige Kommunikationsverbindung zwischen DID-fähigen Anwendungen erstellt. DIDComm bietet eine Möglichkeit für Anwendungen und Benutzer, miteinander zu interagieren und Daten, Dokumente und andere Informationen auszutauschen, während sie gleichzeitig kryptografisch verschlüsselt sind.
 
+NOTE: *Peer-to-Peer:* Eine Netzwerkarchitektur, bei der jeder Computer (oder Knoten) sowohl als Client als auch als Server fungieren kann, so dass die Benutzer Ressourcen direkt miteinander teilen können, ohne einen zentralen Server zu benötigen.
 
+Das Protokoll kann durch anwendungsspeziische Besonderheiten ergänzt werden. Diese Spezifikationen werden dann in der Softwareebene ausgewertet. DIDComm bietet nur das Protokoll für einen Dienst an, wie Nachrichten ausgetauscht werden können. Das *DIDComm Protocol* beschreibt *was* in der Kommunikation dann ausgetauscht werden soll.
 
+// Das ist vergleichbar mit HTTPS und API's welche im Web beschrieben werden und unabhängig voneinander sind, aber API's können ohne HTTPS nicht funktionieren und DIDComm Protocols funktionieren ohne DIDComm genauso wenig.
 
+NOTE: *dezentrale Identität (DID):* Dezentrale Identität ist ein digitales Identitätssystem, bei dem der Einzelne die Kontrolle über seine eigenen Identitätsdaten hat und diese sicher und privat speichern, verwalten und weitergeben kann, ohne sich auf eine zentrale dritte Partei verlassen zu müssen. Es basiert auf der Blockchain-Technologie und ermöglicht es den Nutzern, digitale Identitäten zu erstellen und zu verwalten, die kryptografisch sicher und nachweislich eindeutig sind. Diese Identitäten können verwendet werden, um auf Dienste, Produkte und Anwendungen zuzugreifen, ohne dass persönliche Informationen an jeden Dienstanbieter übermittelt werden müssen.
 
-== Was ist DIDComm?
-//source: https://www.windley.com/archives/2020/11/didcomm_and_the_self-sovereign_internet.shtml
-//https://medium.com/decentralized-identity/understanding-didcomm-14da547ca36b
-* DIDComm ist ein Nachrichtenprotokoll für DID (Decentralized Identifiers) basierte Dienste / Kommunikationsverbindungen
-** diese Verbindungen sind der Kern von SSI
-* allgemeines Protokoll, welches durch anwendungsspezifische Besonderheiten ergänzt werden kann -> diese Spezifikation wird dann erst in der Softwareebene ausgewertet, DIDComm bietet nur einen Dienst wie die Nachrichten ausgetauscht werden können 
-* hat keine spezifischen Vorgaben zur Implementierung, sondern kann für jede SSI-Interaktion verwendet werden -> bildet Grundlage/einen Standard
-* zum Datentausch werden nur die DID des  jeweils anderen Users benötigt
-** beide Kommunikationspartner sind selbst zertifiziert und sind sich einig über die gegenseitige Authentizität
-* DIDComm = "Grundlage"; DIDComm Protocols = "Was soll in der Kommunikation ausgetauscht werden?" -> vergleichbar mit HTTPS und API's welche im Web geschrieben werden, sind unabhängig voneinander, aber API's ohne HTTPS funktionieren nicht, DIDComm Protocols funktionieren ohne DIDComm genauso wenig 
+==== Eigenschaften von DIDComm
 
-.Eigenschaften von DIDComm
 * sicher
 * privat
 * interoperabel
 * Art der Verbindung ist unwichtig
 * erweiterbar
-
-* kein bestimnmtes Betriebssystem, Progrtammiersprache, Anbieter, Netzwerk oder hardware
-* Ziel ist es, die standardmäßige Kommunikation bei sicheren, privaten Interaktionen im und außerhalb des Internets zu werden
+* kein bestimnmtes Betriebssystem, Progrtammiersprache, Anbieter, Netzwerk oder Hardware notwendig
+* Ziel ist es, die standardmäßige Kommunikation bei sicheren, privaten Interaktionen im und außerhalb des Internets zu definieren
 * es können alle Arten von Verbindungen genutzt werden _(HTTP(s), Websockets, IRC, Bluetooth, NFC, Signal, email, push benachrichtigungen, etc.)_
 
-== Beispiele für OIDC und DIDComm
+=== Wie funktioniert DIDComm?
 
-* Workflow von OIDC und DIDComm darstellen
-OIDC Workflow: 
-Die Flows dienen in diesem Fall zur Beschreibung der Übertragung der Token an den Client. Dabei unterscheidet man den Implicit Flow, den Authorization Code Flow & den Hybrid Flow. 
-Authorization Code Flow: 
-Sollte verwendet werden wenn serverseitig secrets gespeichert werden können.
-GET-Request des Clients welcher User zum authorization endpoint weiterleitet
-Location: domain-des-endpoints/authorize?
-          client_id=abc&
-          response_type=code&
-          scope=openID_scope&
-          redirect_uri=redirect_to_Client
--> An authorization-endpoint angekommen, Nutzer muss sich einloggen & bestätigen dass Daten weitergegeben werden dürfen
--> Endpoint erzeugt redirect: domain/login?
-                              provider=<endpoint>
-                              state=12345&
-                              code=issuecode
-
-Client muss authorization code nehmen um access_token zu erhalten 
-POST-Request an domain/token
-                client_id=abc&
-                client_secret=secret&
-                grant_type=authorization_code&
-                code=issuecode
-
-Endpoint answer: 
-"access_token":"access_token",
-"refresh_token":"refresh_token",
-"expires_in":36000,
-"scope":"granted_scope",
-"id_token":"idtoken"
-
-userinfo endpoint kann nun mit access_token aufgerufen werden und Daten werden abgerufen
-
-Antwort: "sub":"abc",
-         "name":"Pascal",
-         "username":"testUser"
-
-Implicit Flow: 
-Client: GET /authorize?
-            response_type=token&
-            scope=openid mail name&
-            client_id=123&
-            state=abc&
-            redirect_uri=client&
-            nonce=<random string>
-
-Endpoint: Location /redirect_uri#access_token=anAccessToken& -> access_token wird als fragment angelegt & bleibt somit im Browser
-                                 expires_in=36000&
-                                 state=abc&
-                                 id_token=eyJ&
-                                 refresh_token=avc&
-                                 token_type=bearer
-                                 
-Client: kann nun protected ressources wie zB userinfo endpoint anfragen 
-
-DIDComm workflow: 
-DIDComm ist ein Nachrichtenformat, orientiert an dem Konzept für Emails, bei dem zwischen 2 Entitäten eine Verbindung besteht, welche 2 Kanäle beinhaltet. Kanal A, für Nachrichten von Alice zu Bob. Kanal B,
+DIDComm ist ein Nachrichtenformat, orientiert an dem Konzept für Emails, bei dem zwischen 2 Entitäten eine Verbindung besteht, welche 2 Kanäle beinhaltet. Kanal A, für Nachrichten von zb. Alice zu Bob. Kanal B,
 für Nachrichten von Bob zu Alice. Die Nachrichten können dabei aufeinander aufbauend, als Antworten, oder unabhängig voneinander versendet werden. 
-Man unterscheidet zwischen 3 Nachrichtenformaten: Plaintext, optinal JWS envelope, JWE envelope
-DIDComm Plaintext message: 
-Nachricht welche ohne jegliche Verschlüsselung übermittelt wird.
-DIDComm signed message: 
-Handelt sich dabei um eine signierte JWM(JSON web message). Dies ist ein gängiges Format um Nachrichten über verschiedenste Protokolle zu übertragen, welche per JWE(JSON web encryption) gesichert wird.
-DIDComm encrypted message: 
-Verschlüsselte JWM. 
 
-DIDComm Message Plaintext Beispiel
-{
-  "id": "1234567890",
-  "type": "<message-type-uri>",
-  "from": "did:example:alice",
-  "to": ["did:example:bob"],
-  "created_time": 1516269022,
-  "expires_time": 1516385931,
-  "body": {
-    "message_type_specific_attribute": "and its value",
-    "another_attribute": "and its value"
-  }
-} -> data stored in JSON body
+Man unterscheidet dabei zwischen 3 Nachrichtenformaten: 
+
+1. *Plaintext message:* Nachrichten werden ohne jegliche Verschlüsselung übermittelt. Beispiel:
+
+    {
+        "id": "1234567890",
+        "type": "<message-type-uri>",
+        "from": "did:example:alice",
+        "to": ["did:example:bob"],
+        "created_time": 1516269022,
+        "expires_time": 1516385931,
+        "body": {
+            "message_type_specific_attribute": "and its value",
+            "another_attribute": "and its value"
+        }
+    } -> data stored in JSON body
+
+
+
+2. *signed message:* Es handelt sich dabei um eine signierte JWM (JSON web message). Dies ist ein gängiges Format um Nachrichten über verschiedenste Protokolle zu übertragen, welche per JWE (JSON web encryption) gesichert sind. 
+// Was heißt in diesem Kontext gesichert?
+
+3. *eccrypted message:* Verschlüsselte JWM.
+
+Damit 2 Anwendungen miteinander sprechen können, muss ein Service Endpunkt definiert sein. Dieser deklariert, wie eine andere Entität diesen erreichen kann und besteht aus einem Set von *DIDComm Service Endpoint URI's* (Wie will der Owner seine Nachrichten empfangen?), z.B.
+
+    {
+        "id": "did:example:123456789abcdefghi#didcomm-1",
+        "type": "DIDCommMessaging",
+        "serviceEndpoint": [{
+            "uri": "https://example.com/path",
+            "accept": [
+                "didcomm/v2", -> welche Typen werden von Aussteller akzeptiert?
+                "didcomm/aip2;env=rfc587"
+            ],
+            "routingKeys": ["did:example:somemediator#somekey"]
+        }]
+    }
+
 
 Was muss gegeben sein um 2 Agents miteinander sprechen zu lassen? 
 - serviceEndpoint -> deklariert wie andere Entität sie erreichen kann; besteht aus Set von DIDComm Service Endpoint URI's (wie will der owner seine Nachrichten empfangen), zB 
@@ -365,5 +322,54 @@ Routing Protocol 2.0 vereinfacht dass senden von Nachrichten
 * Technischen Vergleich
 
 
-Quellen: 
-https://identity.foundation/didcomm-messaging/spec
+=== DIDComm Demo (vereinfacht) (JavaScript)
+
+1. Alice und Bob haben DIDs
+
+    const aliceDID = ' did:sov:WRfXPg8dantKVubE3HX8pw ' ;
+
+    const bobDID = ' did:sov:2wJPyULfLLnYTEFYzByfUR ' ;
+
+2. Alice und Bob haben DIDComm-Agenten
+
+    const aliceAgent = new Agent ();
+
+    const bobAgent = new Agent ();
+
+3. Alice and Bob have DIDComm agents that can talk to each other
+
+    aliceAgent . addConnection (bobDID, {
+        ' @type ' : ' DIDComm ' ,
+        ' @id ' : ' did:sov:2wJPyULfLLnYTEFYzByfUR ' ,
+        ' label ' : ' Bob ' ,
+        ' recipientKeys ' : [ ' 8HH5gYEeNc3z7PYXmd54d4x6qAfCNrqQqEB3nS7Zfu7K ' ],
+        ' routingKeys ' : [ ' 8HH5gYEeNc3z7PYXmd54d4x6qAfCNrqQqEB3nS7Zfu7K ' ],
+        ' serviceEndpoint ' : ' https://bob.example.com/endpoint '
+    });
+
+    bobAgent . addConnection (aliceDID, {
+        ' @type ' : ' DIDComm ' ,
+        ' @id ' : ' did:sov:WRfXPg8dantKVubE3HX8pw ' ,
+        ' label ' : ' Alice ' ,´
+        ' recipientKeys ' : [ ' GjZWsBLgZCR18aL468JAT7w9CZRiBnpxUPPgyQxh4voa ' ],
+        ' routingKeys ' : [ ' GjZWsBLgZCR18aL468JAT7w9CZRiBnpxUPPgyQxh4voa ' ],
+        ' serviceEndpoint ' : ' https://alice.example.com/endpoint '
+    });
+
+4. Alice and Bob have DIDComm agents that can talk to each other and exchange messages
+
+    aliceAgent . send (bobDID, {
+        ' @type ' : ' Hello ' ,
+        ' @id ' : ' did:sov:2wJPyULfLLnYTEFYzByfUR ' ,
+        ' label ' : ' Bob ' ,
+        ' recipientKeys ' : [ ' 8HH5gYEeNc3z7PYXmd54d4x6qAfCNrqQqEB3nS7Zfu7K ' ],
+        ' routingKeys ' : [ ' 8HH5gYEeNc3z7PYXmd54d4x6qAfCNrqQqEB3nS7Zfu7K ' ],
+        ' serviceEndpoint ' : ' https://bob.example.com/endpoint '
+    });
+
+////
+Quellen:
+1. https://www.windley.com/archives/2020/11/didcomm_and_the_self-sovereign_internet.shtml
+2. https://medium.com/decentralized-identity/understanding-didcomm-14da547ca36b
+3. https://identity.foundation/didcomm-messaging/spec
+////

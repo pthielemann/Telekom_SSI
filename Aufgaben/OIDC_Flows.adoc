@@ -1,0 +1,52 @@
+Die Flows dienen in diesem Fall zur Beschreibung der Übertragung der Token an den Client. Dabei unterscheidet man den Implicit Flow, den Authorization Code Flow & den Hybrid Flow. 
+Authorization Code Flow:
+Sollte verwendet werden wenn serverseitig secrets gespeichert werden können.
+GET-Request des Clients welcher User zum authorization endpoint weiterleitet
+Location: domain-des-endpoints/authorize?
+          client_id=abc&
+          response_type=code&
+          scope=openID_scope&
+          redirect_uri=redirect_to_Client
+-> An authorization-endpoint angekommen, Nutzer muss sich einloggen & bestätigen dass Daten weitergegeben werden dürfen
+-> Endpoint erzeugt redirect: domain/login?
+                              provider=<endpoint>
+                              state=12345&
+                              code=issuecode
+
+Client muss authorization code nehmen um access_token zu erhalten 
+POST-Request an domain/token
+                client_id=abc&
+                client_secret=secret&
+                grant_type=authorization_code&
+                code=issuecode
+
+Endpoint answer: 
+"access_token":"access_token",
+"refresh_token":"refresh_token",
+"expires_in":36000,
+"scope":"granted_scope",
+"id_token":"idtoken"
+
+userinfo endpoint kann nun mit access_token aufgerufen werden und Daten werden abgerufen
+
+Antwort: "sub":"abc",
+         "name":"Pascal",
+         "username":"testUser"
+
+Implicit Flow:
+Client: GET /authorize?
+            response_type=token&
+            scope=openid mail name&
+            client_id=123&
+            state=abc&
+            redirect_uri=client&
+            nonce=<random string>
+
+Endpoint: Location /redirect_uri#access_token=anAccessToken& -> access_token wird als fragment angelegt & bleibt somit im Browser
+                                 expires_in=36000&
+                                 state=abc&
+                                 id_token=eyJ&
+                                 refresh_token=avc&
+                                 token_type=bearer
+                                 
+Client: kann nun protected ressources wie zB userinfo endpoint anfragen
