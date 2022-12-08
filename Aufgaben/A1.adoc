@@ -28,7 +28,7 @@ In OIDC werden 4 Teilnehmer benötigt um eine Authentifizierung durchzuführen. 
 
 * *Resource Owner (RO):* Ein RO ist die Entität, die den Zugriff auf eine geschützte Ressource (zb. Personeninformationen) gewährt, z.B. ein Endnutzer. Der RO ist für die Autorisierung des Zugriffs auf die Ressource verantwortlich und kann entweder der Endbenutzer selbst oder eine Entität sein, der die Autorität übertragen wurde, im Namen des Endbenutzers handeln zu dürfen.
 
-=== Der OIDC Ablauf
+=== OIDC Ablauf
 
 *Schritt 1:* Ein Endbenutzer (Resource Owner) besucht eine Website (Relying Partie), die OpenID Connect unterstützt und klickt auf eine Schaltfläche "Anmelden".
 
@@ -226,7 +226,17 @@ NOTE: *dezentrale Identität (DID):* Dezentrale Identität ist ein digitales Ide
 
 === Wie funktioniert DIDComm?
 
-DIDComm ist ein Nachrichtenformat, orientiert an dem Konzept für Emails, bei dem zwischen 2 Entitäten eine Verbindung besteht, welche 2 Kanäle beinhaltet. Kanal A, für Nachrichten von zb. Alice zu Bob. Kanal B,
+DIDComm ermöglicht zwei oder mehr Parteien den sicheren Austausch von Nachrichten und anderen Daten über ein verteiltes Hauptbuch. Zum Beispiel können zwei Parteien, Alice und Bob, durch die Verwendung von DIDComm eine Nachricht sicher austauschen. Alice kann eine Nachricht an Bob senden, indem sie die Nachricht mit einem symmetrischen Schlüssel verschlüsselt und sie dann über das Ledger an Bob sendet. Wenn Bob die Nachricht erhält, kann er sie mit demselben symmetrischen Schlüssel entschlüsseln. Dadurch wird sichergestellt, dass die Daten sicher sind und nur der vorgesehene Empfänger darauf zugreifen kann. 
+
+NOTE: *symmetrischer Schlüssel:* Ein kryptografischer Schlüssel, der zur Ver- und Entschlüsselung von Nachrichten zwischen zwei Parteien verwendet wird. Beide Parteien verwenden denselben Schlüssel zum Ver- und Entschlüsseln der Nachrichten, so dass er symmetrisch ist.
+
+Dezentrale Identifikatoren (DIDs) sind eine Art von Identifikatoren, die kryptografisch generiert werden und selbstsouverän sind, was bedeutet, dass sie nicht im Besitz oder unter der Kontrolle einer einzelnen Einheit sind. DIDs sind so konzipiert, dass sie eine sichere und überprüfbare Möglichkeit zur Identifizierung von Entitäten im Internet bieten, z. B. von Personen, Organisationen und Geräten.
+
+Ein konkretes Beispiel für eine DID ist ein DID-Dokument. Dabei handelt es sich um ein JSON-LD-Dokument, das eine Reihe von Metadaten enthält, die mit einer bestimmten DID verbunden sind. Es enthält Informationen wie den öffentlichen Schlüssel des DID, Dienstendpunkte, die zur Interaktion mit dem DID verwendet werden können, und verschiedene andere Informationen. Dieses Dokument kann dann verwendet werden, um den Eigentümer der DID sicher zu authentifizieren und zu überprüfen, ob die von der Entität gemachten Angaben wahr sind.
+
+
+
+Dabei orientiert sich DIDComm an dem Konzept für Emails, bei dem zwischen 2 Entitäten eine Verbindung besteht, welche 2 Kanäle beinhaltet. Kanal A, für Nachrichten von zb. Alice zu Bob. Kanal B,
 für Nachrichten von Bob zu Alice. Die Nachrichten können dabei aufeinander aufbauend, als Antworten, oder unabhängig voneinander versendet werden. 
 
 Man unterscheidet dabei zwischen 3 Nachrichtenformaten: 
@@ -245,8 +255,6 @@ Man unterscheidet dabei zwischen 3 Nachrichtenformaten:
             "another_attribute": "and its value"
         }
     } -> data stored in JSON body
-
-
 
 2. *signed message:* Es handelt sich dabei um eine signierte JWM (JSON web message). Dies ist ein gängiges Format um Nachrichten über verschiedenste Protokolle zu übertragen, welche per JWE (JSON web encryption) gesichert sind. 
 // Was heißt in diesem Kontext gesichert?
@@ -267,7 +275,6 @@ Damit 2 Anwendungen miteinander sprechen können, muss ein Service Endpunkt defi
             "routingKeys": ["did:example:somemediator#somekey"]
         }]
     }
-
 
 Was muss gegeben sein um 2 Agents miteinander sprechen zu lassen? 
 - serviceEndpoint -> deklariert wie andere Entität sie erreichen kann; besteht aus Set von DIDComm Service Endpoint URI's (wie will der owner seine Nachrichten empfangen), zB 
@@ -312,51 +319,37 @@ Transportvoraussetzungen:
 Routing Protocol 2.0 vereinfacht dass senden von Nachrichten
 -> Partie muss immer nur den nächsten hop & Ziel kennen, gesamter Pfad den Nachricht gegangen ist kennt keiner 
 
+=== DIDComm Ablauf
 
+*1. Authentifizierung:* Die beiden Parteien bauen einen sicheren Kanal auf und authentifizieren sich gegenseitig.
 
+*2. Einladung:* Eine der Parteien erstellt eine Einladung an die andere Partei, die einen Einladungsschlüssel enthält.
 
-** Teilnehmer erklären
-- OpenID Provider ist ein eingerichteter Endpoint welcher sich um die Authentifizierung der User kümmert, eine Schnittstelle für token, authentifizierung & userinfo
+*3. Akzeptanz:* Der Empfänger der Einladung nimmt diese an und erstellt einen Annahmeschlüssel.
 
+*4. Aufbau des Kanals:* Die beiden Parteien bauen einen sicheren Kanal auf, tauschen Schlüssel aus und verifizieren die Identität des jeweils anderen.
 
-* Technischen Vergleich
+*5. Nachrichtenaustausch:* Die beiden Parteien tauschen über den sicheren Kanal Nachrichten aus, wobei sie die Identität der jeweils anderen Partei und alle erforderlichen Daten überprüfen.
 
+*6. Nachrichten-Bestätigung:* Der Absender einer Nachricht bestätigt deren Empfang durch die andere Partei.
+
+*7. Ende des Protokolls:* Die beiden Parteien schließen den sicheren Kanal und geben alle verwendeten Ressourcen frei.
 
 === DIDComm Demo (vereinfacht) (JavaScript)
 
-1. Alice und Bob haben DIDs
+1. Die DIDS von Alice und Bob
 
     const aliceDID = ' did:sov:WRfXPg8dantKVubE3HX8pw ' ;
 
     const bobDID = ' did:sov:2wJPyULfLLnYTEFYzByfUR ' ;
 
-2. Alice und Bob haben DIDComm-Agenten
+2. Initialisierung des DIDComm-Agenten
 
     const aliceAgent = new Agent ();
 
     const bobAgent = new Agent ();
 
-3. Alice and Bob have DIDComm agents that can talk to each other
-
-    aliceAgent . addConnection (bobDID, {
-        ' @type ' : ' DIDComm ' ,
-        ' @id ' : ' did:sov:2wJPyULfLLnYTEFYzByfUR ' ,
-        ' label ' : ' Bob ' ,
-        ' recipientKeys ' : [ ' 8HH5gYEeNc3z7PYXmd54d4x6qAfCNrqQqEB3nS7Zfu7K ' ],
-        ' routingKeys ' : [ ' 8HH5gYEeNc3z7PYXmd54d4x6qAfCNrqQqEB3nS7Zfu7K ' ],
-        ' serviceEndpoint ' : ' https://bob.example.com/endpoint '
-    });
-
-    bobAgent . addConnection (aliceDID, {
-        ' @type ' : ' DIDComm ' ,
-        ' @id ' : ' did:sov:WRfXPg8dantKVubE3HX8pw ' ,
-        ' label ' : ' Alice ' ,´
-        ' recipientKeys ' : [ ' GjZWsBLgZCR18aL468JAT7w9CZRiBnpxUPPgyQxh4voa ' ],
-        ' routingKeys ' : [ ' GjZWsBLgZCR18aL468JAT7w9CZRiBnpxUPPgyQxh4voa ' ],
-        ' serviceEndpoint ' : ' https://alice.example.com/endpoint '
-    });
-
-4. Alice and Bob have DIDComm agents that can talk to each other and exchange messages
+3. Alice sendet Nachricht an Bob
 
     aliceAgent . send (bobDID, {
         ' @type ' : ' Hello ' ,
@@ -367,9 +360,17 @@ Routing Protocol 2.0 vereinfacht dass senden von Nachrichten
         ' serviceEndpoint ' : ' https://bob.example.com/endpoint '
     });
 
+NOTE: *recipient key:* Ein öffentlicher Schlüssel, der einem DIDComm-Empfänger zugewiesen wird. Mit diesen Schlüsseln werden die an den Empfänger gesendeten Nachrichten verschlüsselt, um sicherzustellen, dass nur der vorgesehene Empfänger auf die Nachricht zugreifen kann.
+
+NOTE: *routing key:* Ein öffentlicher Schlüssel, der einem DIDComm-Router zugeordnet wird. Mit diesen Schlüsseln werden die über den Router gesendeten Nachrichten verschlüsselt und verifiziert, so dass sichergestellt ist, dass die Nachrichten sicher weitergeleitet und nur an den vorgesehenen Empfänger gesendet werden.
+
 ////
 Quellen:
 1. https://www.windley.com/archives/2020/11/didcomm_and_the_self-sovereign_internet.shtml
 2. https://medium.com/decentralized-identity/understanding-didcomm-14da547ca36b
 3. https://identity.foundation/didcomm-messaging/spec
 ////
+
+== Was ist der technische Unterschied zwischen DIDComm und OIDC?
+
+// Platzhalter
