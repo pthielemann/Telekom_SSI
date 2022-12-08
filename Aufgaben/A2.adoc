@@ -4,9 +4,9 @@
 
 
 * Welches Problem versucht DIDComm von OIDC zu lösen?
-OIDC hat das Problem dass viel traffic erzeugt wird. Bei den Workflows von OIDC ist immer ein Datenaustausch mit einer Certification Authority(CA) notwendig um sich die Dokumente/die Gültigkeit bestätigen zu lassen.
+OIDC hat das Problem, dass viel traffic erzeugt wird. Bei den Workflows von OIDC ist immer ein Datenaustausch mit einer Certification Authority (CA) notwendig um sich die Dokumente / Gültigkeit bestätigen zu lassen.
 zB Bestätigen dass man Ü18 ist per Google Authentication: 
-    - von der Client-Anwendung(Verifier) aus zu Google(Issuer) weiterleiten. Nutzer(Holder) muss sich mit seinen Daten anmelden, bestätigen dass diese verwendet werden dürfen & redirected zur Client-Anwendung zurück
+    - von der Client-Anwendung (Verifier) aus zu Google (Issuer) weiterleiten. Nutzer (Holder) muss sich mit seinen Daten anmelden, bestätigen dass diese verwendet werden dürfen & redirected zur Client-Anwendung zurück
     - im Hintergrund passieren 1-3 weitere Anfragen an Google (je nach Workflow & benötigten Daten), nur um von dem Google userinfo-Endpoint eine Abfrage zu stellen und sich Daten der User ausgeben zu lassen 
 -> bei VC muss nur der Credential an den Verifier übergeben werden & dieser kann dann checken ob es zertifiziert ist 
 

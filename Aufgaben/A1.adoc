@@ -220,7 +220,7 @@ NOTE: *dezentrale Identität (DID):* Dezentrale Identität ist ein digitales Ide
 * interoperabel
 * Art der Verbindung ist unwichtig
 * erweiterbar
-* kein bestimnmtes Betriebssystem, Progrtammiersprache, Anbieter, Netzwerk oder Hardware notwendig
+* kein bestimnmtes Betriebssystem, Programmiersprache, Anbieter, Netzwerk oder Hardware notwendig
 * Ziel ist es, die standardmäßige Kommunikation bei sicheren, privaten Interaktionen im und außerhalb des Internets zu definieren
 * es können alle Arten von Verbindungen genutzt werden _(HTTP(s), Websockets, IRC, Bluetooth, NFC, Signal, email, push benachrichtigungen, etc.)_
 
