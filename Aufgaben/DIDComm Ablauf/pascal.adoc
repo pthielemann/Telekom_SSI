@@ -5,8 +5,19 @@
 *Grundfrage:* Wie funktioniert DIDComm?
 
 1. Welche Teilnehmer gibt es?
+Mindestens 2 Teilnehmer -> jeweils 1 Agent
 2. Was ist ein Agent und für was braucht man diesen?
+Agents sind die Instanzen, welche für den Austausch der Nachrichten zuständig sind. Sie sind die "Träger" der Logik. Sie kümmern sich um das auflösen der DID's, 
+verschlüsseln die Nachrichten, kümmern sich um die DID-Rotation, ...
 3. Was ist ein DID? Für was ist DID gut?
+DID = decentralized identifier 
+DID ist eine Referenz für eine Entität. Sie wird erstellt, beinhaltet selbst aber keine tiefergehende Information. DID's sind vergleichbar mit URL's, sie "zeigen" auf eine Entität / beschreiben sie eindeutig. 
+Aufbauend auf der DID werden die DID Dokumente erstellt, diese beinhalten tatsächliche Informationen. Jedes Dokument hat eine eindeutige Referenz auf eine DID um diese dann auch einer Entität zuordnen zu können. Einer DID können mehrere Dokumente zugeordnet werden 
 4. Wie tauscht man die Keys aus?
+Jedes DID Dokument besitzt private/public Keys für die Verschlüsselung. Beim Verbindungsaufbau für DIDComm wird erst eine Initialverbindung in Form einer Out-Of-Band-Nachricht erzeugt, aus dieser die zugehörige DID geholt welche dann aufgelöst wird um sich den public key des Verbindungspartners holen zu können.  
 
 *einfaches Demo Beispiel:* zb. Bob und Alice tauschen sich über ein DIDComm Protokoll aus. (Bootstraping QR Code als mögliches Beispiel)
+
+image::./Aufgaben/img/pascal_didcomm_flow.jpeg[]
+
+-> Peer-DID

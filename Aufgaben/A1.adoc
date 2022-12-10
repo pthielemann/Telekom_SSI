@@ -259,7 +259,7 @@ Man unterscheidet dabei zwischen 3 Nachrichtenformaten:
 2. *signed message:* Es handelt sich dabei um eine signierte JWM (JSON web message). Dies ist ein gängiges Format um Nachrichten über verschiedenste Protokolle zu übertragen, welche per JWE (JSON web encryption) gesichert sind. 
 // Was heißt in diesem Kontext gesichert?
 
-3. *eccrypted message:* Verschlüsselte JWM.
+3. *encrypted message:* Verschlüsselte JWM.
 
 Damit 2 Anwendungen miteinander sprechen können, muss ein Service Endpunkt definiert sein. Dieser deklariert, wie eine andere Entität diesen erreichen kann und besteht aus einem Set von *DIDComm Service Endpoint URI's* (Wie will der Owner seine Nachrichten empfangen?), z.B.
 

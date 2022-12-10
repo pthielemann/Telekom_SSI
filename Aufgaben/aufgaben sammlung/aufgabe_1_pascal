@@ -152,3 +152,8 @@ OIDC:
   - hybrid flow
 
 
+
+
+How to get DID Document from DID 
+
+die DID dient zur Authentifizierung einer Entität, das DID Document beinhaltet Informationen über DID-Subject (public keys, serviceEndpoints, Authentifizierungsmethoden, Zeitstemptel, metadata)
