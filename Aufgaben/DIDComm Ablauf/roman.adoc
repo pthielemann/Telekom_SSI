@@ -4,9 +4,45 @@
 
 *Grundfrage:* Wie funktioniert DIDComm?
 
-1. Welche Teilnehmer gibt es?
-2. Was ist ein Agent und für was braucht man diesen?
-3. Was ist ein DID? Für was ist DID gut?
-4. Wie tauscht man die Keys aus?
+*1. Welche Teilnehmer gibt es?*
 
-*einfaches Demo Beispiel:* zb. Bob und Alice tauschen sich über ein DIDComm Protokoll aus. (Bootstraping QR Code als mögliches Beispiel)
+Es gibt mindestens zwei Teilnehmer, können allerdings auch mehr sein und es müssen nicht unbedingt Einzelpersonen sein.
+
+Diese Teilnehmer werden dann jeweils durch einen Agent betreut.
+
+*2. Was ist ein Agent und für was braucht man diesen?*
+
+Agenten sind für den eigentlichen Austausch der Nachrichten verantwortlich. Sie arbeiten im Hintergund und sind unteranderem für das Auflösen der DIDs, versenden von Endpunkt und Public-Key, Verschlüsselung sowie Entschlüsselung verantwortlich.
+
+*3. Was ist ein DID? Für was ist DID gut?*
+
+DIDs sind Dezentrale Identifikatoren, die eine überprüfbare und dezentrale digitale Identität ermöglichen.
+
+Im Gegensatz zu typischen  Identifikatoren wurden DIDs so konzipiert, dass sie von zentralisierten Registern, Identitätsanbietern und Zertifizierungsstellen entkoppelt werden können.
+
+Man kann sich DIDs wie URLs vorstellen, die ein DID-Subjekt mit einem DID-Dokument verknüpfen und somit eine vertrauenswürdige Interaktion ermöglicht, die diesem Subjekt zugeordnet sind.
+
+*4. Wie tauscht man die Keys aus?*
+
+Vor jeglichem Verbindungsaufbau gibt es eine Initialverbindung. Diese kann durch eine explizite Out-of-Band Invitation (zb.: einem QR-Code, URL oder Email) oder durch dem Befolgen einer impliziten Einladung in Form eines Endpunktes, der an ein öffentliches DID-Dokument angehängt ist hergestellt werden.
+
+Aus dieser Verbindung wird die dazugehörige DID geholt und aufgelöst wodurch man sich den Public-Key des anderen Teilnehmers holen kann.
+
+
+*5. Einfaches Demo Beispiel:* zB. Bob und Alice tauschen sich über ein DIDComm Protokoll aus.
+
+Alice will Online etwas an Bob verkaufen. Hierbei tauschen der Software-Agent von Alice und der Software-Agent von Bob einige Nachrichten aus.
+
+Beim betätigen des Sende-Buttons von Alice's Seite, beginnt ihr Agent damit eine Klartext-JSON-Nachricht über den Verkaufsvorschlag vorzubereiten. Dabei erhält ihr Agent dann zwei Informationen von Bob, durch das Auflösen von Bobs DID-Dokument:
+
+- Einen Endpunkt (notwendig damit Nachrichten an Bob übermittelt werden können)
+
+- Einen Public-Key den Bobs Agent in der Bob-Alice Kommunikation verwendet.
+
+Nun kann Alices Agent den Public-Key von Bob nutzen um den Klartext zu verschlüsseln und somit diesen nur Bob zugänglich zu machen. Dabei fügt sie die Authentifizierung mit seinem eigenen Private-Key hinzu. Im Anschluss arrangiert der Agent die Nachricht an Bob.
+
+Bobs Agent empfängt und entschlüsselt die Nachricht nun und authentifiziert den Absender als Alice mit ihrem Public-Key. Er sucht den Schlüssel in Alice DID-Dokument und erfasst direkt einen Endpunkt für sie.
+
+Im Anschluss bereitet Bobs Agent eine Antwort vor und leitet diese an Alice zurück.
+
+*Prozess:* Klartext -> Verschlüsselung mit Authentifizierung -> Zustellung arrangieren
