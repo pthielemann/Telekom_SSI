@@ -10,3 +10,170 @@
 4. Wie tauscht man die Keys aus?
 
 *einfaches Demo Beispiel:* zb. Bob und Alice tauschen sich über ein DIDComm Protokoll aus. (Bootstraping QR Code als mögliches Beispiel)
+
+
+
+
+
+
+
+== DIDComm
+
+=== Was ist DIDComm?
+
+DIDComm ist ein Kommunikationsprotokoll, das von der Decentralized Identity Foundation (DIF) entwickelt wurde, um sichere Peer-to-Peer-Interaktionen zwischen Anwendungen (bzw. Benutzern) mit dezentraler Identität (DID) zu ermöglichen. Es ist als sicheres, offenes und standardbasiertes Nachrichtenprotokoll konzipiert, das ein zuverlässiges und vertrauenswürdige Kommunikationsverbindung zwischen DID-fähigen Anwendungen erstellt. DIDComm bietet eine Möglichkeit für Anwendungen und Benutzer, miteinander zu interagieren und Daten, Dokumente und andere Informationen auszutauschen, während sie gleichzeitig kryptografisch verschlüsselt sind.
+
+NOTE: *Peer-to-Peer:* Eine Netzwerkarchitektur, bei der jeder Computer (oder Knoten) sowohl als Client als auch als Server fungieren kann, so dass die Benutzer Ressourcen direkt miteinander teilen können, ohne einen zentralen Server zu benötigen.
+
+Das Protokoll kann durch anwendungsspeziische Besonderheiten ergänzt werden. Diese Spezifikationen werden dann in der Softwareebene ausgewertet. DIDComm bietet nur das Protokoll für einen Dienst an, wie Nachrichten ausgetauscht werden können. Das *DIDComm Protocol* beschreibt *was* in der Kommunikation dann ausgetauscht werden soll.
+
+// Das ist vergleichbar mit HTTPS und API's welche im Web beschrieben werden und unabhängig voneinander sind, aber API's können ohne HTTPS nicht funktionieren und DIDComm Protocols funktionieren ohne DIDComm genauso wenig.
+
+NOTE: *dezentrale Identität (DID):* Dezentrale Identität ist ein digitales Identitätssystem, bei dem der Einzelne die Kontrolle über seine eigenen Identitätsdaten hat und diese sicher und privat speichern, verwalten und weitergeben kann, ohne sich auf eine zentrale dritte Partei verlassen zu müssen. Es basiert auf der Blockchain-Technologie und ermöglicht es den Nutzern, digitale Identitäten zu erstellen und zu verwalten, die kryptografisch sicher und nachweislich eindeutig sind. Diese Identitäten können verwendet werden, um auf Dienste, Produkte und Anwendungen zuzugreifen, ohne dass persönliche Informationen an jeden Dienstanbieter übermittelt werden müssen.
+
+==== Eigenschaften von DIDComm
+
+* sicher
+* privat
+* interoperabel
+* Art der Verbindung ist unwichtig
+* erweiterbar
+* kein bestimnmtes Betriebssystem, Programmiersprache, Anbieter, Netzwerk oder Hardware notwendig
+* Ziel ist es, die standardmäßige Kommunikation bei sicheren, privaten Interaktionen im und außerhalb des Internets zu definieren
+* es können alle Arten von Verbindungen genutzt werden _(HTTP(s), Websockets, IRC, Bluetooth, NFC, Signal, email, push benachrichtigungen, etc.)_
+
+////
+=== Wie funktioniert DIDComm?
+
+DIDComm ermöglicht zwei oder mehr Parteien den sicheren Austausch von Nachrichten und anderen Daten über ein verteiltes Hauptbuch. Zum Beispiel können zwei Parteien, Alice und Bob, durch die Verwendung von DIDComm eine Nachricht sicher austauschen. Alice kann eine Nachricht an Bob senden, indem sie die Nachricht mit einem symmetrischen Schlüssel verschlüsselt und sie dann über das Ledger an Bob sendet. Wenn Bob die Nachricht erhält, kann er sie mit demselben symmetrischen Schlüssel entschlüsseln. Dadurch wird sichergestellt, dass die Daten sicher sind und nur der vorgesehene Empfänger darauf zugreifen kann. 
+
+NOTE: *symmetrischer Schlüssel:* Ein kryptografischer Schlüssel, der zur Ver- und Entschlüsselung von Nachrichten zwischen zwei Parteien verwendet wird. Beide Parteien verwenden denselben Schlüssel zum Ver- und Entschlüsseln der Nachrichten, so dass er symmetrisch ist.
+
+Dezentrale Identifikatoren (DIDs) sind eine Art von Identifikatoren, die kryptografisch generiert werden und selbstsouverän sind, was bedeutet, dass sie nicht im Besitz oder unter der Kontrolle einer einzelnen Einheit sind. DIDs sind so konzipiert, dass sie eine sichere und überprüfbare Möglichkeit zur Identifizierung von Entitäten im Internet bieten, z. B. von Personen, Organisationen und Geräten.
+
+Ein konkretes Beispiel für eine DID ist ein DID-Dokument. Dabei handelt es sich um ein JSON-LD-Dokument, das eine Reihe von Metadaten enthält, die mit einer bestimmten DID verbunden sind. Es enthält Informationen wie den öffentlichen Schlüssel des DID, Dienstendpunkte, die zur Interaktion mit dem DID verwendet werden können, und verschiedene andere Informationen. Dieses Dokument kann dann verwendet werden, um den Eigentümer der DID sicher zu authentifizieren und zu überprüfen, ob die von der Entität gemachten Angaben wahr sind.
+
+
+
+Dabei orientiert sich DIDComm an dem Konzept für Emails, bei dem zwischen 2 Entitäten eine Verbindung besteht, welche 2 Kanäle beinhaltet. Kanal A, für Nachrichten von zb. Alice zu Bob. Kanal B,
+für Nachrichten von Bob zu Alice. Die Nachrichten können dabei aufeinander aufbauend, als Antworten, oder unabhängig voneinander versendet werden. 
+
+=== DIDComm Ablauf
+
+// EdX Linux Foundation Schulung
+
+*1. Authentifizierung:* Die beiden Parteien bauen einen sicheren Kanal auf und authentifizieren sich gegenseitig.
+
+*2. Einladung:* Eine der Parteien erstellt eine Einladung an die andere Partei, die einen Einladungsschlüssel enthält.
+
+*3. Akzeptanz:* Der Empfänger der Einladung nimmt diese an und erstellt einen Annahmeschlüssel.
+
+*4. Aufbau des Kanals:* Die beiden Parteien bauen einen sicheren Kanal auf, tauschen Schlüssel aus und verifizieren die Identität des jeweils anderen.
+
+*5. Nachrichtenaustausch:* Die beiden Parteien tauschen über den sicheren Kanal Nachrichten aus, wobei sie die Identität der jeweils anderen Partei und alle erforderlichen Daten überprüfen.
+
+*6. Nachrichten-Bestätigung:* Der Absender einer Nachricht bestätigt deren Empfang durch die andere Partei.
+
+*7. Ende des Protokolls:* Die beiden Parteien schließen den sicheren Kanal und geben alle verwendeten Ressourcen frei.
+////
+
+=== Wie funktioniert DIDComm?
+
+Das DIDComm Protokoll basiert auf einer Reihe von verschlüsselten Nachrichten, die zwischen verschiedenen Parteien ausgetauscht werden, wobei die dezentralen Identifikatoren (DIDs) der Parteien als Adressen für die Nachrichten verwendet werden.
+
+Um zu verstehen, wie das funktioniert, muss man zunächst wissen, was ein dezentraler Identifikator (DID) ist. Ein DID ist ein eindeutiger, Blockchain-basierter Identifikator, der zur Identifizierung von Personen, Organisationen oder anderen Einheiten in einem dezentralen System verwendet wird. Er ähnelt einem herkömmlichen Identifikator, wie z. B. einem Benutzernamen oder einer E-Mail-Adresse, ist jedoch dezentralisiert, d. h. er wird nicht von einer zentralen Behörde kontrolliert. Stattdessen wird die DID vom Eigentümer der Kennung kontrolliert, der die volle Kontrolle über seine eigene Identität und seine Daten hat.
+
+    did:example:1234567890
+
+    In diesem Beispiel ist "did" der Bezeichner für eine dezentrale Kennung, "example" ist der Methodenbezeichner (der den Typ der DID angibt) und "1234567890" ist der spezifische DID-Bezeichner. Diese DID wäre für den Besitzer der Kennung eindeutig und kann zur Identifizierung innerhalb eines dezentralen Systems verwendet werden.
+
+Bei DIDComm haben die an einem Kommunikationsaustausch beteiligten Parteien jeweils ihre eigenen DIDs, die als Adressen für die Nachrichten verwendet werden. Um eine Nachricht zu versenden, signiert der Absender die Nachricht mit seinem privaten Schlüssel, der als Beweis für die Identität des Absenders dient. Der Empfänger kann dann die Authentizität der Nachricht anhand der DID und des öffentlichen Schlüssels des Absenders überprüfen.
+
+// Beispiel Verschlüsselung - asymmetrische Verschlüsselung oder geheime symmetrische Schlüssel?
+
+////
+Zur Beginn der Kommunikation wird asymmetrisch verschlüsselt, danach symmetrisch (effizienter)
+////
+
+Nachdem die Nachricht signiert und versendet wurde, wird sie mit einem gemeinsamen geheimen Schlüssel verschlüsselt, der nur dem Absender und dem Empfänger bekannt ist. Dadurch wird sichergestellt, dass der Inhalt der Nachricht nur für die vorgesehenen Parteien zugänglich ist und von niemandem sonst gelesen werden kann.
+
+Das DIDComm-Protokoll enthält auch Mechanismen für die Verwaltung der gemeinsamen geheimen Schlüssel und für die Behandlung von Fehlern oder anderen Problemen, die während des Kommunikationsprozesses auftreten können. Auf diese Weise können die Parteien sicher und privat Nachrichten und Daten austauschen, ohne dass eine zentrale Behörde den Kommunikationsprozess verwalten muss.
+
+Insgesamt ist DIDComm ein leistungsfähiges und sicheres Kommunikationsprotokoll, das es dezentralen Identitätssystemen ermöglicht, effektiv zu funktionieren, so dass Einzelpersonen und Organisationen ihre eigenen Identitäten und Daten in einer dezentralen Umgebung kontrollieren können.
+
+==== DID Erzeugung
+
+Das DIDComm-Protokoll ist ein sicheres Kommunikationsprotokoll für dezentralisierte Identitätssysteme, das sich nicht direkt mit der Erstellung oder Erzeugung von DIDs befasst. Stattdessen ist das Protokoll so konzipiert, dass es den Austausch von Nachrichten und Daten zwischen verschiedenen Parteien unter Verwendung von DIDs als Adressen für die Nachrichten erleichtert.
+
+Das DIDComm-Protokoll enthält jedoch bestimmte Funktionen und Mechanismen, die für die Verwaltung und Überprüfung von DIDs verwendet werden können, z. B. die Möglichkeit, die Echtheit von DID-Dokumenten und die Identität des Inhabers einer DID zu überprüfen.
+
+Wenn beispielsweise eine Partei eine neue DID erstellen möchte, kann sie das DIDComm-Protokoll verwenden, um ein DID-Dokument zu erstellen, das die erforderlichen Informationen wie die DID selbst, die mit der DID verbundenen öffentlichen Schlüssel und alle anderen relevanten Daten enthält. Das DID-Dokument kann dann mit dem privaten Schlüssel des Besitzers signiert werden, was als Beweis für die Authentizität des Dokuments und die Identität des Besitzers dient.
+
+Nach der Erstellung des signierten DID-Dokuments kann es in einem dezentralen Register veröffentlicht werden, z. B. in einer Blockchain oder einem verteilten Ledger. Andere Parteien können dann das DIDComm-Protokoll verwenden, um die Authentizität des DID-Dokuments und die Identität des Eigentümers anhand der DID und der zugehörigen öffentlichen Schlüssel zu überprüfen.
+
+Obwohl das DIDComm-Protokoll die Erstellung oder Erzeugung von DIDs nicht direkt abwickelt, enthält es Funktionen und Mechanismen, die zur Verwaltung und Überprüfung von DIDs verwendet werden können, die bei der Erstellung und Veröffentlichung neuer DIDs eingesetzt werden können.
+
+==== symmetrische und asymmetrische Verschlüsselung
+
+=== DIDCOmm Beispiel Ablauf
+
+1. Bob erstellt mit Hilfe des DIDComm-Protokolls eine Nachricht, die seine DID und die Einzelheiten des Kommunikationsaustauschs sowie alle zusätzlichen Daten enthält, die Alice möglicherweise benötigt, um dem Austausch beizutreten.
+
+2. Bob signiert die Nachricht mit seinem privaten Schlüssel, der als Beweis für seine Identität dient und die Authentizität der Nachricht sicherstellt.
+
+3. Bob verschlüsselt die Nachricht mit dem öffentlichen Schlüssel von Alice, wodurch sichergestellt wird, dass nur Alice die Nachricht mit ihrem privaten Schlüssel entschlüsseln kann.
+
+4. Bob sendet die verschlüsselte Nachricht über einen geeigneten Kommunikationskanal an Alice.
+
+5. Alice empfängt die verschlüsselte Nachricht und verwendet ihren privaten Schlüssel, um die Nachricht zu entschlüsseln.
+
+6. Alice verifiziert die Authentizität der Nachricht mit Bobs DID und öffentlichem Schlüssel.
+Wenn die Überprüfung erfolgreich ist, nimmt Alice am Kommunikationsaustausch teil und sendet eine Nachricht an Bob unter Verwendung des DIDComm-Protokolls.
+
+7. Bob empfängt die Nachricht und verwendet seinen privaten Schlüssel, um die Echtheit der Nachricht zu überprüfen.
+
+8. Wenn die Überprüfung erfolgreich war, kann Bob die Nachricht mit dem gemeinsamen geheimen Schlüssel entschlüsseln und den Inhalt der Nachricht lesen.
+
+9. Bob kann dann auf die Nachricht von Alice antworten, indem er eine neue Nachricht mit dem DIDComm-Protokoll erstellt und sendet, das denselben Prozess wie die Schritte 1-9 durchläuft.
+
+Insgesamt veranschaulicht dieser Protokollablauf den Prozess des Nachrichtenaustauschs mit dem DIDComm-Protokoll, einschließlich der Einladung, der ersten Kontaktaufnahme und des Nachrichtenaustauschs zwischen Bob und Alice.
+
+////
+=== DIDComm Demo (vereinfacht) (JavaScript)
+
+1. Die DIDS von Alice und Bob
+
+    const aliceDID = ' did:sov:WRfXPg8dantKVubE3HX8pw ' ;
+
+    const bobDID = ' did:sov:2wJPyULfLLnYTEFYzByfUR ' ;
+
+2. Initialisierung des DIDComm-Agenten
+
+    const aliceAgent = new Agent ();
+
+    const bobAgent = new Agent ();
+
+3. Alice sendet Nachricht an Bob
+
+    aliceAgent . send (bobDID, {
+        ' @type ' : ' Hello ' ,
+        ' @id ' : ' did:sov:2wJPyULfLLnYTEFYzByfUR ' ,
+        ' label ' : ' Bob ' ,
+        ' recipientKeys ' : [ ' 8HH5gYEeNc3z7PYXmd54d4x6qAfCNrqQqEB3nS7Zfu7K ' ],
+        ' routingKeys ' : [ ' 8HH5gYEeNc3z7PYXmd54d4x6qAfCNrqQqEB3nS7Zfu7K ' ],
+        ' serviceEndpoint ' : ' https://bob.example.com/endpoint '
+    });
+
+NOTE: *recipient key:* Ein öffentlicher Schlüssel, der einem DIDComm-Empfänger zugewiesen wird. Mit diesen Schlüsseln werden die an den Empfänger gesendeten Nachrichten verschlüsselt, um sicherzustellen, dass nur der vorgesehene Empfänger auf die Nachricht zugreifen kann.
+
+NOTE: *routing key:* Ein öffentlicher Schlüssel, der einem DIDComm-Router zugeordnet wird. Mit diesen Schlüsseln werden die über den Router gesendeten Nachrichten verschlüsselt und verifiziert, so dass sichergestellt ist, dass die Nachrichten sicher weitergeleitet und nur an den vorgesehenen Empfänger gesendet werden.
+
+Quellen:
+1. https://www.windley.com/archives/2020/11/didcomm_and_the_self-sovereign_internet.shtml
+2. https://medium.com/decentralized-identity/understanding-didcomm-14da547ca36b
+3. https://identity.foundation/didcomm-messaging/spec
+////
+
+== Was ist der technische Unterschied zwischen DIDComm und OIDC?
+
+// Platzhalter
