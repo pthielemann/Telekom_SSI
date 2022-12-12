@@ -1,0 +1,28 @@
+= DIDComm
+
+// Hinweis: edX Schulung nochmal anschauen zum Thema DIDComm
+Quellen:
+https://www.windley.com/archives/2020/11/didcomm_and_the_self-sovereign_internet.shtml
+https://identity.foundation/didcomm-messaging/spec/
+https://medium.com/decentralized-identity/understanding-didcomm-14da547ca36b
+https://didcomm.org
+https://w3c.github.io/did-core/#dfn-decentralized-identifiers
+
+*Grundfrage:* Wie funktioniert DIDComm?
+
+1. Welche Teilnehmer gibt es?
+Es gibt zwei Teilnehmer mit einer peer-to-peer Hirarchie, also alle sind gleichberechtigt.
+Und jedem Teilnehmer ist ein Agent vorgeschaltet.
+2. Was ist ein Agent und für was braucht man diesen?
+Der Agent ist die Sicherheitstür für den jeweiligen Kommunikationsteilnehmer.
+Jede Didcomm Kommunikation hat ihren eigenen key um die Verschlüsselung mit der die Verschlüsselung der Nachrichten nur für die beiden Teilnehmer möglich ist, das ist der Public Key.
+Die Verschlüsselung zwischen einem Teilnehmer und ihrem Agent ist mit einem Private Key zu entschlüsseln.
+Wird eine Nachricht versendet so bekommt der Agent der sendenden Person zwei Dinge.
+Die Empfänger Adresse (Email, Portnummer, etc.) und den Public Key.
+Mit dieser wird die Nachricht im JSON Format kodiert und gesendet.
+Der Empfänger Agent kann diese Nachricht mittels Public Key entschlüsseln und zu dem empfangenden Teilnehmer senden, private Key verschlüsselt.
+3. Was ist ein DID? Für was ist DID gut?
+Dezentrale Identifikatoren (DIDs) sind eine neue Art von Identifikatoren, die eine überprüfbare, dezentralisierte digitale Identität ermöglichen. Eine DID bezieht sich auf ein beliebiges Subjekt (z. B. eine Person, eine Organisation, eine Sache, ein Datenmodell, eine abstrakte Entität usw.), wie es vom Verwalter der DID bestimmt wird. Im Gegensatz zu typischen, föderierten Identifikatoren wurden DIDs so konzipiert, dass sie von zentralen Registern, Identitätsanbietern und Zertifizierungsstellen entkoppelt werden können.
+4. Wie tauscht man die Keys aus?
+
+*einfaches Demo Beispiel:* zb. Bob und Alice tauschen sich über ein DIDComm Protokoll aus. (Bootstraping QR Code als mögliches Beispiel)

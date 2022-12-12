@@ -1,7 +1,7 @@
 # If OIDC already exists, then why OIDC for Verifiable Credentials?
 
 * Warum gibt es überhaupt DIDComm? 
-
+Um eine Serverlose Kommunikation bereitstellen zu können 
 
 * Welches Problem versucht DIDComm von OIDC zu lösen?
 OIDC hat das Problem, dass viel traffic erzeugt wird. Bei den Workflows von OIDC ist immer ein Datenaustausch mit einer Certification Authority (CA) notwendig um sich die Dokumente / Gültigkeit bestätigen zu lassen.
@@ -15,8 +15,6 @@ Des weiteren hat der Nutzer bei OIDC seine Daten nicht selbst in der Hand. Er ka
 
 * Was sind Verfifiable Credentials?
 Verifiable Credentials sind digitaliserte Nachweise eines physischen Dokumentes. Sie werden online durch den Holder angefordert. Dieser stellt eine Anfrage an einen Issuer, übermittelt seine Nachweise & bekommt ein Credential/einen digitalen Nachweis ausgestellt. Möchte der Holder sich nun verifizieren kann der Credential von einem Verifier angefordert werden & durch den Holder zur Verarbeitung freigegeben werden. Durch die Signatur des Issuers kann die Gültigkeit des Dokumentes sichergestellt werden. Die Datensicherheit wird dabei weiterhin gewährt, da die Nachweise (optional) nicht gespeichert/ausgewertet werden können
-
-* Wo lohnt es sich DIDComm einzusetzen und wo nicht?
 
 ## Zusatzfragen
 
