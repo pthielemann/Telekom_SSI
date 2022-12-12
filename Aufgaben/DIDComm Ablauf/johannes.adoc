@@ -10,3 +10,50 @@
 4. Wie tauscht man die Keys aus?
 
 *einfaches Demo Beispiel:* zb. Bob und Alice tauschen sich über ein DIDComm Protokoll aus. (Bootstraping QR Code als mögliches Beispiel)
+
+*Welche Teilnehmer gibt es?*
+
+- Holder (Mensch, Organisation, Sache, Tier)
+- Wallets (Key-Managementsystem)
+- Agents (Softwaresystem zur Verwaltung der Credentials)
+
+*Was ist ein Agent?*
+
+Ein Agent ist ein Softwaresystem, welches die Keys aus einem Wallet verwendet, um Verbindungen mit anderen Holdern herzustellen. Es verwaltet die Credentials und die dazugehörigen kryptografischen Keys für den Holder.
+
+
+*Was ist ein DID?*
+
+- vergleichbar mit DNS
+- technisch gesehen eine URI
+- persistenter Identifikator, welcher in eine oder mehrere URLs aufgelöst werden kann -> DID Dokument
+- Auflösung in DID Dokument, welches ein DID Objekt/DID Controller beschreibt und den Public Key enthält
+- gehört zur Webarchitektur
+
+.Kerneigenschaften:
+
+- persistenter Idenifikator -> muss nicht verändert werden
+- auflösbarer Identifikator -> kann verwendet werden um Metadaten zu entdecken
+- kryptographisch verifizierbarer Identifikator -> erlaubt durch Kryptographie Kontrolle zu beweisen
+- dezentralisierter Identifikator -> keine zentralisierte Autorität ist notwendig
+
+.DID-Typen:
+
+- Ledgerbasierende DIDs: -> DID-Methode, welche eine Blockchain oder andere DLT verwendet
+- Ledger Middleware ("Layer 2") DIDs: -> fügt der Basis-Blockchain eine zusätzliche Speicherebene hinzu
+- Peer DIDs: ->  besteht nur innerhalb einer Beziehung zwischen einer begrenzten Anzahl von Teilnehmern
+- Static DIDs: ->  können nur erstellt und aufgelöst, aber nicht aktualisiert oder deaktiviert werden
+- Alternative DIDs: -> fallen unter keine der anderen Kategorien
+
+*DIDComm Protokolle:*
+
+- DID Exchange Protocol 1.0 - Aries RFC 0023
+- Issue Credential Protocol 1.0 - Aries RFC 0036
+- Present Proof Protocol 1.0 - Aries RFC 0037
+
+*Wie tauscht man die Keys aus?*
+
+1. Alice und Bob erstellen jeweils ein DID
+2. Sie tauschen die DIDs und Informationen über den entsprechenden Private Key aus
+3. alle Aktionen werden im Key Event Log notiert
+
