@@ -234,8 +234,6 @@ Dezentrale Identifikatoren (DIDs) sind eine Art von Identifikatoren, die kryptog
 
 Ein konkretes Beispiel für eine DID ist ein DID-Dokument. Dabei handelt es sich um ein JSON-LD-Dokument, das eine Reihe von Metadaten enthält, die mit einer bestimmten DID verbunden sind. Es enthält Informationen wie den öffentlichen Schlüssel des DID, Dienstendpunkte, die zur Interaktion mit dem DID verwendet werden können, und verschiedene andere Informationen. Dieses Dokument kann dann verwendet werden, um den Eigentümer der DID sicher zu authentifizieren und zu überprüfen, ob die von der Entität gemachten Angaben wahr sind.
 
-
-
 Dabei orientiert sich DIDComm an dem Konzept für Emails, bei dem zwischen 2 Entitäten eine Verbindung besteht, welche 2 Kanäle beinhaltet. Kanal A, für Nachrichten von zb. Alice zu Bob. Kanal B,
 für Nachrichten von Bob zu Alice. Die Nachrichten können dabei aufeinander aufbauend, als Antworten, oder unabhängig voneinander versendet werden. 
 
@@ -318,53 +316,6 @@ Transportvoraussetzungen:
 
 Routing Protocol 2.0 vereinfacht dass senden von Nachrichten
 -> Partie muss immer nur den nächsten hop & Ziel kennen, gesamter Pfad den Nachricht gegangen ist kennt keiner 
-
-=== DIDComm Ablauf
-
-// EdX Linux Foundation Schulung
-
-*1. Authentifizierung:* Die beiden Parteien bauen einen sicheren Kanal auf und authentifizieren sich gegenseitig.
-
-*2. Einladung:* Eine der Parteien erstellt eine Einladung an die andere Partei, die einen Einladungsschlüssel enthält.
-
-*3. Akzeptanz:* Der Empfänger der Einladung nimmt diese an und erstellt einen Annahmeschlüssel.
-
-*4. Aufbau des Kanals:* Die beiden Parteien bauen einen sicheren Kanal auf, tauschen Schlüssel aus und verifizieren die Identität des jeweils anderen.
-
-*5. Nachrichtenaustausch:* Die beiden Parteien tauschen über den sicheren Kanal Nachrichten aus, wobei sie die Identität der jeweils anderen Partei und alle erforderlichen Daten überprüfen.
-
-*6. Nachrichten-Bestätigung:* Der Absender einer Nachricht bestätigt deren Empfang durch die andere Partei.
-
-*7. Ende des Protokolls:* Die beiden Parteien schließen den sicheren Kanal und geben alle verwendeten Ressourcen frei.
-
-=== DIDComm Demo (vereinfacht) (JavaScript)
-
-1. Die DIDS von Alice und Bob
-
-    const aliceDID = ' did:sov:WRfXPg8dantKVubE3HX8pw ' ;
-
-    const bobDID = ' did:sov:2wJPyULfLLnYTEFYzByfUR ' ;
-
-2. Initialisierung des DIDComm-Agenten
-
-    const aliceAgent = new Agent ();
-
-    const bobAgent = new Agent ();
-
-3. Alice sendet Nachricht an Bob
-
-    aliceAgent . send (bobDID, {
-        ' @type ' : ' Hello ' ,
-        ' @id ' : ' did:sov:2wJPyULfLLnYTEFYzByfUR ' ,
-        ' label ' : ' Bob ' ,
-        ' recipientKeys ' : [ ' 8HH5gYEeNc3z7PYXmd54d4x6qAfCNrqQqEB3nS7Zfu7K ' ],
-        ' routingKeys ' : [ ' 8HH5gYEeNc3z7PYXmd54d4x6qAfCNrqQqEB3nS7Zfu7K ' ],
-        ' serviceEndpoint ' : ' https://bob.example.com/endpoint '
-    });
-
-NOTE: *recipient key:* Ein öffentlicher Schlüssel, der einem DIDComm-Empfänger zugewiesen wird. Mit diesen Schlüsseln werden die an den Empfänger gesendeten Nachrichten verschlüsselt, um sicherzustellen, dass nur der vorgesehene Empfänger auf die Nachricht zugreifen kann.
-
-NOTE: *routing key:* Ein öffentlicher Schlüssel, der einem DIDComm-Router zugeordnet wird. Mit diesen Schlüsseln werden die über den Router gesendeten Nachrichten verschlüsselt und verifiziert, so dass sichergestellt ist, dass die Nachrichten sicher weitergeleitet und nur an den vorgesehenen Empfänger gesendet werden.
 
 ////
 Quellen:
