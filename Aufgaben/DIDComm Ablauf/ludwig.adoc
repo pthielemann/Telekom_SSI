@@ -1,12 +1,33 @@
 = DIDComm
-
+https://identity.foundation/didcomm-messaging/spec/
+https://norbert-pohlmann.com/glossar-cyber-sicherheit/decentralized-identifiers/#:~:text=Decentralized%20Identifiers%20(DIDs)%20sind%20Identifier,ein%20Ding%20oder%20ein%20Datenmodell.
 // Hinweis: edX Schulung nochmal anschauen zum Thema DIDComm
 
 *Grundfrage:* Wie funktioniert DIDComm?
 
 1. Welche Teilnehmer gibt es?
+* mindestens zwei Instanzen mit ihren Agents
+* nicht immer Menschen
+
 2. Was ist ein Agent und für was braucht man diesen?
+* eine Anwendung, die den Zugang des Benutzers zum Netzwerk übernimmt
+* Kommunikation mit dem Server
+* sogesagt die Schnittstelle zum Internet
+* zB Browser, E-Mail Client
+
 3. Was ist ein DID? Für was ist DID gut?
+* neue Art von Identifiern
+* ermöglicht eine einzigartige, überprüfbare, dezentralisierte digitale Identität
+* zB Person, Organisation, Datenmodell
+* Verwaltung nicht von einer zentralen Authoriät abhängig
+* voll unter Kontrolle des Besitzers
+
 4. Wie tauscht man die Keys aus?
+* Agent A sendet spezielle Nachricht an Agent B
+* zurück kommt Information über:
+** Endpunkt / Wie man mit B kommuniziert
+** Public Key, welchen B während Kommunikation mit A nutzt
+* Agent A nutzt PK um Nachricht zu verschlüsseln
+* Agent B entschlüsselt Nachricht, mithilfe des PKs von A authentifiziert er A
 
 *einfaches Demo Beispiel:* zb. Bob und Alice tauschen sich über ein DIDComm Protokoll aus. (Bootstraping QR Code als mögliches Beispiel)

@@ -1,0 +1,39 @@
+= Different between traditional OIDC and OpenID4VC / VP.
+
+
+Open ID Connect definiert Spezifikationen für das Ausgeben und Präsentieren von Berechtigungen.
+Zusätzlich führt OID For Verifiable Credentials ein Wallet ein, welches es ermöglicht, Berechtigungen und die Nachweise dazu zu speichern. OIDC regelt die Interaktion zweier Parteien (Identity Provider & Relying Party) mithilfe einers User Agents, welcher aber nicht OIDC spezifisch ist.
+Mithilfe von OID4VC ist die Abhängigkeit von IdP und RP nicht mehr gegeben, die Wallet beweißt automatisch die Berechtigung, identifiziert den Benutzer.
+
+OIDC
+- app centricity 
+    - one user many apps
+- nobody is storing credentials
+- JWTs or JWS
+
+OpenID4VC
+- user centricity
+    - many apps one user
+- user has all credentials stored in a wallet
+- work with identifier types
+OpenID4VP
+- request and present verifiable credentials 
+    - VP (presentated data) Token included in ID Token
+    - relying party verifies the holder
+
+Support of SSI
+- user holds a wallt of all his information/credentials
+- user centricity of the data flow and protection
+- user has complete power over his credentials and their storage
+- works with identifier as DID or Cryptography
+- sites have only access to the requested data
+
+
+
+== How does OpenID4VC / VP support the idea of SSI?
+
+==== quellen
+https://www.windley.com/archives/2022/10/using_openid4vc_for_credential_exchange.shtml
+https://openid.net/wordpress-content/uploads/2022/06/OIDF-Whitepaper_OpenID-for-Verifiable-Credentials-V2_2022-06-23.pdf
+https://openid.net/connect/
+https://openid.net/connect/faq/
