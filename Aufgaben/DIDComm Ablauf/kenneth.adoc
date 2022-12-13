@@ -14,33 +14,81 @@
 
 
 
-
-
-
 == DIDComm
+
+DIDComm oder *Decentralized Identity Communication*, ist ein sicheres Kommunikationsprotokoll für *dezentrale Identitätssysteme*. Es basiert auf einer Reihe von verschlüsselten Nachrichten, die zwischen verschiedenen Parteien ausgetauscht werden, wobei die *dezentralen Identifikatoren/Identität (DIDs)* der Parteien als Adressen für die Nachrichten verwendet werden.
+
+Das Protokoll ist so konzipiert, dass verschiedene Parteien auf sichere und private Weise miteinander kommunizieren und Daten austauschen können, ohne dass eine zentrale Behörde den Kommunikationsprozess verwalten muss. Es basiert auf einer Reihe von Schlüsselkonzepten und -technologien, darunter:
+
+* *Dezentralisierte Identifikatoren (DIDs)* 
+
+////
+DIDs sind eindeutige, Blockchain-basierte Identifikatoren, die zur Identifizierung von Personen, Organisationen oder anderen Einheiten in einem dezentralen System verwendet werden. Die DIDs werden von den Eigentümern der Identifikatoren kontrolliert und als Adressen für die über das DIDComm-Protokoll ausgetauschten Nachrichten verwendet.
+////
+
+* *Kryptographie* 
+
+////
+Das DIDComm-Protokoll verwendet Kryptographie, um die zwischen verschiedenen Parteien ausgetauschten Nachrichten zu sichern. Dazu gehört die Verwendung digitaler Signaturen, um die Authentizität der Nachrichten und die Identität des Absenders zu überprüfen, und die Verwendung von Verschlüsselung, um den Inhalt der Nachrichten vor dem Zugriff anderer als der vorgesehenen Empfänger zu schützen.
+////
+
+* *Gemeinsame geheime Schlüssel* 
+
+////
+Das DIDComm-Protokoll verwendet gemeinsam genutzte geheime Schlüssel zur Ver- und Entschlüsselung der Nachrichten, die zwischen verschiedenen Parteien ausgetauscht werden. Diese Schlüssel werden vor Beginn des Kommunikationsaustauschs generiert und zwischen den Parteien ausgetauscht und dienen der schnellen und sicheren Ver- und Entschlüsselung der Nachrichten mittels symmetrischer Verschlüsselung.
+////
+
+Insgesamt basiert DIDComm auf einer Kombination aus dezentralen Identifikatoren, Kryptographie und gemeinsam genutzten geheimen Schlüsseln, die eine sichere und private Kommunikation zwischen verschiedenen Parteien in einem dezentralen Identitätssystem ermöglichen.
+
+// SSI-Vertrauensdreieck
+
+=== Was ist eine dezentrale Identität (DID)?
+
+Eine dezentrale Identität ist eine 
+
+* eindeutige
+* Blockchain-basierte Kennung
+* zur Identifizierung 
+
+von Personen, Organisationen oder anderen Einheiten in einem dezentralen System verwendet wird. Sie ähnelt einer herkömmlichen Kennung, wie z. B. einem Benutzernamen oder einer E-Mail-Adresse, ist jedoch dezentralisiert, d.h. sie wird nicht von einer zentralen Behörde kontrolliert. Stattdessen wird die dezentrale Identität vom Eigentümer der Kennung kontrolliert, der die volle Kontrolle über seine eigene Identität und seine Daten hat.
+
+Dezentrale Identitäten werden häufig in dezentralen Identitätssystemen verwendet, d.h. in Netzwerken oder Plattformen, die es Einzelpersonen und Organisationen ermöglichen, ihre eigenen Identitäten und Daten dezentral zu verwalten. Diese Systeme verwenden in der Regel Blockchain oder andere verteilte Ledger-Technologie, um die dezentralen Identitäten zu speichern und zu verwalten, und sie enthalten oft Protokolle wie *DIDComm*, um den Austausch von Informationen und Daten zwischen verschiedenen Parteien zu erleichtern.
+
+Insgesamt sind dezentrale Identitäten eine Schlüsselkomponente dezentraler Identitätssysteme und bieten eine sichere und überprüfbare Möglichkeit zur Identifizierung von Personen, Organisationen oder anderen Einheiten in einer dezentralen Umgebung.
+
+*Beispiel für eine DID*
+
+image::DID_example.png[]
+
+In diesem Beispiel ist *"did"* der Bezeichner für eine dezentrale Kennung, *"example"* ist der Methodenbezeichner (der den Typ der DID angibt) und *"123456789abcdefghi"* ist der spezifische DID-Bezeichner. Diese DID wäre für den Besitzer der Kennung eindeutig und kann zur Identifizierung innerhalb eines dezentralen Systems verwendet werden.
+
+=== Kryptographie
+
+
+
+
+
+
+////
 
 === Was ist DIDComm?
 
-DIDComm ist ein Kommunikationsprotokoll, das von der Decentralized Identity Foundation (DIF) entwickelt wurde, um sichere Peer-to-Peer-Interaktionen zwischen Anwendungen (bzw. Benutzern) mit dezentraler Identität (DID) zu ermöglichen. Es ist als sicheres, offenes und standardbasiertes Nachrichtenprotokoll konzipiert, das ein zuverlässiges und vertrauenswürdige Kommunikationsverbindung zwischen DID-fähigen Anwendungen erstellt. DIDComm bietet eine Möglichkeit für Anwendungen und Benutzer, miteinander zu interagieren und Daten, Dokumente und andere Informationen auszutauschen, während sie gleichzeitig kryptografisch verschlüsselt sind.
+DIDComm ist ein Kommunikationsprotokoll, das von der Decentralized Identity Foundation (DIF) entwickelt wurde, um sichere Peer-to-Peer-Interaktionen zwischen Anwendungen (bzw. Benutzern) mit dezentraler Identität (DID) zu ermöglichen. Es ist als 
+
+* sicheres
+* offenes
+* standardbasiertes 
+
+Nachrichtenprotokoll konzipiert, das ein 
+
+* zuverlässiges
+* vertrauenswürdige 
+
+Kommunikationsverbindung zwischen DID-fähigen Anwendungen erstellt. DIDComm bietet eine Möglichkeit für Anwendungen und Benutzer, miteinander zu interagieren und Daten, Dokumente und andere Informationen auszutauschen, während sie gleichzeitig kryptografisch verschlüsselt sind.
 
 NOTE: *Peer-to-Peer:* Eine Netzwerkarchitektur, bei der jeder Computer (oder Knoten) sowohl als Client als auch als Server fungieren kann, so dass die Benutzer Ressourcen direkt miteinander teilen können, ohne einen zentralen Server zu benötigen.
 
-Das Protokoll kann durch anwendungsspeziische Besonderheiten ergänzt werden. Diese Spezifikationen werden dann in der Softwareebene ausgewertet. DIDComm bietet nur das Protokoll für einen Dienst an, wie Nachrichten ausgetauscht werden können. Das *DIDComm Protocol* beschreibt *was* in der Kommunikation dann ausgetauscht werden soll.
-
-// Das ist vergleichbar mit HTTPS und API's welche im Web beschrieben werden und unabhängig voneinander sind, aber API's können ohne HTTPS nicht funktionieren und DIDComm Protocols funktionieren ohne DIDComm genauso wenig.
-
-NOTE: *dezentrale Identität (DID):* Dezentrale Identität ist ein digitales Identitätssystem, bei dem der Einzelne die Kontrolle über seine eigenen Identitätsdaten hat und diese sicher und privat speichern, verwalten und weitergeben kann, ohne sich auf eine zentrale dritte Partei verlassen zu müssen. Es basiert auf der Blockchain-Technologie und ermöglicht es den Nutzern, digitale Identitäten zu erstellen und zu verwalten, die kryptografisch sicher und nachweislich eindeutig sind. Diese Identitäten können verwendet werden, um auf Dienste, Produkte und Anwendungen zuzugreifen, ohne dass persönliche Informationen an jeden Dienstanbieter übermittelt werden müssen.
-
-==== Eigenschaften von DIDComm
-
-* sicher
-* privat
-* interoperabel
-* Art der Verbindung ist unwichtig
-* erweiterbar
-* kein bestimnmtes Betriebssystem, Programmiersprache, Anbieter, Netzwerk oder Hardware notwendig
-* Ziel ist es, die standardmäßige Kommunikation bei sicheren, privaten Interaktionen im und außerhalb des Internets zu definieren
-* es können alle Arten von Verbindungen genutzt werden _(HTTP(s), Websockets, IRC, Bluetooth, NFC, Signal, email, push benachrichtigungen, etc.)_
+////
 
 ////
 === Wie funktioniert DIDComm?
