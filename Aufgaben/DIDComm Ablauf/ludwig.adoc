@@ -6,28 +6,45 @@ https://norbert-pohlmann.com/glossar-cyber-sicherheit/decentralized-identifiers/
 *Grundfrage:* Wie funktioniert DIDComm?
 
 1. Welche Teilnehmer gibt es?
-* mindestens zwei Instanzen mit ihren Agents
-* nicht immer Menschen
+* mindestens zwei Identity Ownders mit ihren Agents
+* kann alles sein
 
 2. Was ist ein Agent und für was braucht man diesen?
-* eine Anwendung, die den Zugang des Benutzers zum Netzwerk übernimmt
+* eine Anwendung / Softwaresystem, die den Zugang des Benutzers zum Netzwerk übernimmt
 * Kommunikation mit dem Server
+* nutzt Schlüssel
 * sogesagt die Schnittstelle zum Internet
 * zB Browser, E-Mail Client
+* Kommunikation zwischen Agents -> Protokoll DIDComm
 
 3. Was ist ein DID? Für was ist DID gut?
-* neue Art von Identifiern
+* Art von Identifiern
 * ermöglicht eine einzigartige, überprüfbare, dezentralisierte digitale Identität
-* zB Person, Organisation, Datenmodell
+* gehört zu einem Controller zB Person, Organisation, Datenmodell
 * Verwaltung nicht von einer zentralen Authoriät abhängig
 * voll unter Kontrolle des Besitzers
+* zur Authentifizierung zB bei Website
+* Authentifikationsfaktoren können sein: Passwort, Schlüssel, Benutzname
 
 4. Wie tauscht man die Keys aus?
-* Agent A sendet spezielle Nachricht an Agent B
+* Agent A sendet Nachricht an Agent B
 * zurück kommt Information über:
 ** Endpunkt / Wie man mit B kommuniziert
 ** Public Key, welchen B während Kommunikation mit A nutzt
 * Agent A nutzt PK um Nachricht zu verschlüsseln
 * Agent B entschlüsselt Nachricht, mithilfe des PKs von A authentifiziert er A
 
+wie läuft die Kommunikation ab?
+* A und B tauschen DIDs aus (zB 123abc oder wlbvksvkjfdg28136713)
+** beide kennen nun den DID des anderen
+* auch Austausch der Public Keys
+** Speicherung in Key Event Logs (jede Relationship hat eigenes KEL, kann man sich wie ein Google Doc vorstellen)
+** A und B sind sich über Richtigkeit der Keys sicher
+* Austausch der DIDs -> DID-Relationship, selbst zertifizierend mithilfe der Schlüssel, identifiziert durch DIDs
+* man kann so viele DID-Relationships haben wie man will
+* wenn SChlüssel geändert bzw verloren sind, die KEL sind synchronisiert
+
 *einfaches Demo Beispiel:* zb. Bob und Alice tauschen sich über ein DIDComm Protokoll aus. (Bootstraping QR Code als mögliches Beispiel)
+
+
+
