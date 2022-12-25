@@ -1,0 +1,17 @@
+== Was ist ein ZKP? 
+ZKP ist eine Abkürzung für den Zero Knowledge Proof, welcher eine Kryptografietechnik ist. Grundlage dabei bildet die Reduktion der ausgetauschten Daten zwischen 2 Entitäten, wobei der Fokus auf der "Qualität" liegt. Die Daten-erhaltende-Partie soll für den Input keine Verwendung haben, außer für die Beantwortung einer Frage. 
+Partie A muss davon überzeugt werden, ob Partie B die Erlaubnis besitzt Alkohol zu kaufen. Partie B möchte dies bestätigen, sein genaues Geburtsdatum aber nicht bekanntgeben. 
+Ein bestimmtes Statement soll  als True bewiesen werden, ohne Daten freizugeben. 
+Dabei wird der ZKP in 2 Arten unterteilt
+
+=== interactive ZKP
+Ist ein Beweis, basierend auf mehreren Interaktionen zwischen A & B. Die Wahrscheinlichkeit des Beweises, liegt niemals bei 100%.
+
+=== non-interactive ZKP
+Anzahl an Interaktionen soll reduziert werden, sodass von A an B nur eine Nachricht versendet wird. B muss dann lernen, dass A den "Fakt kennt" und die Wahrheit sagt 
+
+NOTE: Wie funktioieren non(interacitve) ZKPs?
+
+== Was ist Selective Attribute Disclosure?
+Wie schon im Name erkennbar, das Selektieren von einzelnen Attributen eines Nachweises muss möglich sein. Diese soll der Nutzer aktiv wählen können. Die volle Macht liegt beim Nutzer, welcher bei einer Abfrage seines Führerscheins noch einzelne Attribute ab-/einschalten kann. Zum Beispiel: 
+Besitz der Führerscheine: Auto, Motorrad, LKW -> sitzt er in einem Auto und wird kontrolliert, werden Motorrad und LKW Führerschein überflüssig & der Holder sollte nicht gezwungen werden diese dem Issuer vorzulegen.
