@@ -1,32 +1,23 @@
-= Different between traditional OIDC and OpenID4VC / VP.
+= Der Unterschied zwischen OIDC und OIDC4VP / OIDC4VC
 
 
 Open ID Connect definiert Spezifikationen für das Ausgeben und Präsentieren von Berechtigungen.
-Zusätzlich führt OID For Verifiable Credentials ein Wallet ein, welches es ermöglicht, Berechtigungen und die Nachweise dazu zu speichern. OIDC regelt die Interaktion zweier Parteien (Identity Provider & Relying Party) mithilfe einers User Agents, welcher aber nicht OIDC spezifisch ist.
+Zusätzlich führt OIDC For Verifiable Credentials ein Wallet ein, welches es ermöglicht, Berechtigungen und die Nachweise dazu zu speichern. OIDC regelt die Interaktion zweier Parteien (Identity Provider & Relying Party) mithilfe einers User Agents, welcher aber nicht OIDC spezifisch ist.
 Mithilfe von OID4VC ist die Abhängigkeit von IdP und RP nicht mehr gegeben, die Wallet beweißt automatisch die Berechtigung, identifiziert den Benutzer.
 
 OIDC
-- app centricity 
-    - one user many apps
-- nobody is storing credentials
-- JWTs or JWS
+
 
 OpenID4VC
-- user centricity
-    - many apps one user
-- user has all credentials stored in a wallet
-- work with identifier types
+Nutzer kann seine Credentials selbst anlegen, verwalten und daraus "präsentierbare" Artefakte generieren. Jegliche Daten liegen im Wallet des Nutzers, wodurch eine zentralisierte Datenverwaltung gegeben ist.
 OpenID4VP
-- request and present verifiable credentials 
-    - VP (presentated data) Token included in ID Token
-    - relying party verifies the holder
+VC's können angefordert und zur Präsentation freigegeben werden. Der Nutzer ist in der Lage, eigene "Pakete" von Informationen zu erstellen und diese zu VP's zusammenzufassen. Möchte eine Entität im späteren Verlauf diese Daten verifizieren, so kann der Holder diese zur Authentifizierung freigeben. 
 
 Support of SSI
-- user holds a wallt of all his information/credentials
-- user centricity of the data flow and protection
-- user has complete power over his credentials and their storage
-- works with identifier as DID or Cryptography
-- sites have only access to the requested data
+- Nutzerzentralisierung
+- Daten sind zu jeder Zeit lokal verwaltbar
+- Datenhoheit des Holders steht im Vordergrund
+- Keine aktive Einbindung Dritter
 
 
 
