@@ -326,4 +326,28 @@ Quellen:
 
 == Was ist der technische Unterschied zwischen DIDComm und OIDC?
 
-// Platzhalter
+[cols="3,3,3"]
+|===
+|Kriterien
+|DIDComm
+|OIDC
+
+|Entitäten
+|2
+|4
+
+|"Art"
+|Protokoll 
+|Protokoll
+
+|Unterliegende Technologie
+|DID
+|oAuth2
+
+|Datenverwaltung
+|Dezentralisiert
+|Zentralisiert
+
+|SSI-Ansatz erfüllt?
+|Ja
+|Nein
