@@ -1,0 +1,53 @@
+= Ein technischer Vergleich von DIDComm und Open ID Connect
+
+== OpenID Connect
+=== Was ist OIDC?
+
+Open ID Connect ist ein *Authentifizierungsprotokoll*, das Identity-Providern eine zusätzliche Benutzerauthentifizierung und Zugangskontrolle ermöglicht. Es ist ein Standard, der die OAuth 2.0-Autorisierung zusätzlich um den Schritt der Authentifizierung ergänzt, da er darauf aufbaut.
+
+=== Was ist OAuth 2.0 und wie funktioniert es?
+
+OAuth 2.0 ist ein Autorisierungsprotokoll und bildet die Grundlage von OIDC. Es ermöglicht einer Anwendung den Zugriff auf die Daten des Users von einem *Ressource Server* (einer anderen Anwendung). Dadurch bekommt die Anwendung (*Relying Party*) die nötigen Berechtigungen, um im Namen des Anwenders auf den Ressource Server zuzugreifen.
+
+Wenn eine App wie WhatsApp bspw. auf die Kontakte des Anwenders zugreifen möchte, kann er dies über die Kontakte App abrufen – dies nennt man *delegierte Autorität*. Eine Kennworteingabe ist hierbei nicht notwendig und nur der Identity Provider kennt die Anmeldeinformationen des Anwenders.
+
+Der Vorteil davon besteht darin, dass der Anwender sein Passwort nicht mehr Offenlegen muss – da bei der Anmeldung ein *OAuth-Flow* ausgelöst wird. Bei Anmeldung wird man einfach in eine zweite Anwendung weitergeleitet und in dieser authentifiziert. Der Flow wird bestätigt und der Anmeldevorgang ist entsprechend erfolgreich.
+
+Der Nutzer kann hierbei auch den *Level of Access* entscheiden – was für Daten er an die App weitergeben will -> delegierte Autorität
+
+=== OpenID und OAuth 2.0
+
+OAuth 2.0 befasst sich lediglich mit der Autorisierungsfrage, weshalb hier das Zusammenspiel mit OpenID entsteht – im Sinne der *Authentifizierung* (siehe „Was ist OIDC“)
+
+Der Ressource Server (Anwendung) erhält nicht mehr nur den Schlüssel vom Identity Provider, sondern ebenso Informationen über die Identität des Anwenders. Dadurch kann sich der Anwender gleichzeitig bei mehreren Anwendungen anmelden, in denen er normalerweise seine Identität nachweisen muss.
+
+Neben dem *Access-Token* wird hierbei ein *benutzerspezifischer ID-Token* generiert und ausgetauscht. Der signierte ID-Token kann dann an den Ressource Server in einem JSON-basierenden JWT-Format übergeben und ausgelesen. Dies ermöglicht bspw. WhatsApp nicht nur auf die Kontakte zuzugreifen, sondern die Kontakte auch mit meinen Daten zu verknüpfen und somit mit mir in Verbindung zu bringen wenn erwünscht.
+
+image::Aufgaben/img/OIDC-img.png[]
+
+== DIDComm
+
+=== Was ist DIDComm?
+
+DIDComm (*Decentralized Identity Communication*) ist ein gemeinschaftsübergreifender Standard, der Bibliotheken und Entwurfsmuster für zwei oder mehr DID-kontrollierende Teilnehmer aus verschiedenen DID-basierten Systemen erstellt, um direkt miteinander zu kommunizieren. 
+
+Es schafft einen sicheren Kommunikationskanal zwischen Software, die von jeder dieser Teilnehmer kontrolliert wird, bei denen es sich um Personen, Organisationen oder Dinge handeln kann. Dies stellt einen „authentifizierten Kanal“ dar, da die Kontrolle über die privaten Schlüssel einer bestimmten DID, vorbehaltlich eines Versagens der Design- oder Betriebssicherheit, ein Beweis für die Authentizität, der von dieser DID vertretenen Partei ist.
+
+=== Was macht diese Architektur so leistungsstark?
+
+Diese Architektur ist leistungsfähig, da sie eine Möglichkeit zur gegenseitigen Authentifizierung zwischen zwei beliebigen Parteien bietet. 
+
+Derzeit bieten viele Messaging- und Kommunikationssysteme im offenen Web keine gegenseitige Authentifizierung mit Kryptografie 
+
+Sie fordern Einzelpersonen auf, sich bei Websites oder Unternehmen zu authentifizieren (heutzutage meist mit Single-Sign-On-Integrationen, d. H. „Melden Sie sich mit Ihrem XXX-Konto an“-Schaltflächen), und diese Unternehmen bürgen und schützen den Endbenutzer. 
+
+Im Gegenzug erhalten Unternehmen wertvolle Einblicke in die Kommunikation oder Geschäftstätigkeit der Nutzer, die es ermöglichen Einblicke an Dritte zu verkaufen.
+
+=== Eigenschaften von DIDComm
+
+-	Sicher
+-	Privat
+-	Interoperabel
+-	Art der Verbindung ist unwichtig
+-	Erweiterbar
+-	kein bestimmtes Betriebssystem, Programmiersprache, Anbieter, Netzwerk oder Hardware notwendig
