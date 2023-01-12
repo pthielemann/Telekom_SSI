@@ -1,0 +1,124 @@
+== OIDC (OpenID Connect)
+
+=== Was ist OIDC?
+
+OpenID Connect ist ein Authentifizierungsprotokoll und eine Erweiterung des OAuth 2.0 Standards. Es ermöglicht Clients die Überprüfung der Identität des Endbenutzers auf der Grundlage der von einem Autorisierungsserver durchgeführten Authentifizierung sowie den Erhalt grundlegender Profilinformationen über den Endbenutzer in einer interoperablen und REST-ähnlichen Schnittstelle. Mit OpenID Connect können Clients aller Art, einschließlich webbasierter, mobiler und JavaScript-Clients, Informationen über authentifizierte Sitzungen und Endbenutzer anfordern und empfangen.
+
+Bei einer OpenID-Connect-Anfrage wird der Benutzer an einen Identitätsanbieter wie zb. Google oder Facebook weitergeleitet, der die angeforderten Informationen authentifiziert und autorisiert und dann mit einem ID-Token und optional einem Zugriffstoken an die anfordernde Anwendung (zb. eine App) zurückgeschickt.
+
+NOTE: *Authentifizierung:* "Wer bist du?"
+
+NOTE: *Authorizierung:* "Bist du berechtigt das zu tun?"
+
+*UseCase:* zb. SSO (Single Sign-On) für Konsumenten Apps
+
+=== Die Teilnehmer bei OIDC
+
+In OIDC werden 4 Teilnehmer benötigt um eine Authentifizierung durchzuführen. Diese Teinehmer sind der Identity Provider (IdPs), die Relying Parties (RPs)die OpenID Providers (OPs) und der Resource Owner (RO).
+
+* *Identity Providers (IdPs):* Ein IdP ist ein Dienst (zb. Google oder Facebook), der Benutzer authentifiziert und Identitäts-Token ausstellt, wie z. B. ein OpenID Connect ID Token. Der IdP ist für die sichere Authentifizierung von Benutzern sowie für die Verwaltung und den Schutz ihrer Identitäten verantwortlich.
+
+* *Relying Parties (RPs):* Ein RP ist ein Dienst/Client (zb. eine App), der sich auf den IdP verlässt, um seine Benutzer zu authentifizieren. Der RP ist dafür verantwortlich, die Identitäts-Token vom IdP zu verbrauchen, um seine Benutzer zu identifizieren.
+
+* *OpenID Providers (OPs):* Ein OP ist ein Dienst, der eine OpenID Connect-Schnittstelle zum IdP und RP bereitstellt. Der OP ist verantwortlich für die sichere Bereitstellung der notwendigen Protokoll- und Kommunikationsinfrastruktur, um den Authentifizierungsprozess zu erleichtern.
+
+* *Resource Owner (RO):* Ein RO ist die Entität, die den Zugriff auf eine geschützte Ressource (zb. Personeninformationen) gewährt, z.B. ein Endnutzer. Der RO ist für die Autorisierung des Zugriffs auf die Ressource verantwortlich und kann entweder der Endbenutzer selbst oder eine Entität sein, der die Autorität übertragen wurde, im Namen des Endbenutzers handeln zu dürfen.
+
+=== OIDC Ablauf
+
+*Schritt 1:* Ein Endbenutzer (Resource Owner) besucht eine Website (Relying Partie), die OpenID Connect unterstützt und klickt auf eine Schaltfläche "Anmelden".
+
+*Schritt 2:* Die Webseite (auch Client genannt) leitet den Endbenutzer an den OpenID Provider (OP), häufig gleichzeitig auch der Identity Provider, mit einer Anfrage zur Authentifizierung des Benutzers weiter.
+
+*Schritt 3:* Der OP authentifiziert den Benutzer, indem er ihn auffordert, seinen Benutzernamen und sein Passwort einzugeben. Dabei müssen die Daten die angefordert werden, bereits vor der Abfrage beschrieben sein.
+
+*Schritt 4:* Nach erfolgreicher Authentifizierung sendet der OP eine Authentifizierungsantwort an die Website mit einem ID-Token und einem Access Token.
+
+*Schritt 5:* Die Website überprüft das ID-Token, um sicherzustellen, dass es gültig ist und dass der Benutzer derjenige ist, der er vorgibt zu sein.
+
+*Schritt 6:* Die Website kann nun das Access Token verwenden, um im Namen des Benutzers API-Aufrufe an den OP zu tätigen.
+
+*Schritt 7:* Die Website kann nun dadurch dem Nutzer ein personalisiertes Erlebnis auf der Website bieten.
+
+==== Erweiterung des OAuth 2.0 Authorization Request
+
+Der *OAuth 2.0 Authorization Request* wird um den Parameter *Scope* erweitert. Hiermit kann festgelegt werden, auf welche Informationen des Benutzers der Client zugreifen darf. Diese Informationen werden in Form eines Claims zurückgesendet.
+
+NOTE: *Scope:* Ein Scope (Geltungsbereich) ein Satz von Regeln zur Bestimmung des Umfangs der Sichtbarkeit oder Zugänglichkeit einer Abfrage.
+
+NOTE: *Claims:* Aussagen über einen Benutzer, die im ID-Token zurückgegeben werden. Diese Angaben können den Namen des Benutzers, seine E-Mail-Adresse und andere Informationen über den Benutzer wie Alter, Geschlecht oder Standort enthalten. Die Angaben sind in einem JSON Web Token (JWT) kodiert und werden nach erfolgreicher Authentifizierung an die Client-Anwendung gesendet.
+
+==== ID-Token
+
+Ein ID-Token ist ein Token der verwendet wird, um einen Endbenutzer zu identifizieren. Es handelt sich dabei um ein signiertes und optional verschlüsseltes Datenelement, das *Informationen über den Benutzer* enthält, wie z.B. den Namen, die E-Mail-Adresse und andere identifizierende Merkmale. ID-Tokens werden zur Authentifizierung des Benutzers für eine einzige Sitzung verwendet.
+
+Bsp. für einen ID-Token
+----
+{
+  "iss": "http://my-domain.auth0.com",
+  "sub": "auth0|123456",
+  "aud": "my_client_id",
+  "exp": 1311281970,
+  "iat": 1311280970,
+  "name": "Jane Doe",
+  "given_name": "Jane",
+  "family_name": "Doe",
+  "gender": "female",
+  "birthdate": "0000-10-31",
+  "email": "janedoe@example.com",
+  "picture": "http://example.com/janedoe/me.jpg"
+}
+----
+
+==== Access Token
+
+Ein Zugriffstoken ist ein Token der verwendet wird, um den Zugriff auf eine API oder Ressource zu gewähren. Es handelt sich um ein signiertes und optional verschlüsseltes Datenelement, das *Informationen über den Client und den Ressourcenserver* sowie eine *Berechtigungserteilung* enthält. Zugriffstoken werden für den Zugriff auf geschützte Ressourcen im Namen eines autorisierten Benutzers verwendet.
+
+Bsp. für einen Access Token
+----
+{
+  "iss": "https://my-domain.auth0.com/",
+  "sub": "auth0|123456",
+  "aud": [
+    "https://example.com/health-api",
+    "https://my-domain.auth0.com/userinfo"
+  ],
+  "azp": "my_client_id",
+  "exp": 1311281970,
+  "iat": 1311280970,
+  "scope": "openid profile read:patients read:admin"
+}
+----
+
+==== JSON Web Tokens
+
+JWT unterstützt die kryptographische Signatur  und optional die Verschlüsselung. Es kann sowohl für Access und Refresh Tokens als auch zum Informationsaustausch verwendet werden. In OpenID Connect wird es genutzt, um Benutzerinformationen sicher zu übertragen.
+
+Zum Beispiel repräsentiert das folgende Token
+
+----
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ
+.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+----
+
+nachstehenden JSON-Inhalt
+----
+Header: 
+{
+    "alg": "HS256",
+    "typ": "JWT"
+}
+Payload:
+{
+    "sub": "1234567890",
+    "name": "John Doe",
+    "iat": 1516239022
+}
+----
+
+Der Header gibt Auskunft über Signatur- oder Verschlüsselungsalgorithmus, sowie den Typ des Tokens. Die einzelnen Einträge im Payload sind Claims.
+
+NOTE: *sub:* Steht für den Subject Identifier, d.h. die Instanz auf die sich das JWT bezieht. 
+
+NOTE: *iat:* Representiert den Ausstellungszeitpunkt („Issued At“)

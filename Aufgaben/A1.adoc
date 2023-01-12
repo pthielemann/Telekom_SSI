@@ -6,6 +6,8 @@
 
 OpenID Connect ist ein Authentifizierungsprotokoll und eine Erweiterung des OAuth 2.0 Standards. Es ermöglicht Clients die Überprüfung der Identität des Endbenutzers auf der Grundlage der von einem Autorisierungsserver durchgeführten Authentifizierung sowie den Erhalt grundlegender Profilinformationen über den Endbenutzer in einer interoperablen und REST-ähnlichen Schnittstelle. Mit OpenID Connect können Clients aller Art, einschließlich webbasierter, mobiler und JavaScript-Clients, Informationen über authentifizierte Sitzungen und Endbenutzer anfordern und empfangen.
 
+// 1. Satz Anmerkung dazu was OAuth 2.0 ist
+
 Bei einer OpenID-Connect-Anfrage wird der Benutzer an einen Identitätsanbieter wie zb. Google oder Facebook weitergeleitet, der die angeforderten Informationen authentifiziert und autorisiert und dann mit einem ID-Token und optional einem Zugriffstoken an die anfordernde Anwendung (zb. eine App) zurückgeschickt.
 
 NOTE: *Authentifizierung:* "Wer bist du?"
@@ -56,7 +58,7 @@ NOTE: *Claims:* Aussagen über einen Benutzer, die im ID-Token zurückgegeben we
 
 Ein ID-Token ist ein Token der verwendet wird, um einen Endbenutzer zu identifizieren. Es handelt sich dabei um ein signiertes und optional verschlüsseltes Datenelement, das *Informationen über den Benutzer* enthält, wie z.B. den Namen, die E-Mail-Adresse und andere identifizierende Merkmale. ID-Tokens werden zur Authentifizierung des Benutzers für eine einzige Sitzung verwendet.
 
-Bsp. für einen ID-Token
+Bsp. für einen ID-Token 
 ----
 {
   "iss": "http://my-domain.auth0.com",
@@ -126,73 +128,6 @@ NOTE: *sub:* Steht für den Subject Identifier, d.h. die Instanz auf die sich da
 
 NOTE: *iat:* Representiert den Ausstellungszeitpunkt („Issued At“)
 
-=== Implementierungsbeispiel für OIDC (JavaScript)
-
-----
-// Initial OIDC setup (for authentication and authorization)
-const { OIDCStrategy } = require('passport-azure-ad');
-
-const oidcStrategy = new OIDCStrategy(
-    {
-        // Provide the OIDC client ID and secret
-        clientID: '<client-id-here>',
-        clientSecret: '<client-secret-here>',
-        callbackURL: 'https://localhost:3000/auth/openid/callback',
-
-        // Provide the OIDC scope
-        scope: ['openid'],
-
-        // Provide the OIDC identity provider
-        issuer: 'https://login.microsoftonline.com/<tenant-id-here>/v2.0',
-    },
-    (iss, sub, profile, accessToken, refreshToken, done) => {
-
-        // User authentication and authorization logic
-        if (profile.oid === '<user-id-here>') {
-            return done(null, profile);
-        }
-
-        return done(null, false);
-    }
-);
-
-// Passport registration
-const passport = require('passport');
-passport.use(oidcStrategy);
-
-// Express middleware setup
-const express = require('express');
-const app = express();
-
-// Setup the authentication routes
-app.use(passport.initialize());
-
-// Login route
-app.get('/login', passport.authenticate('azuread-openidconnect', {
-    failureRedirect: '/error',
-}), (req, res) => {
-    res.redirect('/');
-});
-
-// Callback route
-app.get('/auth/openid/callback', passport.authenticate('azuread-openidconnect', {
-    failureRedirect: '/error',
-}),
-(req, res) => {
-    res.redirect('/');
-});
-
-// Error route
-app.get('/error', (req, res) => {
-    res.send('Authentication error!');
-});
-
-// Serve the application
-app.listen(3000, () => {
-    console.log('Application is running on port 3000');
-});
-----
-
 ////
 Quellen:
 1. https://www.oose.de/blogpost/oauth-openid-connect-und-jwt-wie-haengt-das-alles-zusammen-teil-1/
@@ -211,35 +146,33 @@ Das Protokoll kann durch anwendungsspeziische Besonderheiten ergänzt werden. Di
 
 // Das ist vergleichbar mit HTTPS und API's welche im Web beschrieben werden und unabhängig voneinander sind, aber API's können ohne HTTPS nicht funktionieren und DIDComm Protocols funktionieren ohne DIDComm genauso wenig.
 
-NOTE: *dezentrale Identität (DID):* Dezentrale Identität ist ein digitales Identitätssystem, bei dem der Einzelne die Kontrolle über seine eigenen Identitätsdaten hat und diese sicher und privat speichern, verwalten und weitergeben kann, ohne sich auf eine zentrale dritte Partei verlassen zu müssen. Es basiert auf der Blockchain-Technologie und ermöglicht es den Nutzern, digitale Identitäten zu erstellen und zu verwalten, die kryptografisch sicher und nachweislich eindeutig sind. Diese Identitäten können verwendet werden, um auf Dienste, Produkte und Anwendungen zuzugreifen, ohne dass persönliche Informationen an jeden Dienstanbieter übermittelt werden müssen.
-
 ==== Eigenschaften von DIDComm
 
-* sicher
-* privat
-* interoperabel
-* Art der Verbindung ist unwichtig
-* erweiterbar
+* sicher, privat, interoperabel, erweiterbar
 * kein bestimnmtes Betriebssystem, Programmiersprache, Anbieter, Netzwerk oder Hardware notwendig
 * Ziel ist es, die standardmäßige Kommunikation bei sicheren, privaten Interaktionen im und außerhalb des Internets zu definieren
 * es können alle Arten von Verbindungen genutzt werden _(HTTP(s), Websockets, IRC, Bluetooth, NFC, Signal, email, push benachrichtigungen, etc.)_
 
-=== Wie funktioniert DIDComm?
+=== Wie funktioniert DIDComm? (Pascal - überarbeiten)
 
-DIDComm ermöglicht zwei oder mehr Parteien den sicheren Austausch von Nachrichten und anderen Daten über ein verteiltes Hauptbuch. Zum Beispiel können zwei Parteien, Alice und Bob, durch die Verwendung von DIDComm eine Nachricht sicher austauschen. Alice kann eine Nachricht an Bob senden, indem sie die Nachricht mit einem symmetrischen Schlüssel verschlüsselt und sie dann über das Ledger an Bob sendet. Wenn Bob die Nachricht erhält, kann er sie mit demselben symmetrischen Schlüssel entschlüsseln. Dadurch wird sichergestellt, dass die Daten sicher sind und nur der vorgesehene Empfänger darauf zugreifen kann. 
+1. Wie findet Alice die DID von Bob? (Erstkontakt)
 
-NOTE: *symmetrischer Schlüssel:* Ein kryptografischer Schlüssel, der zur Ver- und Entschlüsselung von Nachrichten zwischen zwei Parteien verwendet wird. Beide Parteien verwenden denselben Schlüssel zum Ver- und Entschlüsseln der Nachrichten, so dass er symmetrisch ist.
+2. Wie wird ein Nachrichtenkanal aufgebaut?
 
-Dezentrale Identifikatoren (DIDs) sind eine Art von Identifikatoren, die kryptografisch generiert werden und selbstsouverän sind, was bedeutet, dass sie nicht im Besitz oder unter der Kontrolle einer einzelnen Einheit sind. DIDs sind so konzipiert, dass sie eine sichere und überprüfbare Möglichkeit zur Identifizierung von Entitäten im Internet bieten, z. B. von Personen, Organisationen und Geräten.
+DIDComm ermöglicht zwei oder mehr Parteien den sicheren Austausch von Nachrichten durch ihre Agents (zb. Browser) und anderen Daten über ein verteiltes Ledger (zb. einer Blockchain). 
 
-Ein konkretes Beispiel für eine DID ist ein DID-Dokument. Dabei handelt es sich um ein JSON-LD-Dokument, das eine Reihe von Metadaten enthält, die mit einer bestimmten DID verbunden sind. Es enthält Informationen wie den öffentlichen Schlüssel des DID, Dienstendpunkte, die zur Interaktion mit dem DID verwendet werden können, und verschiedene andere Informationen. Dieses Dokument kann dann verwendet werden, um den Eigentümer der DID sicher zu authentifizieren und zu überprüfen, ob die von der Entität gemachten Angaben wahr sind.
+// Zum Beispiel können zwei Parteien, Alice und Bob, durch die Verwendung von DIDComm eine Nachricht sicher austauschen. Alice kann eine Nachricht an Bob senden, indem sie die Nachricht mit einem symmetrischen Schlüssel verschlüsselt und sie dann über das Ledger an Bob sendet. Wenn Bob die Nachricht erhält, kann er sie mit demselben symmetrischen Schlüssel entschlüsseln. Dadurch wird sichergestellt, dass die Daten sicher sind und nur der vorgesehene Empfänger darauf zugreifen kann. 
 
-Dabei orientiert sich DIDComm an dem Konzept für Emails, bei dem zwischen 2 Entitäten eine Verbindung besteht, welche 2 Kanäle beinhaltet. Kanal A, für Nachrichten von zb. Alice zu Bob. Kanal B,
-für Nachrichten von Bob zu Alice. Die Nachrichten können dabei aufeinander aufbauend, als Antworten, oder unabhängig voneinander versendet werden. 
+// Was ist ein Ledger?
+
+// NOTE: *symmetrischer Schlüssel:* Ein kryptografischer Schlüssel, der zur Ver- und Entschlüsselung von Nachrichten zwischen zwei Parteien verwendet wird. Beide Parteien verwenden denselben Schlüssel zum Ver- und Entschlüsseln der Nachrichten, so dass er symmetrisch ist.
+
+////
+Dabei orientiert sich DIDComm an dem Konzept für Emails, bei dem zwischen 2 Entitäten eine Verbindung besteht, welche 2 Kanäle beinhaltet. Kanal A, für Nachrichten von zb. Alice zu Bob. Kanal B, für Nachrichten von Bob zu Alice. Die Nachrichten können dabei aufeinander aufbauend, als Antworten, oder unabhängig voneinander versendet werden. 
 
 Man unterscheidet dabei zwischen 3 Nachrichtenformaten: 
 
-1. *Plaintext message:* Nachrichten werden ohne jegliche Verschlüsselung übermittelt. Beispiel:
+1. *Plaintext message:* Nachrichten werden ohne jegliche Verschlüsselung übermittelt beim Verbindungsaufbau. Beispiel:
 
     {
         "id": "1234567890",
@@ -258,8 +191,11 @@ Man unterscheidet dabei zwischen 3 Nachrichtenformaten:
 // Was heißt in diesem Kontext gesichert?
 
 3. *encrypted message:* Verschlüsselte JWM.
+////
 
 Damit 2 Anwendungen miteinander sprechen können, muss ein Service Endpunkt definiert sein. Dieser deklariert, wie eine andere Entität diesen erreichen kann und besteht aus einem Set von *DIDComm Service Endpoint URI's* (Wie will der Owner seine Nachrichten empfangen?), z.B.
+
+// Ist dieser Endpunkt/Schnittstelle im DID Document hinterlegt bzw. definiert? (Pascal)
 
     {
         "id": "did:example:123456789abcdefghi#didcomm-1",
@@ -274,40 +210,31 @@ Damit 2 Anwendungen miteinander sprechen können, muss ein Service Endpunkt defi
         }]
     }
 
-Was muss gegeben sein um 2 Agents miteinander sprechen zu lassen? 
-- serviceEndpoint -> deklariert wie andere Entität sie erreichen kann; besteht aus Set von DIDComm Service Endpoint URI's (wie will der owner seine Nachrichten empfangen), zB 
-{
-    "id": "did:example:123456789abcdefghi#didcomm-1",
-    "type": "DIDCommMessaging",
-    "serviceEndpoint": [{
-        "uri": "https://example.com/path",
-        "accept": [
-            "didcomm/v2", -> welche Typen werden von Aussteller akzeptiert?
-            "didcomm/aip2;env=rfc587"
-        ],
-        "routingKeys": ["did:example:somemediator#somekey"]
-    }]
-}
-- Sicherheit -> DIDComm Message wird immer mit Schlüsseln der empfangenden DID verschlüsselt; gleiche Nachricht an mehrere Sender muss mehrfach verschlüsselt werden (authcrypt / anoncrypt)
+*Was muss gegeben sein um 2 Agents miteinander sprechen zu lassen?*
 
-DIDComm Rollen:
+- serviceEndpoint -> deklariert wie andere Entität sie erreichen kann; besteht aus Set von DIDComm Service Endpoint URI's (wie will der owner seine Nachrichten empfangen), z.B.
+
+- Sicherheit -> DIDComm Message wird immer mit Schlüsseln der empfangenden DID verschlüsselt; gleiche Nachricht an mehrere Sender muss mehrfach verschlüsselt werden (authcrypt / anoncrypt) 
+
+// (authcrypt / anoncrypt) erklären. Vermutung: Benutzt den public Key des anderen aus dem DID Docuemnt um Nachrichten zu verschlüseln
+
+=== DIDComm Rollen:
 sender - 
 mediator - 
+// erkkären was Mediator ist (ggf. Grafik oder Abbildung)
 empfänger - 
+
+*Ablauf (aufarbeiten)*
 
 Nachrichtenaustausch von Alice & Bob
 Alice -> auflösen des DID Documents von Bob 
-      -> erhalt von Bob's public key & Adresse auf welche Art & Weise Bob Nachrichten empfangen kann
-      -> verschlüsseln Plaintext durch Alice mit public key Bob & eigenem private key
+      -> erhalt von Bob's public key & Adresse auf welche Art & Weise (Endpoint) Bob Nachrichten empfangen kann
+      -> verschlüsseln Plaintext durch Alice mit public key Bob
 (DIDComm Routing)
-Bob   -> empfangen der Nachricht & entschlüsseln + Alice als Sender authentifizieren (Alice's DID Document abrufen)
+Bob   -> empfangen der Nachricht & entschlüsseln mit seinem private Key + Alice als Sender authentifizieren (Alice's DID Document abrufen)
       -> (vorbereiten einer Antwort + versendet)
 
-MessageURI -> id, thid, pthid kombinieren um DIDMessage eindeutig erkennbar zu machen (unique)
-id = Nachrichten ID
-thid = Thread ID
-pthid = Parent_Thread ID 
-
+////
 Transportvoraussetzungen: 
     format of serviceEndpoint uri: Which URI schemes are used (if URI), or the properties of the object (if object).
     how to actually send messages: e.g., through HTTPS POST, through dial protocol (libp2p), etc.
@@ -316,6 +243,7 @@ Transportvoraussetzungen:
 
 Routing Protocol 2.0 vereinfacht dass senden von Nachrichten
 -> Partie muss immer nur den nächsten hop & Ziel kennen, gesamter Pfad den Nachricht gegangen ist kennt keiner 
+////
 
 ////
 Quellen:

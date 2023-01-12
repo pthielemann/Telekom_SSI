@@ -1,13 +1,54 @@
-:includedir: Aufgaben
+= SSI
 
-= SSI: Open ID Connect
+* Was ist SSI?
 
-include::{includedir}/A1.adoc[]
+// Kurze Einführung
 
-include::{includedir}/A2.adoc[]
+* Was ist DID? (Kenneth)
 
-include::{includedir}/A3.adoc[]
+* Was sind VC? (Kenneth)
 
-include::{includedir}/A4.adoc[]
+* Was sind Digital Wallets/Agents (Pascal)
 
-include::{includedir}/A5.adoc[]
+* Was ist Key Managament (Pascal)
+
+== A technical comparison of DIDComm and OIDC
+
+=== OIDC (OpenID Connect)
+
+* Was ist OIDC?
+
+* Die Teilnehmer bei OIDC
+
+* Ablauf OIDC
+
+=== DIDComm (Decentralized Identity Communication)
+
+* Was ist DIDComm?
+
+* Wie funktioniert DIDComm?
+
+** DID (was sind DIDs?)
+
+* Ablauf DIDComm
+
+* (einfaches) Beispiel DIDComm
+
+* Technischer Unterschied
+
+== If OIDC already exists, then why OIDC for Verifiable Credentials?
+
+* Warum gibt es überhaupt DIDComm? Welches Problem löst DIDComm?
+
+* Wie unterstützt DIDComm das Konzept von SSI?
+
+* Wie kann man DIDComm integrieren?
+
+== Difference between traditional OIDC and OpenID4VC / VP. How does OpenID4VC / VP support the idea of SSI?
+
+== Does OpenID4VC / VP supports selective attribute disclosure / ZKP?
+
+== Working POC
+
+== Resolution
+

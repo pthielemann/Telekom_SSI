@@ -1,0 +1,22 @@
+= Ablauf Powerpoint Präsentation
+
+* Kurzvorstellung SSI
+
+** Wie ist die aktuelle Situation? (Mehrere Beispiele zeigen)
+
+*** Ausweis
+
+*** Bankkonto
+
+*** Facebook
+
+** Welches Problem löst SSI? Wie?
+
+** Welche Kernkonzepte gibt es dabei? (DID, VC)
+
+* Was ist DIDComm?
+
+** Praktisches DIDComm Beispiel (Universität)
+
+* Working POC (Live Demo)
+
