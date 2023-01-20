@@ -144,8 +144,6 @@ NOTE: *Peer-to-Peer:* Eine Netzwerkarchitektur, bei der jeder Computer (oder Kno
 
 Das Protokoll kann durch anwendungsspeziische Besonderheiten ergänzt werden. Diese Spezifikationen werden dann in der Softwareebene ausgewertet. DIDComm bietet nur das Protokoll für einen Dienst an, wie Nachrichten ausgetauscht werden können. Das *DIDComm Protocol* beschreibt *was* in der Kommunikation dann ausgetauscht werden soll.
 
-// Das ist vergleichbar mit HTTPS und API's welche im Web beschrieben werden und unabhängig voneinander sind, aber API's können ohne HTTPS nicht funktionieren und DIDComm Protocols funktionieren ohne DIDComm genauso wenig.
-
 ==== Eigenschaften von DIDComm
 
 * sicher, privat, interoperabel, erweiterbar
@@ -153,21 +151,24 @@ Das Protokoll kann durch anwendungsspeziische Besonderheiten ergänzt werden. Di
 * Ziel ist es, die standardmäßige Kommunikation bei sicheren, privaten Interaktionen im und außerhalb des Internets zu definieren
 * es können alle Arten von Verbindungen genutzt werden _(HTTP(s), Websockets, IRC, Bluetooth, NFC, Signal, email, push benachrichtigungen, etc.)_
 
-=== Wie funktioniert DIDComm? (Pascal - überarbeiten)
+=== Wie funktioniert DIDComm?
 
-1. Wie findet Alice die DID von Bob? (Erstkontakt)
+DIDComm ermöglicht zwei oder mehr Parteien den sicheren Austausch von Nachrichten durch ihre Agents (zb. Browser) und anderen Daten über ein verteiltes Ledger (zb. einer Blockchain).
 
-2. Wie wird ein Nachrichtenkanal aufgebaut?
+Im folgenden wird angenommen es handelt sich um eine Kommunikation zwischen 2 Entitäten mit den Namen Alice & Bob. Geht man davon aus, Alice möchte einen Kommunikationskanal mit Bob aufbauen so muss zuerst die DID von Bob in Erfahrung gebracht werden. Dies geschieht mit einer Out-Of-Band Nachricht, zum Beispiel in Form eines QR-Codes. Wird dieser QR-Code von Alice gescannt kümmert sich ihr Agent um die Auflösung der DID zu dem DID-Document von Bob und schickt eine Initialnachricht an den gewünschten Service Endpoint. //was steht in der OOB Nachricht noch drin? 
+Alice verfasst nun eine Nachricht für Bob und verschlüsselt diese mit seinem public key, welcher aus dem DID-Document entnommen wurde, und stellt sie ihm zu. Bob authentifiziert vorerst Alice als Sender um Integrität sicherzustellen und entschlüsse im Anschluss die empfangene Nachricht mit seinem private key. Die Antwort wird nach dem selben Prinzip wie die eingehende Nachricht verschlüsselt, nur wird der public key von Alice genutzt und an ihren Service Endpoint verschickt. 
 
-DIDComm ermöglicht zwei oder mehr Parteien den sicheren Austausch von Nachrichten durch ihre Agents (zb. Browser) und anderen Daten über ein verteiltes Ledger (zb. einer Blockchain). 
+* Out-Of-Band Nachricht zur Kontaktaufnahme
+* Verschlüsselung der Nachricht mit Public Key des Kommunikationspartners
+* Entschlüsselung eingehender Nachrichten mit eigenem Private Key
 
-// Zum Beispiel können zwei Parteien, Alice und Bob, durch die Verwendung von DIDComm eine Nachricht sicher austauschen. Alice kann eine Nachricht an Bob senden, indem sie die Nachricht mit einem symmetrischen Schlüssel verschlüsselt und sie dann über das Ledger an Bob sendet. Wenn Bob die Nachricht erhält, kann er sie mit demselben symmetrischen Schlüssel entschlüsseln. Dadurch wird sichergestellt, dass die Daten sicher sind und nur der vorgesehene Empfänger darauf zugreifen kann. 
+Beispielsweise können zwei Parteien, Alice und Bob, durch die Verwendung von DIDComm eine Nachricht sicher austauschen. Alice kann eine Nachricht an Bob senden, indem sie die Nachricht mit dem public key von Bob verschlüsselt und sie dann über das Ledger an ihn sendet. Wenn Bob die Nachricht erhält, kann er sie mit seinem private key entschlüsseln. Dadurch wird sichergestellt dass nur der vorgesehene Empfänger darauf zugreifen kann.
 
-// Was ist ein Ledger?
+=== Was ist ein Ledger?
+Eine distributed ledger (DL) ist eine Technologie welche als "Verteiltes Knotenbuch" übersetzt werden kann. (https://wirtschaftslexikon.gabler.de/definition/distributed-ledger-technologie-dlt-54410) 
+Zu verstehen ist dies als dezentrale Datenbank, wobei jeder Knoten immer eine exakte Kopie des aktuellen Standes der Daten besitzt. Neue Informationen werden erst nach Plausibilitätsprüfungen in die Datenliste aufgenommen und verteilt. Somit kann jeder Knoten zu jedem Zeitpunkt eine Aussage eines Knotens verifizieren und Ergebnisabhängig damit umgehen. Zu den bekanntesten Ausprägungen der DLT gehören jegliche Art von Blockchains.  
 
-// NOTE: *symmetrischer Schlüssel:* Ein kryptografischer Schlüssel, der zur Ver- und Entschlüsselung von Nachrichten zwischen zwei Parteien verwendet wird. Beide Parteien verwenden denselben Schlüssel zum Ver- und Entschlüsseln der Nachrichten, so dass er symmetrisch ist.
 
-////
 Dabei orientiert sich DIDComm an dem Konzept für Emails, bei dem zwischen 2 Entitäten eine Verbindung besteht, welche 2 Kanäle beinhaltet. Kanal A, für Nachrichten von zb. Alice zu Bob. Kanal B, für Nachrichten von Bob zu Alice. Die Nachrichten können dabei aufeinander aufbauend, als Antworten, oder unabhängig voneinander versendet werden. 
 
 Man unterscheidet dabei zwischen 3 Nachrichtenformaten: 
@@ -187,15 +188,13 @@ Man unterscheidet dabei zwischen 3 Nachrichtenformaten:
         }
     } -> data stored in JSON body
 
-2. *signed message:* Es handelt sich dabei um eine signierte JWM (JSON web message). Dies ist ein gängiges Format um Nachrichten über verschiedenste Protokolle zu übertragen, welche per JWE (JSON web encryption) gesichert sind. 
-// Was heißt in diesem Kontext gesichert?
+2. *signed message:* Es handelt sich dabei um eine signierte JWM (JSON web message). Bei der Signatur handelt es sich um einen Nachweis des Ausstellers, welcher trotz Verschlüsselung des Nachrichtenobjektes noch ersichtlich bleibt. Diese Art des Nachrichtenaustausches ist nur nötig wenn eine Verifizierung an Dritte notwendig ist.
 
-3. *encrypted message:* Verschlüsselte JWM.
-////
+3. *encrypted message:* Das letzte Nachrichtenformat ist ein Anwendungsfall für jegliche Kommunikation per DIDComm Messaging. Der Inhalt der Nachricht wird für alle nicht-Empfänger versteckt und ist nicht einlesbar. Eine Integritätsprüfung ist vorhanden um einer mögliche Datenmanipulation durch Dritte entgegen zu wirken. 
 
-Damit 2 Anwendungen miteinander sprechen können, muss ein Service Endpunkt definiert sein. Dieser deklariert, wie eine andere Entität diesen erreichen kann und besteht aus einem Set von *DIDComm Service Endpoint URI's* (Wie will der Owner seine Nachrichten empfangen?), z.B.
+Damit 2 Anwendungen miteinander sprechen können, muss ein Service Endpunkt definiert sein. Dieser deklariert wie eine andere Entität diesen erreichen kann und besteht aus einem Set von *DIDComm Service Endpoint URI's* (Wie will der Owner seine Nachrichten empfangen?). Diese sind im DID-Document hinterlegt und in diesem unter dem Punkt "serviceEndpoint" abrufbar. Dieser könnte wie folgt aussehen: 
 
-// Ist dieser Endpunkt/Schnittstelle im DID Document hinterlegt bzw. definiert? (Pascal)
+
 
     {
         "id": "did:example:123456789abcdefghi#didcomm-1",
@@ -210,40 +209,20 @@ Damit 2 Anwendungen miteinander sprechen können, muss ein Service Endpunkt defi
         }]
     }
 
-*Was muss gegeben sein um 2 Agents miteinander sprechen zu lassen?*
+Nur der serviceEndpoint ist dahingehend aber nicht ausreichend um eine gesicherte Kommunikation bereitstellen zu können. Beim abruf des DID-Documentes muss außerdem der public key des Empfängers hinzugezogen werden um eine Verschlüsselung der Nachrichten zu gewährleisten. DIDComm bietet die Möglichkeit auf 2 verschiedene Verschlüsselungstechniken, diese behandeln die Identität des Absenders auf unterschiedliche Arten.
+* authcrypt
+** Kryptografische Verschlüsselung welche den Sender authentifizierbar macht (nach außen)
+* anoncrypt
+** Kryptografische Verschlüsselung welche die Signatur des Senders verschlüsselt und ihn somit nicht identifizierbar macht. 
 
-- serviceEndpoint -> deklariert wie andere Entität sie erreichen kann; besteht aus Set von DIDComm Service Endpoint URI's (wie will der owner seine Nachrichten empfangen), z.B.
-
-- Sicherheit -> DIDComm Message wird immer mit Schlüsseln der empfangenden DID verschlüsselt; gleiche Nachricht an mehrere Sender muss mehrfach verschlüsselt werden (authcrypt / anoncrypt) 
-
-// (authcrypt / anoncrypt) erklären. Vermutung: Benutzt den public Key des anderen aus dem DID Docuemnt um Nachrichten zu verschlüseln
 
 === DIDComm Rollen:
-sender - 
-mediator - 
-// erkkären was Mediator ist (ggf. Grafik oder Abbildung)
-empfänger - 
-
-*Ablauf (aufarbeiten)*
-
-Nachrichtenaustausch von Alice & Bob
-Alice -> auflösen des DID Documents von Bob 
-      -> erhalt von Bob's public key & Adresse auf welche Art & Weise (Endpoint) Bob Nachrichten empfangen kann
-      -> verschlüsseln Plaintext durch Alice mit public key Bob
-(DIDComm Routing)
-Bob   -> empfangen der Nachricht & entschlüsseln mit seinem private Key + Alice als Sender authentifizieren (Alice's DID Document abrufen)
-      -> (vorbereiten einer Antwort + versendet)
-
-////
-Transportvoraussetzungen: 
-    format of serviceEndpoint uri: Which URI schemes are used (if URI), or the properties of the object (if object).
-    how to actually send messages: e.g., through HTTPS POST, through dial protocol (libp2p), etc.
-    how IANA media types of the content are provided, e.g., through Content-Type header, etc.
-    where additional context definition is hosted, e.g., in case the serviceEndpoint object has extra properties specific to the transport.
-
-Routing Protocol 2.0 vereinfacht dass senden von Nachrichten
--> Partie muss immer nur den nächsten hop & Ziel kennen, gesamter Pfad den Nachricht gegangen ist kennt keiner 
-////
+* Sender 
+** Entität welche eine Nachricht versenden möchte
+* Mediator  
+NOTE: ** Weiterleitung/Agent/Routing???
+* Empfänger 
+** Service Endpoint des Empfängers 
 
 ////
 Quellen:
