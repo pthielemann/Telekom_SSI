@@ -4,7 +4,7 @@
 
 === Einführung in VC
 
-Ausweise sind Teil unseres täglichen Lebens: Mit dem Führerschein können wir nachweisen, dass wir in der Lage sind, ein Kraftfahrzeug zu führen, mit einem Universitätsabschluss können wir unseren Bildungsstand nachweisen und mit einem vom Staat ausgestellten Reisepass können wir zwischen Ländern reisen. Diese Nachweise bieten uns in der realen Welt Vorteile, aber ihre Verwendung im Web ist nach wie vor schwer zu fassen.
+Ausweise sind Teil unseres täglichen Lebens: Mit dem Führerschein können wir nachweisen dass wir in der Lage sind ein Kraftfahrzeug zu führen, mit einem Universitätsabschluss können wir unseren Bildungsstand nachweisen und mit einem vom Staat ausgestellten Reisepass können wir zwischen Ländern reisen. Diese Nachweise bieten uns in der realen Welt Vorteile, aber ihre Verwendung im Web ist nach wie vor schwer zu fassen.
 
 Derzeit ist es schwierig, Bildungsabschlüsse, Gesundheitsdaten, Details zu Finanzkonten und andere Arten von durch Dritte überprüften, maschinenlesbaren persönlichen Informationen im Internet darzustellen. Die Schwierigkeit, digitale Ausweise im Web auszudrücken, macht es schwierig, über das Web die gleichen Vorteile zu erhalten, die uns physische Ausweise in der realen Welt bieten.
 

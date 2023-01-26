@@ -1,54 +1,77 @@
-= SSI
+. Einführung SSI 
+. Aktuelle Umsetzung in der Praxis am Beispiel von OIDC
+.. OIDC-Flow
+... Teilnehmer
+... Basic
+... Technisch
+.. Probleme
+... Datenhoheit
+... Anzahl der Teilnehmer 
+... Potentielle Probleme (Datenschutz, weiterverkauf der Daten -> nur die Daten freigeben welche angebracht sind; worüber kann User selbst entscheiden?)
+.. Technische Umsetzung 
+... ID-Token
+... Access-Token
+... Json-Web-Token
+. Decentralized Identifier
+.. Einführung in DIDs
+.. Teilnehmer
+... Einführung Wallet & Agents
+.. DID-Documents
+.. Gegenüberstellung DID und SSI Konzept
+. DIDComm 
+.. Was ist DIDComm (erklärung es ist protokoll auf welchem die Kommunikation basiert)
+.. Datenaustausch
+... Verbindungsaufbau 
+... Nachrichten 
+.... Nachrichtenformate
+.... Verschlüsselungstechniken
+. Zentrale Identitätshaltung
+.. Von Google-verwalteter Identität zu selbstbestimmt 
+.. Praktischer Use-Case (Beantragen eines Ausweises + bestätigen des Alters an Dritten)
+... VC Credential anfordern
+.... was muss vorher gegeben sein? (meine + ausstellende Behörde müssen eine zugeordnete DID besitzen)
+.... Verbindungsaufbau (wie komme ich überhaupt in Verbindung mit der ausstellenden Behörde? QR-Code scannen, auf Website nachschauen, ...)
+.... Wie sieht mein beantragter Credential aus?
+... Mein Alter nachweisen 
+... Vom Credential zum wirklichen Nachweis
+.... Warum kann Credential nicht einfahc so übergeben werden sondern es benötigt noch einen Zwischenschritt? Credential = komplettes Dokument, dh. trotzdem alle Daten drauf wenn diese einfach so weitergegeben werden 
+.... Selective Attribute Disclosure (ist der Weg von VC zu VP) VC in Form von Ausweis nehmen und bestimmte Attribute rausstreichen um nur Alter nachweisen zu können 
+... Verifiable Presentation  
+... Fallback zu SSI Konzept -> VC = zentrale Datenhaltung; VP = so wenig Informationen wie möglich, so viele wie nötig 
+. DIDComm vs. OIDC (Tabellenform + (erklären???))
+. Bestehende Anwendungen aufbauend auf OIDC
+.. OIDC4VC/VP
+.. VC & VP auf Basis von OIDC erstellen und mit DIDComm vergleichen
 
-* Was ist SSI?
 
-// Kurze Einführung
+Diese Arbeit dient dem Einstieg in die Thematik Self-Sovereign Identity. Sie soll die Grundlage des Verständnisses bilden und weiterhin einen Ausblick über aktuelle Techniken im Netz und ihre mögliche Veränderung aufzeigen. Dabei werden die Leser an aktuelle Authentifizierungsprotokolle wie OIDC rangeführt um ein Verständnis für die Problematik mit diesem Vorgehen zu entwickeln. Im Anschluss wenden wir den Blick in eine Lösungsalternative welche durch "decentralized identifier"(DID) und das Protokoll "DIDComm" ermöglicht wird. Alle Erklärungen werden durch praxisnahe Beispiele gestützt, um dem Leser ein komplexes Problem so anschaulich wie möglich zu machen. 
 
-* Was ist DID? (Kenneth)
+== Einführung in die SSI Thematik
+Der Name Self-Sovereign Identity, im deutschen .SELBSTBESTIMMTE Identität., ist selbstsprechend. Dabei umfasst es alle Facetten digitaler Identität und deren Verwaltung, wobei der Nutzer in den Mittelpunkt rückt. Denkt man an die eigene Verwaltung seiner Identitäten, so fällt schnell auf dass man eine Reihe von Identitäten besitzt und somit bei vielen verschiedenen Anwendungen Konten erstellt hat. Dabei gibt man den selben Datensatz ständig neu ein oder nutzt bestehende Konten für die Registrierung. Auch die Pflege der Daten muss manuell, über viele Konten verteilt geschehen. Der Ansatz der Self-Sovereign-Identity verfolgt das Ziel diesem Problem vorzubeugen und digitale Identitäten einmalig in die Hand des Resource Owners zu legen. Relying Parties sollen keine persönlichen Informationen halten und "zur Verfügung" stellen sondern die Resource Owner sollen die Daten in ihrer Hand halten und verteilen. Somit fällt die Dritte Instanz, auch Identity Provider genannt, weg und es besteht ein Datenaustausch nur zwischen der Relying Party und dem Resource Owner. *Irgendwas zu zeigen/nicht zeigen von Attributen -> drauf eingehen dass vorallem wichig das user nicht immer alle Daten zeigen muss - kann sich aussuchen welche Teile seiner Identität offengelegt werden* + Daten müssen in der Lage sein überprüfbar zu sein, ohne Abhängigkeit von Dritten
 
-* Was sind VC? (Kenneth)
+== OIDC
+Um das Problem des aktuell herrschenden Problems besser verstehen zu können muss der Blick auf die derzeitige Umsetzung im Netz gelegt werden. Dieses Fenster [hier Bild einfügen für Login-Seite per Google, etc.] ist heutzutage ein Standard welcher unter dem Namen OIDC bekannt ist. Dabei handelt es sich um ein Authentifizierungsprotokoll welches es dem Nutzer ermöglicht sich mit einem bestehendem Account bei einer Relying Party zu registrieren. [Bild von OIDC Flow]
+Wie man in Abbildung 2 erkennt, gehören zur Authentifizierung per OIDC 3 Partien. Der Resource Owner stellt die Entität dar welche ihre Identität beweisen möchte.
+Der Identity Provider ist ein Anbieter welche es dem Resource Owner ermöglicht sich eine digitale Identität anzulegen und verwaltet diese. Der IP kann ein beliebiges Unternehmen sein, wobei die gängigsten Google, Facebook oder Apple sind. 
+Die Relying Party ist die Anwendung welche vom Resource Owner Daten erheben möchte. Dies kann im Kontext eines Registrierungs-/Anmeldungs- oder Bestellvorgangs vorkommen. 
+OIDC-Flow: 
+* Voraussetzungen
+** Anmeldung per OIDC ist durch Relying Party möglich 
+** Der Resource Owner verfügt bereits über eine digitale Identität beim Identity Provider
+* Use Case Annahmen
+** RO = Peter Schmitt
+** RP = Lieferando 
+** IP = Apple
+* Ablauf
+** Peter Schmitt möchte bei Lieferando bestellen, hat aber keine Zeit sich selbst zu registrieren und möchte seinen Apple-Account dafür nutzen
+** Lieferando leitet ihn auf die Authentifizierungsseite von Apple weiter, auf dieser muss er sich anmelden und Apple dazu befähigen seine Identität an Lieferando auszustellen 
+*** Die benötigten Daten werden dabei im "Scope" adressiert 
+**** Wie sieht ein Scope aus? [email, ]
+** als Antwort erhält Lieferando ein ID-Token und ein Access-Token 
+*** ID-Token dient der Authentifizierung des RO
+*** Access-Token dient der Berechtigung zur Abfrage weiterer Daten des RO durch die Relying Party
+** Der Lieferando-Account wird anhand der abgefragten Daten erstellt und Herr Schmitt kann seine Bestellung abschließen 
 
-* Was sind Digital Wallets/Agents (Pascal)
-
-* Was ist Key Managament (Pascal)
-
-== A technical comparison of DIDComm and OIDC
-
-=== OIDC (OpenID Connect)
-
-* Was ist OIDC?
-
-* Die Teilnehmer bei OIDC
-
-* Ablauf OIDC
-
-=== DIDComm (Decentralized Identity Communication)
-
-* Was ist DIDComm?
-
-* Wie funktioniert DIDComm?
-
-** DID (was sind DIDs?)
-
-* Ablauf DIDComm
-
-* (einfaches) Beispiel DIDComm
-
-* Technischer Unterschied
-
-== If OIDC already exists, then why OIDC for Verifiable Credentials?
-
-* Warum gibt es überhaupt DIDComm? Welches Problem löst DIDComm?
-
-* Wie unterstützt DIDComm das Konzept von SSI?
-
-* Wie kann man DIDComm integrieren?
-
-== Difference between traditional OIDC and OpenID4VC / VP. How does OpenID4VC / VP support the idea of SSI?
-
-== Does OpenID4VC / VP supports selective attribute disclosure / ZKP?
-
-== Working POC
-
-== Resolution
+***Überleitung zu Problemen*** 
+Der Vorteil für den Nutzer bei OIDC ist deutlich spürbar, da eine zentrale Verwaltung aller Konten über eine einzelne Identität möglich ist. Der Resource Owner verliert durch in Anspruchnahme dieser Dienste seine Datenhoheit. Die Identity Provider sind nun in der Lage die Daten der Resource Owner zu verkaufen und besitzen diese. Auch das explizite verdecken und freilegen bestimmter Attribute einer Identität sind nicht möglich. Der Scope einer Abfrage wird durch die Relying Party festgelegt, der Resource Owner kann beim Authentifizierungsprozess nur Zustimmen oder Ablehnen. Es gibt keine Möglichkeit selbstbestimmt die Datenmenge anzupassen. 
 

@@ -1,8 +1,8 @@
 == SSI
 
-Self-Sovereign Identity oder auch souveräne (eigenständige) Identität ist ein Konzept, welches den Nutzer in den zentralen Mittelpunkt bei der Verwaltung seiner eigenen digitalen Identität stellt und damit die Autonomie des Nutzers gewährleistet.
+Self-Sovereign Identity oder auch selbstbestimmte Identität ist ein Konzept welches den Nutzer in den Mittelpunkt der Verwaltung seiner digitalen Identität stellt und damit die Autonomie des Nutzers gewährleistet.
 
 Die Self-Sovereign Identity (SSI) wurde als Lösung für die Herausforderungen des digitalen Identitätsmanagements entwickelt. Sie ermöglicht es Menschen, Daten über sich selbst zu verwalten, zu kontrollieren und zu teilen, ohne auf eine zentrale Behörde oder ein Unternehmen angewiesen zu sein. SSI ermöglicht es Menschen, ihre Identität selbstbestimmt und autonom zu verwalten, anstatt dass Dritte sie kontrollieren. Damit können Menschen ihre Daten besser schützen und sicherstellen, dass sie nur dann verwendet werden, wenn sie es wünschen.
 
-Um dieses Konzept zu realisieren, gibt es einige wichtige Bestandteile der souveränen Identität, die in den nächsten Abschnitten vorgestellt werden.
+Um dieses Konzept zu realisieren, gibt es einige wichtige Bestandteile die in den nächsten Abschnitten vorgestellt werden.
 

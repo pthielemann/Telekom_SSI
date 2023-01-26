@@ -5,12 +5,12 @@ Ein bestimmtes Statement soll  als True bewiesen werden, ohne Daten freizugeben.
 Dabei wird der ZKP in 2 Arten unterteilt
 
 === interactive ZKP
-Ist ein Beweis, basierend auf mehreren Interaktionen zwischen A & B. Die Wahrscheinlichkeit des Beweises, liegt niemals bei 100%.
+Ist ein Beweis, basierend auf mehreren Interaktionen zwischen A & B. Die Wahrscheinlichkeit des Beweises liegt niemals bei 100%.
 
 === non-interactive ZKP
 Anzahl an Interaktionen soll reduziert werden, sodass von A an B nur eine Nachricht versendet wird. B muss dann lernen, dass A den "Fakt kennt" und die Wahrheit sagt 
 
-NOTE: Wie funktioieren non(interacitve) ZKPs?
+NOTE: Wie funktionieren non(interacitve) ZKPs?
 
 == Was ist Selective Attribute Disclosure?
 Wie schon im Name erkennbar, das Selektieren von einzelnen Attributen eines Nachweises muss möglich sein. Diese soll der Nutzer aktiv wählen können. Die volle Macht liegt beim Nutzer, welcher bei einer Abfrage seines Führerscheins noch einzelne Attribute ab-/einschalten kann. Zum Beispiel: 

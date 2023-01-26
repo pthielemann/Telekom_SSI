@@ -14,7 +14,7 @@ NOTE: *Authentifizierung:* "Wer bist du?"
 
 NOTE: *Authorizierung:* "Bist du berechtigt das zu tun?"
 
-*UseCase:* SSO (Single Sign-On) für Konsumenten Apps
+*UseCase:* SSO (Single Sign-On) für Apps
 
 === Die Teilnehmer bei OIDC
 
@@ -36,21 +36,19 @@ In OIDC werden 4 Teilnehmer benötigt um eine Authentifizierung durchzuführen. 
 
 *Schritt 2:* Die Webseite (auch Client genannt) leitet den Endbenutzer an den OpenID Provider (OP), häufig gleichzeitig auch der Identity Provider, mit einer Anfrage zur Authentifizierung des Benutzers weiter.
 
-*Schritt 3:* Der OP authentifiziert den Benutzer, indem er ihn auffordert, seinen Benutzernamen und sein Passwort einzugeben. Dabei müssen die Daten die angefordert werden, bereits vor der Abfrage beschrieben sein.
+*Schritt 3:* Der OP authentifiziert den Benutzer indem er sich beim jeweiligen Identity Provider mit einem bestehenden Account einloggt.
 
 *Schritt 4:* Nach erfolgreicher Authentifizierung sendet der OP eine Authentifizierungsantwort an die Website mit einem ID-Token und einem Access Token.
 
-*Schritt 5:* Die Website überprüft das ID-Token, um sicherzustellen, dass es gültig ist und dass der Benutzer derjenige ist, der er vorgibt zu sein.
+*Schritt 5:* Die Website kann das Access Token nutzen um Informationen über den RO bei einer gegebenen Schnittstelle des Identity Providers abfragt. 
 
-*Schritt 6:* Die Website kann nun das Access Token verwenden, um im Namen des Benutzers API-Aufrufe an den OP zu tätigen.
-
-*Schritt 7:* Die Website kann nun dadurch dem Nutzer ein personalisiertes Erlebnis auf der Website bieten.
+*Schritt 6:* Der Nutzer konnte einen Account auf der jeweiligen Website registrieren ohne sich selbst registrieren zu müssen. 
 
 ==== Erweiterung des OAuth 2.0 Authorization Request
 
 Der *OAuth 2.0 Authorization Request* wird um den Parameter *Scope* erweitert. Hiermit kann festgelegt werden, auf welche Informationen des Benutzers der Client zugreifen darf. Diese Informationen werden in Form eines Claims zurückgesendet.
 
-NOTE: *Scope:* Ein Scope (Geltungsbereich) ein Satz von Regeln zur Bestimmung des Umfangs der Sichtbarkeit oder Zugänglichkeit einer Abfrage.
+NOTE: *Scope:* Ein Scope (Geltungsbereich) ist ein Satz von Regeln zur Bestimmung des Umfangs der Sichtbarkeit oder Zugänglichkeit einer Abfrage.
 
 NOTE: *Claims:* Aussagen über einen Benutzer, die im ID-Token zurückgegeben werden. Diese Angaben können den Namen des Benutzers, seine E-Mail-Adresse und andere Informationen über den Benutzer wie Alter, Geschlecht oder Standort enthalten. Die Angaben sind in einem JSON Web Token (JWT) kodiert und werden nach erfolgreicher Authentifizierung an die Client-Anwendung gesendet.
 
