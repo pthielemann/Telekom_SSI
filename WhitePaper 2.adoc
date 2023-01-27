@@ -1,0 +1,13 @@
+:includedir: Aufgaben
+
+= SSI: Open ID Connect
+
+include::{includedir}/A1.adoc[]
+
+include::{includedir}/A2.adoc[]
+
+include::{includedir}/A3.adoc[]
+
+include::{includedir}/A4.adoc[]
+
+include::{includedir}/A5.adoc[]

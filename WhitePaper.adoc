@@ -44,10 +44,39 @@
 .. VC & VP auf Basis von OIDC erstellen und mit DIDComm vergleichen
 
 
-Diese Arbeit dient dem Einstieg in die Thematik Self-Sovereign Identity. Sie soll die Grundlage des Verständnisses bilden und weiterhin einen Ausblick über aktuelle Techniken im Netz und ihre mögliche Veränderung aufzeigen. Dabei werden die Leser an aktuelle Authentifizierungsprotokolle wie OIDC rangeführt um ein Verständnis für die Problematik mit diesem Vorgehen zu entwickeln. Im Anschluss wenden wir den Blick in eine Lösungsalternative welche durch "decentralized identifier"(DID) und das Protokoll "DIDComm" ermöglicht wird. Alle Erklärungen werden durch praxisnahe Beispiele gestützt, um dem Leser ein komplexes Problem so anschaulich wie möglich zu machen. 
+*Umfang der Arbeit*
 
-== Einführung in die SSI Thematik
-Der Name Self-Sovereign Identity, im deutschen .SELBSTBESTIMMTE Identität., ist selbstsprechend. Dabei umfasst es alle Facetten digitaler Identität und deren Verwaltung, wobei der Nutzer in den Mittelpunkt rückt. Denkt man an die eigene Verwaltung seiner Identitäten, so fällt schnell auf dass man eine Reihe von Identitäten besitzt und somit bei vielen verschiedenen Anwendungen Konten erstellt hat. Dabei gibt man den selben Datensatz ständig neu ein oder nutzt bestehende Konten für die Registrierung. Auch die Pflege der Daten muss manuell, über viele Konten verteilt geschehen. Der Ansatz der Self-Sovereign-Identity verfolgt das Ziel diesem Problem vorzubeugen und digitale Identitäten einmalig in die Hand des Resource Owners zu legen. Relying Parties sollen keine persönlichen Informationen halten und "zur Verfügung" stellen sondern die Resource Owner sollen die Daten in ihrer Hand halten und verteilen. Somit fällt die Dritte Instanz, auch Identity Provider genannt, weg und es besteht ein Datenaustausch nur zwischen der Relying Party und dem Resource Owner. *Irgendwas zu zeigen/nicht zeigen von Attributen -> drauf eingehen dass vorallem wichig das user nicht immer alle Daten zeigen muss - kann sich aussuchen welche Teile seiner Identität offengelegt werden* + Daten müssen in der Lage sein überprüfbar zu sein, ohne Abhängigkeit von Dritten
+Diese Arbeit dient dem Einstieg in die Thematik der Self-Sovereign Identity. Sie soll die Grundlage für das Verständnis selbstbestimmter Identitäten im digitalen Kontext bilden und weiterhin einen Ausblick über technologische Umsetzungsmöglichkeiten geben. 
+
+Dabei werden die Leser an aktuelle Autorisierungs- und Authentifizierungsprotokolle und Web-Standards wie OIDC herangeführt, um ein Verständnis für die derzeitige Problematik und Situation im Web zu entwickeln. Im Anschluss wenden wir den Blick in eine mögliche Lösungsalternative, welche durch "Decentralized Identifier" (DID) und das Protokoll "DIDComm" versucht das Konzept von SSI technisch zu realisieren. 
+ 
+
+== Einführung in SSI
+
+Um Sie in die SSI-Thematik einzuführen, wollen wir Ihnen zu Beginn drei grundsätzliche Szenarien vorstellen, in denen der heutige Web-Standard zu Problem mit ihrer digitalen Identität führt.
+
+*Szenario 1:*
+
+Stellen Sie sich vor, Sie möchten sich auf einer neuen Social-Media-Plattform registrieren. Um sich für ein Konto auf dieser Plattform zu registrieren, müssen Sie sich vorher als neuer Nutzer mit ihrem Google- oder Facebook Konto legitimieren bzw. anmelden. Das bedeutet, dass sie als Nutzer der Plattform, den Zugang zu ihren persönlichen Daten, einschließlich ihres Namens, ihrer E-Mail und ihrer Freundesliste, über ihr Google- oder Facebook-Konto gewähren. Außerdem haben Sie möglicherweise keine Kontrolle mehr darüber, wie Ihre Daten von der Plattform weitergegeben oder verwendet werden. Dies könnte zu Bedenken hinsichtlich des Datenschutzes und zu einem Mangel an Vertrauen in die Plattform führen. Außerdem können Nutzer, die kein Google- oder Facebook-Konto haben, von der Nutzung der Plattform ausgeschlossen werden, was wiederrum eine Zugangsbarriere darstellt.
+
+*Szenario 2:*
+
+Im zweiten Szenario müssen Sie gleichzeitig auch der Plattform ihr Alter nachweisen, wobei nur entscheidend ist, ob sie mindestens über 18 Jahre alt sind. Wie können Sie der Plattform glaubhaft nachweisen, dass Sie dieses Kriterium tatsächlich erfüllen, ohne weitere persönliche Daten offen zu legen? Plattformen lösen dieses Problem, indem Sie auf das Szenario 1 zurückgreifen und von einem Identitätsanbieter wie zum Beispiel Facebook diese Informationen abgreifen. Dabei verlieren Sie die Kontrolle Ihrer Daten. Sie können sich zum Beispiel auch über ein Video-Identity Verfahren authentifizieren und dadurch ihr Alter nachweisen. Wenn Sie an solch einem Verfahren bereits teilgenommen haben, wissen Sie wahrscheinlich auch, dass dabei all ihre Ausweisdaten digital gespeichert werden. Enthalten sind dabei auch Informationen wie zum Beispiel Ihr Geburtsort. Diese Informationen sind für die Plattform an sich irrelevant, selbst das Geburtsdatum ist eigentlich nicht relevant, da am Ende lediglich geprüft werden muss, ob Sie über 18 Jahre alt sind oder nicht, dennoch legen Sie diese zusätzlichen Informationen im Authentifizierungsprozess ungewollt offen. 
+
+Auf diese Thematik wollen wir im später Verlauf unserer Ausarbeitung nochmal genauer eingehen.
+
+*Szenario 3:*
+
+Haben Sie sich schon mal darüber geärgert, dass wenn sie einen Dienst nutzen wollen, sich vorher registrieren zu müssen? In der Regel ist Ihnen dieser Prozess zu zeitaufwendig und Sie greifen aus Bequemlichkeit auf das Szenario 1 zurück, indem Sie den Dienst eines Identitätsanbieters nutzen. Wissen Sie am Ende noch, wo Sie überall registriert sind? Wie viele Nutzerkonten Sie haben? Welche Webseiten, über welche ihrer Daten verfügen und ob diese Daten dort auch tatsächlich sicher gelagert sind?  
+
+Wir registrieren uns häufiger im Web als uns bewusst ist. Dabei existiert von uns nicht eine digitale Identität, sondern unzählige digitale Identitäten. Sie sind auf jeder Social-Media-Plattform registriert. Auch bei ihrem Arbeitgeber haben Sie sehr wahrscheinlich ein eigenes digital gespeichertes Profil. Sie Nutzen Zahlungsdienste, Streamingdienste, Lieferdienste, ihre digitale Identität liegt überall. Die Frage ist, warum ist das so?
+
+Als das Web 2.0 entwickelt wurde, war im Fokus der Entwicklung, dass der Nutzer nicht nur den Inhalt im Netz konsumiert, sondern er als Prosument selbst Inhalte zur Verfügung stellt. Kommt Ihnen das bekannt vor? Jeder Social-Media-Post, jeder Blogeintrag, jedes YouTube Video, all das sind Inhalte, die von Nutzer generiert worden sind. Jeweils einzelne digitale Identitäten die auf jeder dieser Plattform ihre eigene Identität besitzen.
+
+// offen ...
+
+Der Name Self-Sovereign Identity, im deutschen selbstbestimmte Identität, ist selbstsprechend. Dabei umfasst es alle Facetten digitaler Identität und deren Verwaltung, wobei der Nutzer in den Mittelpunkt rückt. Denkt man an die eigene Verwaltung seiner Identitäten, so fällt schnell auf dass man eine Reihe von Identitäten besitzt und somit bei vielen verschiedenen Anwendungen Konten erstellt hat. Dabei gibt man den selben Datensatz ständig neu ein oder nutzt bestehende Konten für die Registrierung. Auch die Pflege der Daten muss manuell, über viele Konten verteilt geschehen. Der Ansatz der Self-Sovereign-Identity verfolgt das Ziel diesem Problem vorzubeugen und digitale Identitäten einmalig in die Hand des Resource Owners zu legen. Relying Parties sollen keine persönlichen Informationen halten und "zur Verfügung" stellen sondern die Resource Owner sollen die Daten in ihrer Hand halten und verteilen. Somit fällt die Dritte Instanz, auch Identity Provider genannt, weg und es besteht ein Datenaustausch nur zwischen der Relying Party und dem Resource Owner. *Irgendwas zu zeigen/nicht zeigen von Attributen -> drauf eingehen dass vorallem wichig das user nicht immer alle Daten zeigen muss - kann sich aussuchen welche Teile seiner Identität offengelegt werden* + Daten müssen in der Lage sein überprüfbar zu sein, ohne Abhängigkeit von Dritten
+
 
 == OIDC
 Um das Problem des aktuell herrschenden Problems besser verstehen zu können muss der Blick auf die derzeitige Umsetzung im Netz gelegt werden. Dieses Fenster [hier Bild einfügen für Login-Seite per Google, etc.] ist heutzutage ein Standard welcher unter dem Namen OIDC bekannt ist. Dabei handelt es sich um ein Authentifizierungsprotokoll welches es dem Nutzer ermöglicht sich mit einem bestehendem Account bei einer Relying Party zu registrieren. [Bild von OIDC Flow]
