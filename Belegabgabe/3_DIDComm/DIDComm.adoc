@@ -1,0 +1,5 @@
+// == DIDComm Protocol
+
+...
+
+// Quelle: https://medium.com/decentralized-identity/understanding-didcomm-14da547ca36b

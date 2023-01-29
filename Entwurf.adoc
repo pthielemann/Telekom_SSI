@@ -103,4 +103,3 @@ OIDC-Flow:
 
 ***Überleitung zu Problemen*** 
 Der Vorteil für den Nutzer bei OIDC ist deutlich spürbar, da eine zentrale Verwaltung aller Konten über eine einzelne Identität möglich ist. Der Resource Owner verliert durch in Anspruchnahme dieser Dienste seine Datenhoheit. Die Identity Provider sind nun in der Lage die Daten der Resource Owner zu verkaufen und besitzen diese. Auch das explizite verdecken und freilegen bestimmter Attribute einer Identität sind nicht möglich. Der Scope einer Abfrage wird durch die Relying Party festgelegt, der Resource Owner kann beim Authentifizierungsprozess nur Zustimmen oder Ablehnen. Es gibt keine Möglichkeit selbstbestimmt die Datenmenge anzupassen. 
-

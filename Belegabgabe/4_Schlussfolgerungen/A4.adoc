@@ -1,0 +1,29 @@
+// Does OpenID4VC / VP supports selective attribute disclosure / ZKP?
+// === Unterstützt OpenID4VC/VP die selektive Offenlegung von Attributen?
+
+// source: 
+// https://openid.net/specs/openid-connect-4-verifiable-credential-issuance-1_0-05.html
+// https://www.w3.org/TR/vc-data-model/
+// https://learn.mattr.global/docs/concepts/selective-disclosure
+// https://www.youtube.com/watch?v=cI5lkif-V1c
+
+Was ist selective attribute disclosure? 
+- dem Nutzer die Möglichkeit geben selbst zu entscheiden, welche der Daten eines Credentials er an den Issuer weitergeben möchte
+- nicht nur entscheiden, Daten sollen ausgegeben werden, sondern auch welche -> beim beweisen das gültiges Ausweisdokument vorhanden -> Übersicht über: Name, Straße, Größe, ... -> daraus kann Nutzer dann filtern was weitergegeben wird 
+
+Was ist ein ZKP? 
+- beweisen gegenüber Issuer das ein Statement True ist, ohne Daten welche dies beweisen, offen zu legen
+Eigenschaften ZKP: 
+    - echte Aussagen können immer bewiesen werden 
+    - es können nur echte Aussagen getroffen werden; besteht nur schmale Chance dass Verifier sagt, statement ist true obwohl es false ist
+    - der Issuer weiß am Ende nichts über den Holder, außer dass er einen Führerschein besitzt -> alle anderen Details werden nicht erst rausgegeben
+    - 
+
+Zero-knowledge Typen 
+- perfect zero-knowledge
+- statistical zero-knowledge
+- computational zero-knowledge 
+
+Gibt es selective attribute disclosure / ZKP in OIDC? 
+- es existieren VP-Typen, welche nur die Ergebnisse & nicht die vc's enthalten -> ZKP 
+- zB "Just in time issuance" -> den Nutzer im Moment der Abfrage nach einer, von ihm bestimmten, Attributauswahl bitten

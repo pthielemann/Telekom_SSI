@@ -1,0 +1,63 @@
+// === SSI Trust Triangle
+
+Im Bestandteil des Identitätsmanagements existiert eine zentrale Frage:
+
+*Wie kann ich etwas digital beweisen?*
+
+Stellen Sie sich zum Beispiel eine Szenario vor, in welcher Sie ihr Alter auf einer Webseite nachweisen müssen oder stellen Sie sich eine weitere Situation vor, wo Sie sich auf eine neue Arbeitsstelle über ein Online-Karriere-Portal bewerben, in welcher die Anforderung ausgeschrieben ist, dass sie über einen erfolgreichen Abschluss in der Informatik oder Mathematik besitzen.
+
+Wie können Sie diesen Abschluss digital nachweisen?
+
+Unsere Gesellschaft baut auf Trust (Vertrauen) auf. Bewerben Sie sich auf eine neue Arbeitsstelle, reichen Sie in der Ihr Abschlusszeugnis Ihrer damaligen Hochschule ein. Ihr neuer Arbeitgeber vertraut darauf, dass diese Informationen echt sind und kann dies anhand des physischen Dokumentes einigermaßen fälschungssicher überprüfen. Welche Möglichkeiten stehen Ihnen dazu im Web zur Verfügung?
+
+Sie wollen nicht nur ihre Identität selber kontrollieren und ihre Daten selbst verwalten, sondern gleichzeitig auch beweisen können, dass diese Angaben und Daten echt sind. 
+
+Das Internet bietet dazu viele Spielräume, dass Benutzer sich hinter falschen Angaben und Daten anonym verstecken können. Sie können bei der Registierung ihr falsches Alter eintragen, Falschaussagen zu Ihrem Wohnort, Ihrer Adresse, zu Ihrem Namen oder zu Ihrem Abschluss und allen Sonstigen Sachverhalten tätigen. Das stellt in der Tat ein Problem da. Auch wenn viele dieser Handlungen strafbar sind, sorgt die Einfachheit der Verschleierung der Identität im Netz dazu, dass Betrugsfälle begünstigt werden. Anonymität ist eines der größten Probleme im Internet für Betrugsfälle und Vertrauen, wobei, auch wenn es aus Sicht des Nutzers, es viele Vorteile mit sich bringt, anonym zu sein. Trotzdem wollen Sie in bestimmten Situationen etwas nachweisen können, ohne ein gläserner digitaler Mensch zu sein, der gleichzeitig alle Daten von sich Preis geben muss. 
+
+Was ist nun der richtige Mittelweg?
+
+Der richtige Mittelweg ist, dass Sie Kontrolle darüber erlangen, *was* sie preisgeben an persönlichen Informationen, ohne zuviel veröffentlichen zu müssen und gleichzeitig nachweisen können, dass diese Informationen auch echt sind. 
+
+Wer bestätigt Ihnen in der realen Welt, dass Sie über einen Hochschulabschluss in Informatik oder Mathematik besitzen? Ihre Hochschule. Das Vertrauen einer dritten Partei wird drüber erlangt, dass eine öffentliche Instutition diese Angaben bestätigen kann. Das kann sowohl eine Regierungseinrichtung, eine non-profit Organisation, ihr aktueller Arbeitgeber, eine Firma oder eine andere Eirnichtung sein, die über einen hohen Grad an Glaubwürdigkeit, Autorität und Reputation besitzt.
+
+Um Vertrauen im Rahmen von SSI aufzubauen, existiert das *SSI Trust Triangle* Konzept, wass den Grundstein für SSI bildet. Dabei gehen 3 Parteien untereinander eine Beziehung ein, die sich zum klassischen Konzept von OIDC maßgeblich unterscheidet. Im folgenden werden die einzelnen Bestandteile aufgeführt.
+
+image::img/SSI_Triangle.png[]
+
+Holder:: eine Person oder Organisation, die über eine digitale Identität verfügt und diese verwaltet. Ein Holder hat die Kontrolle über seine eigenen Identitätsdaten und entscheidet, wem er diese Daten zugänglich macht. Dieser erhält und hält Verifiable Credentials, welche wiederum in seinem digitalen Wallet/Agenten gespeichert sind.
+
+NOTE: *Verifiable Credentials (VC):* Digitale Zeugnisse oder Nachweise, die von einer vertrauenswürdigen Instanz (Issuer) ausgestellt werden und von einem Holder als Beweis für bestimmte Merkmale oder Eigenschaften verwendet werden können. (Mehr dazu im nächsten Abschnitt)
+
+NOTE: *Wallet/Agent:* Eine Software-Anwendung, die es einem Holder ermöglicht, seine digitale Identität und verifizierbaren Credentials zu verwalten und zu nutzen. Ein Wallet/Agent dient als Schnittstelle zwischen dem Holder und anderen Teilnehmern im SSI-System und ist für die Verwaltung der privaten Schlüssel des Holders und die Übertragung von Daten zuständig. Es hilft dem Holder, seine digitale Identität sicher zu speichern und zu nutzen, und ermöglicht es ihm, verifizierbare Credentials an andere Teilnehmer zu übertragen. (Mehr dazu im nächsten Abschnitt)
+
+Issuer:: Eine vertrauenswürdige Instanz, die verifizierbare Credentials ausstellt. Ein Issuer kann eine Regierungsbehörde, eine Universität, ein Arbeitgeber oder eine andere Organisation sein, die in der Lage ist, bestimmte Informationen über einen Holder zu bestätigen. Ein Issuer stellt verifizierbare Credentials aus, indem er eine digitale Signatur auf die Credential-Daten anwendet, um die Integrität und Überprüfbarkeit der Daten sicherzustellen. Der Holder kann dann seine verifizierbaren Credentials an andere Teilnehmer im SSI-System übertragen, um seine Identität zu beweisen.
+
+Verifier:: Eine Person oder Organisation, die die Integrität und Überprüfbarkeit von verifizierbaren Credentials überprüft. Ein Verifier kann z.B. ein Bank, ein Einzelhändler oder eine Regierungsbehörde sein, die die Identität einer Person überprüfen möchte, bevor eine bestimmte Dienstleistung erbracht wird. Der Verifier erhält die verifizierbaren Credentials von einem Holder und überprüft sie mithilfe einer öffentlichen Key-Infrastruktur (PKI), um sicherzustellen, dass sie von einem vertrauenswürdigen Issuer ausgestellt wurden. Der Verifier kann die Credentials auch überprüfen, indem er eine Verbindung zu einer anderen vertrauenswürdigen Instanz (z.B. einer Regierungsbehörde) herstellt, um zusätzliche Überprüfungen durchzuführen.
+
+Verifiable Data Registry:: Eine zentrale oder dezentrale Datenbank, in der die Verifiable Credentials und digitale Identitäten gespeichert werden können. Ein VDR dient als zentraler Ort, an dem Verifiable Credentials von Issuern ausgestellt und von Holdern gespeichert werden können. Ein VDR kann auch Verifikatoren die Möglichkeit geben, die Integrität und Überprüfbarkeit von Verifiable Credentials zu überprüfen. Ein VDR kann in einem Self-sovereign Identity (SSI) System eingesetzt werden, um die Verwaltung von Identitätsdaten zu vereinfachen und zu vereinheitlichen.
+
+Auch eine Blockchain kann als Verifiable Data Registry (VDR) im Kontext von Self-sovereign Identity (SSI) verwendet werden. Eine Blockchain-basierte VDR bietet ein dezentrales und sicheres System zur Verwaltung von Verifiable Credentials und digitalen Identitäten. Durch die Verwendung einer Blockchain kann sichergestellt werden, dass die Daten in der VDR unveränderlich und sicher sind, da jede Transaktion in der Blockchain durch Kryptographie geschützt ist. Außerdem ermöglicht eine Blockchain-basierte VDR eine dezentralisierte Überprüfbarkeit und Integrität der Daten, da jeder Teilnehmer im Netzwerk Zugriff auf eine einheitliche Version der Daten hat. Eine Blockchain-basierte VDR kann also ein wichtiger Teil eines SSI-Systems sein, indem sie die Verwaltung von Identitätsdaten vereinfacht und sicherstellt, dass diese Daten geschützt und überprüfbar sind.
+
+==== Austellung und Verifizierung von VC
+
+Im Folgenden werden die einzelnen Schritte beschrieben, die in einem Austellungs- und Verifizierungsprozess für Verifiable  Credentials innerhalb des SSI-Trust-Triangles stattfinden.
+
+. *Ausstellung:* Ein Issuer erstellt Verifiable Credentials, die Informationen über eine Person enthalten, und stellt diese Credentials an einen Holder aus.
+
+. *Speicherung:* Der Holder speichert die ausgestellten Verifiable Credentials in seinem Wallet/Agent.
+
+. *Überprüfung:* Ein Verifier möchte die Identität einer Person überprüfen, um z.B. eine bestimmte Dienstleistung zu erbringen. Der Verifier fordert die Verifiable Credentials vom Holder an und überprüft sie.
+
+. *Überprüfung der Integrität:* Der Verifier überprüft die Integrität der Verifiable Credentials, indem er sie mit einer öffentlichen Key-Infrastruktur (PKI) verifiziert oder eine Verbindung zu einer anderen vertrauenswürdigen Instanz (z.B. einer Regierungsbehörde) herstellt.
+
+. *Überprüfung der Überprüfbarkeit:* Der Verifier überprüft, ob die Verifiable Credentials von einem vertrauenswürdigen Issuer ausgestellt wurden.
+
+. *Überprüfung erfolgreich:* Wenn die Verifiable Credentials Integrität und Überprüfbarkeit aufweisen, kann der Verifier die Identität des Holders bestätigen und die gewünschte Dienstleistung erbringen.
+
+. *Überprüfung fehlgeschlagen:* Wenn die Verifiable Credentials nicht Integrität und Überprüfbarkeit aufweisen, kann der Verifier die Identität des Holders nicht bestätigen und die gewünschte Dienstleistung nicht erbringen.
+
+Traditionell werden Identitäten von Dritten verwaltet und verifiziert, wie z.B. Regierungsbehörden, Banken oder soziale Netzwerke. Dies bedeutet, dass diese Dritte Zugang zu sensiblen Informationen haben und entscheiden, welche Informationen veröffentlicht werden und welche nicht. Im Falle von Datenlecks oder Hackerangriffen sind die Daten dieser Menschen gefährdet.
+
+Das SSI-Trust-Triangle löst dieses Problem darin, indem es dem Holder (User) die Kontrolle über seine eigene Identität und seine Daten zurückgibt. Eine User kann seine eigenen Verifiable Credentials erstellen, speichern und teilen, wenn es erforderlich ist. Ein Verifier muss die Integrität und Überprüfbarkeit der Credentials überprüfen, bevor er die Identität einer Person bestätigt. Dies ermöglicht es den User, seine Daten sicher und privat zu verwalten und gleichzeitig die Überprüfbarkeit ihrer Identität sicherzustellen.
+
+Zusätzlich ermöglicht das SSI-Trust-Triangle eine effizientere Überprüfung der Identität. Da die Menschen ihre eigenen Verifiable Credentials erstellen und verwalten, können sie diese schnell und einfach bereitstellen, wenn diese benötigt werden. Das spart Zeit und Aufwand, da keine manuelle Überprüfung durch einen Dritten mehr erforderlich ist.
