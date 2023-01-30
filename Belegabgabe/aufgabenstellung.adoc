@@ -1,15 +1,38 @@
-*Teammitglieder*
+*Unser Team*
 
-...
+Studenten der HTW Dresden:
+
+* Pascal Thielemann
+* Ludwig Schönthier
+* Kenneth-Raphael Keil
+* Johannes Schuster
+* Roman Patzig
+
+Von Seitens der T-Systems MMS haben uns betreut: 
+
+* Prof. Dr. Frank Schönefeld
+* Dr. Ivan Gudymenko
+
+Ein besonderes Dankeschön möchten wir an dieser Stelle auch an _Danil Tolonbekov_ geben, der uns bei der Umsetzung des PoC geholfen hat.
 
 *Aufgabenstellung*
 
-...
+Unsere Aufgabenstellung für das Praxisprojekt lautete wie folgt:
+
+* A technical comparison of DIDComm and OIDC
+
+* If OIDC already exists, then why OIDC for Verifiable Credentials?
+
+* Different between traditional OIDC and OpenID4VC / VP. How does OpenID4VC / VP support the idea of SSI?
+
+* Does OpenID4VC / VP supports selective attribute disclosure / ZKP?
+
+* Working POC
 
 *Umfang der Ausarbeit*
 
 Diese Arbeit dient dem Einstieg in die Thematik der Self-Sovereign Identity. Sie soll die Grundlage für das Verständnis selbstbestimmter Identitäten im digitalen Kontext bilden und weiterhin einen Ausblick über technologische Umsetzungsmöglichkeiten geben. 
 
-Dabei werden die Leser an aktuelle Autorisierungs- und Authentifizierungsprotokolle und Web-Standards wie OIDC herangeführt, um ein Verständnis für die derzeitige Problematik und Situation im Web zu entwickeln. Im Anschluss wenden wir den Blick in eine mögliche Lösungsalternative, welche durch "Decentralized Identifier" (DID) und das Protokoll "DIDComm" versucht das Konzept von SSI technisch zu realisieren. 
+Dabei werden die Leser an aktuelle Autorisierungs- und Authentifizierungsprotokolle und Web-Standards wie OIDC herangeführt, um ein Verständnis für die derzeitige Problematik und Situation im Web zu entwickeln. Im Anschluss wenden wir den Blick in eine mögliche Lösungsalternative, welche durch "Decentralized Identifier" (DID) und das Protokoll "DIDComm" versucht das Konzept von SSI technisch zu realisieren. Wir widmen ums im Zuge dessen den einzelnen Fragen aus unserer Aufgabenstellung und versuchen diese im Kontext von SSI und OICD/DIDComm zu erklären.
 
-Zuletzt wollen wir durch ein PoC die technische Realisierbarkeit von SSI nachweisen und einige Vorteile und Anwendungsfälle näher erläutern.
+Zuletzt wollen wir durch ein PoC die technische Realisierbarkeit von SSI nachweisen und einige Vorteile und Anwendungsfälle näher erläutern, sowie aber auch einzelne Kritikpunkte aufführen.
