@@ -1,0 +1,25 @@
+== Was ist eine digitale Identität?
+
+Eine digitale Identität ist eine Online-Repräsentation einer Person oder einer Organisation, die verwendet wird, um ihre Präsenz und Interaktionen im digitalen Raum zu verwalten. Im Web 2.0 wird die digitale Identität durch die Verwendung von E-Mail-Adressen, sozialen Netzwerken und anderen Online-Konten abgebildet.
+
+Die wichtigsten Standards und Möglichkeiten zur Abbildung einer digitalen Identität im Web 2.0 sind:
+
+* *OAuth:* ein Protokoll zur Berechtigungsdelegation, das es Benutzern ermöglicht, ihre Online-Konten bei einem Dienstanbieter zu nutzen, um Zugriff auf andere Anwendungen zu erlangen, ohne ihre Anmeldeinformationen an jedes Mal anzugeben.
+
+* *OpenID:* ein Single-Sign-On-Protokoll, das Benutzern ermöglicht, sich mit einem einzigen Konto bei mehreren Websites anzumelden.
+
+* *SAML:* ein Standard zur Übertragung von Authentifizierungs- und Autorisierungsdaten, der es Organisationen ermöglicht, Benutzerauthentifizierung und -autorisierung zwischen verschiedenen Anwendungen und Websites zu koordinieren.
+
+* *Self-Sovereign Identity (SSI) / Decentralized Identifier (DID):* Ein neuer Ansatz zur Abbildung von digitalen Identitäten, bei dem Benutzer die volle Kontrolle über ihre Identitätsdaten haben und diese dezentral gespeichert sind, ohne dass eine zentrale Autorität oder ein Unternehmen für ihre Verwaltung verantwortlich ist.
+
+Im Rahmen dieser Ausarbeitung wollen wir uns näher mit OpenID (OICD) und dem Konzept der Self-Sovereign Identity (SSI) / Decentralized Identifier (DID) beschäftigen.
+
+=== Praktisches Beispiel
+
+Ein praktisches Beispiel für die digitale Identität ist der Einsatz von OIDC für die Anmeldung bei einer Web-Anwendung mit einem Google- oder Facebook- Account. Der Benutzer wird aufgefordert, sich bei Google oder Facebook anzumelden, und dann wird seine Identität an die Web-Anwendung weitergeleitet, anstatt dass der Benutzer ein neues Konto erstellen oder seine Anmeldeinformationen eingeben muss.
+
+Eines der größten Bedenken im Zusammenhang mit OIDC ist die Datenschutzfrage. Wenn Benutzer ihre Identität bei einem Autorisierungsdienstanbieter verifizieren, geben sie ihm Zugang zu ihren persönlichen Daten, einschließlich ihres Namens, ihrer E-Mail-Adresse und anderer Informationen, die der Dienstanbieter sammeln kann. Dies kann zu einer Überwachung und Verwendung dieser Daten durch den Dienstanbieter führen, wodurch die Privatsphäre und die digitale Identität des Benutzers gefährdet werden können.
+
+Weitere mögliche Nachteile von OIDC können sein, dass es möglicherweise keine umfassende Kontrolle über die Art und Weise gibt, wie Benutzerdaten gespeichert, verarbeitet und verwendet werden, und dass es ein hohes Maß an Abhängigkeit von Dritten gibt, die die Authentifizierung und Autorisierung durchführen.
+
+Um OIDC besser verstehen zu können und um eine Frage darauf zu finden, warum SSI einen neuen Ansatz für die digitale Identität darstellt, der versucht zukünftig einige der Probleme von OIDC zu lösen, beschäfigen wir uns im nächsten Abschnitt intensiver mit dem Protokoll von OIDC.

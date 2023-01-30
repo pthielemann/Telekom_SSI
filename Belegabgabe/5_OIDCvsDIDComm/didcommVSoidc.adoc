@@ -1,0 +1,42 @@
+== Technischer Vergleich zwischen DIDComm und OIDC
+
+DIDComm und OpenID Connect (OIDC) sind beides Protokolle für die Verwaltung von Identitäten, haben aber einige Unterschiede:
+
+. *Architektur:* DIDComm ist ein dezentralisiertes Protokoll für die Kommunikation zwischen DIDs (Decentralized Identifiers), während OIDC ein zentralisiertes Protokoll ist, welches von einem Identity Provider (IdP) bereitgestellt wird.
+
+. *Kontrolle über Identitätsdaten:* In DIDComm haben Benutzer die volle Kontrolle über ihre Identitätsdaten und Credentials, während bei OIDC der Identity Provider die Kontrolle hat.
+
+. *Authentifizierung:* OIDC verwendet eine Client-Server-Architektur und einen Auth-Code-Flow zur Authentifizierung von Benutzern, während DIDComm eine Peer-to-Peer-Kommunikation nutzt, um direkt zwischen den Endpunkten zu authentifizieren.
+
+. *Verifizierbare Credentials:* DIDComm unterstützt die Verwendung verifizierbarer Credentials und Präsentationen, um Identitäten zu verifizieren, während OIDC dies nicht unterstützt.
+
+. *Interoperabilität:* DIDComm nutzt ein dezentralisiertes Identitätsmodell und ist dadurch in der Lage, mit anderen dezentralisierten Systemen zu kommunizieren, während OIDC auf eine zentralisierte Infrastruktur angewiesen ist.
+
+Zusammenfassend ist DIDComm ein dezentralisiertes Protokoll, das eine größere Kontrolle und Datensicherheit für Benutzer bietet und eine starke Unterstützung für verifizierbare Credentials hat, während OIDC ein zentralisiertes Protokoll ist, welches einfacher zu integrieren ist, jedoch weniger Kontrolle und Datensicherheit für Benutzer bietet.
+
+[cols="3,3,3"]
+|===
+|*Kriterien*
+|*DIDComm*
+|*OIDC*
+
+|Entitäten
+|2*
+|3
+
+|Basis-Technologie
+|DID
+|OAuth 2.0
+
+|Datenverwaltung
+|Dezentralisiert
+|Zentralisiert
+
+|SSI-Ansatz erfüllt?
+|Ja
+|Nein**
+|===
+
+_*korrekterweise benötigt es zu Beginn eine dritte Entität, welche die Credentials einmalig ausstellt. Im Nachhinein kann aber ein Peer-to-Peer Kommunikation stattfinden, ohne Einbezug eines Issuers._
+
+_**OpenID4VC als Erweiterung von OIDC erfüllt diesen Ansatz._

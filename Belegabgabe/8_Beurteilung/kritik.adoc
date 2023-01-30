@@ -1,0 +1,40 @@
+== Beurteilung
+
+Das PoC stellt eine vereinfachte Implementierung von SSI dar. Das Grundkonzept wird damit veranschaulicht, jedoch werden nicht alle Parteien über verschiedene Agenten hinweg simuliert. Auch wird keine detaillierte Überprüfung der DID im Ledger aufgeführt, was wiederum ein wesentlicher Bestandteil für die Verifizierung von Credentials ist. Diese Vorgehensweise bleibt in einer Blackbox verborgen. Dennoch kann die Demo als ein Grundverständnis für die Vorgehensweise mit SSI genutzt werden.
+
+Über das Hyperledger Aries Framework lassen sich weitere spezifischere Anforderungen implementieren, programmieren, erweitern und auf Real-Case-Szenrien anpassen. Dazu braucht es jedoch eine intensive Einarbeitung in das DIDComm Protokoll, ein tiefes Verständnis für SSI und einen starken technologischen Bachground. Die Implementierung von SSI ist daher wesentlich aufwendiger als das standardmäßige Arbeiten mit OICD, jedoch lohnen sich die Vorteile aus verschiedenen Perspektiven.
+
+Da nicht nur Personen von SSI profitieren können, sondern gleichermaßen auch Organisationen oder Objekte einen Vorteil durch SSI erhalten, wollen wir im letzten Abschnitt ein Szenario je Gruppe vorstellen, welches die Implementierung von SSI sinnvoll macht.
+
+=== SSI für Personen
+
+Die wesentlichen Vorteile für die Implementierung von SSI für Personen haben wir bereits ausführlich erläutert. Zusammenfassend lässt sich jedoch sagen, dass durch die Implementierung von SSI, Nutzer die Möglichkeit erhalten, ihre eigenen Daten eigenständig zu speichern, zu verwalten und nachweisen zu können, ohne das es die wiederholte Interaktion oder die Speicherung durch eine Dritte Partei benötigt. Ein solches Szenario wird in unserem PoC beschrieben.
+
+=== SSI für Organisationen
+
+Auch Unternehmen oder Organisationen können von SSI profitieren. Ein mögliches Szenario wäre z.B. die Liefernanten Beziehung zweier Unternehmen, die zum derzeitigen Zeitpunkt noch keine Geschäftsbeziehung besitzen. Wie lässt sich digital die Echtheit und Glaubhaftigkeit eines Unternehmens, dass z.B. im Ausland sitzt, überprüfen?
+
+Auch können Unternehmen durch SSI ihre Echtheit, z.B. beim Online-Shopping auf weniger bekannten Webseiten oder Plattformen, nachweisen und somit Vertrauen gegenüber potentiellen Kunden gewinnen.
+
+Ein weiterer Anwendungsfall wäre, dass dadurch eine Möglichkeit entsteht, wie Rechte von Unternehmen auf natürliche Personen übertragen werden können. Ein Bankvertreter kann sich somit z.B. gegenüber einen Clienten oder als juristischer Vertreter seiner Instutition ausweisen.
+
+=== SSI für Objekte
+
+Das SSI Konzept lässt sich auch auf Objekte übertragen. Wann hat die letzte TÜV Prüfung stattgefunden? Wie ist die Lieferkette einer Maschine aufgebaut? Woher stammen die Rohstoffe oder Materialien? Durch SSI lassen sich all diese Punkte eindeutig durch verifizierbare Credentials nachweisen.
+
+=== Kritiken
+
+Zuletzt wollen wir auch einige Kritiken an SSI und DIDComm äußern, die zum jetzigen Zeitpunkt noch teils ungelöst erscheinen.
+
+*Der Verlust des Wallets*
+
+Ein Wallet, das für SSI und DIDComm verwendet wird, speichert die Verifikations- und Kryptoschlüssel einer DID (Decentralized Identifier). Der Verlust des Wallets bedeutet in diesem Kontext den Verlust des Zugangs zu den Identitätsinformationen und den damit verbundenen Daten und Aktivitäten, die damit verknüpft sind. Dies kann für eine Person oder ein Unternehmen erhebliche Folgen haben, insbesondere wenn es sich um sensiblen oder vertraulichen Informationen handelt.
+
+Dies ist ein möglicher Kritikpunkt von SSI und DIDComm, da der Verlust des Wallets eine Barriere für den Zugang zu den Identitätsinformationen darstellt und die Datensicherheit gefährdet.
+
+*Weitere mögliche Kritikpunkte und Schwachstellen sind:*
+
+* Interoperabilitätsprobleme: Obwohl es einen gemeinsamen Standard für DIDs und DIDComm-Nachrichten gibt, kann es Probleme bei der Interoperabilität zwischen verschiedenen Implementierungen und Plattformen geben.
+* Datenschutzprobleme: Da DIDs und DIDComm-Nachrichten über ein dezentralisiertes Netzwerk übertragen werden, ist es schwierig, die Datenschutzrichtlinien und -anforderungen für verschiedene Anwendungen und Gerichtsbarkeiten einzuhalten.
+* Skalierbarkeitsprobleme: Die Verarbeitung von DIDComm-Nachrichten und die Speicherung von DID-Informationen kann eine Herausforderung für dezentralisierte Netzwerke sein, die häufig nicht so leistungsstark wie zentralisierte Netzwerke sind.
+* Benutzerfreundlichkeitsprobleme: Es kann schwierig sein, Benutzern ein einfaches und intuitives Verständnis von DIDs und DIDComm zu vermitteln, und die Verwendung von Wallets und anderen SSI-Tools kann für viele Benutzer eine Herausforderung darstellen

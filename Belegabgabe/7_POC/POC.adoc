@@ -1,0 +1,163 @@
+== Proof-of-Concept (SSI)
+
+Um das Konzept von SSI in seiner Machbarkeit und seinem Potenzial zur Umsetzung zu belegen, wollen wir eine praktische Demonstration dieser Technologie umsetzen. Es handelt sich dabei um einen einfachen experimentellen Ansatz, um die Funktionsfähigkeit dieses Konzeptes zu testen. Der Zweck dieses PoC ist es, ein besseres Verständnis für die technischen und geschäftlichen Auswirkungen von SSI zu gewinnen.
+
+Dazu wird das Hyperledger Aries Framework verwendet. Es ist eine Bibliothek von Protokollen, Formaten und Komponenten, die es Entwicklern erleichtern, Anwendungen für Verifiable Credentials und die Übertragung von Informationen in einer SSI-Umgebung zu erstellen. Das Framework basiert auf dem DIDComm Protokoll und beinhaltet dessen technologischen Umsetzung.
+
+Hyperledger Aries unterstützt zudem eine Vielzahl von Identity-Systemen, einschließlich Decentralized Identifier (DID) und Verifiable Credentials (VC). Es bietet eine einheitliche API für die Übertragung von Daten zwischen verschiedenen Identity-Systemen, die Interoperabilität und Austauschbarkeit gewährleisten. Das Hyperledger Aries-Framework bietet auch Funktionen wie Identitätsmanagement, Übertragung von Daten, Schlüsselverwaltung und mehr, die für die Entwicklung von Anwendungen erforderlich sind und auf SSI basieren.
+
+Um das Ganze anschaulicher zu demonstrieren, verwenden wir dazu die https://github.com/hyperledger/aries-cloudagent-python/blob/main/demo/AliceGetsAPhone.md[Alice Gets a Mobile Agent!] Demo von Hyperledger Aries. In dieser Demo werden wir zwei Standardszenarien simulieren.
+
+=== Szenarien
+
+(1.) *Das Ausstellen von Credentials*
+
+Im ersten Szenario baut Alice eine Verbindung zu Ihrer Hochschule durch die Annahme einer Einladung in Form eines QR-Codes auf. Im zweiten Schritt sendet ihr die Hochschule Verifiable Credentials (VC) zu, welche das Datum ihres Abschlusses und das Studienfach beinhalten. Das Szenario ist im Folgenden nochmals als Ablauf grafisch dargestellt.
+
+// Image 1 einfügen
+
+(2.) *Verifizierung der Credentials*
+
+Im zweiten Szenario möchte sich Alice bei einem neuen Arbeitgeber bewerben. Dazu muss sie nachweisen, dass sie tatsächlich über einen Abschluss in Mathematik verfügt. Ihr Arbeitgeber fordert Sie dazu auf, ihre Credentials zuzusenden. Alice kann den Umfang der geforderten Daten vorab einsehen und diese bestätigen. Ein *Selective Attribute Disclosure* wird in dieser Demo nicht gezeigt.
+
+Diese Credentials werden wiederrum durch den Arbeitgeber, mit dem Abgleich der DID der Hochschule als Issuer der Credetials aus dem Verifiable Data Register verifiziert und bestätigt.
+
+// Image 3 einfügen
+
+=== Komponenten
+
+Um beide Szenarien technisch umsetzen zu können, benötigen wir mehrere Komponenten, die wir erstellen und simulieren müssen.
+
+Alice:: Damit wir Alice simulieren können, verwenden wir ein geeignetes Smartphone (iPhone 13) auf dem ein Wallet installiert ist, welches über seinen eigenen Agent kommuniziert.
+
+Wallet/Agent:: Beim Wallet haben wir uns für das *esatus Wallet* entschieden. Esatus ist eine Eigenentwicklung der esatus AG, welche ein Treiber von Self-Sovereign Identity (SSI) in Deutschland und einer der globalen Technologieführer ist. Das Wallet bietet für die Demonstration folgenden Funktionsumfang:
+
+. Das Scannen eines QR-Codes (Einladungen der Hochschule)
+. Verbindungsaufbau zu einem anderen Agent (Hochschule/Arbeitgeber)
+. Die Verwaltung von Verbindungen
+. Die Möglichkeit ein Test-Ledger auszuwählen (BCGov Test Ledger/BCovrin)
+. Das Halten, Speichern und Vorzeigen von Credentials
+
+-> Darüber hinaus werden auch noch weitere Funktionen angeboten, die wir im Umfang dieser Demonstration jedoch nicht betrachten werden.
+
+Hochschule:: Damit wir unseren Issuer, die Hochschule, imulieren können, müssen wir diese als Agent lokal installieren und hosten. Der Agent verfügt dann über folgende Funktionen:
+
+* Issue Credential
+* Send Proof Request
+* Send *Connectionless* Proof Request
+* Send Message
+* Create New Invitation
+* Revoke Credential
+* Publish Revocations
+* Toggle tracing in credential/proof exchange
+
+-> Für die Simulation verwenden wir hauptsächlich die ersten zwei Funktionen.
+
+Arbeitgeber:: Der Arbeitgeber wird auf die gleiche Weise wie die Hochschule simuliert. Wir beschränken uns dabei auf *EINEN localhost*, welcher gleichzeitig Arbeitgeber und Hochschule simuliert. In einem Real Case Szenario wären diese, zwei getrennte Parteien. Der Issuer (Hochschule) und der Verifier (Arbeitgeber) der im OIDC Kontext die Relying Party darstellt.
+
+ngrok:: Ngrok ist ein Tunneling-Service, mit dem Entwickler lokale Anwendungen und Dienste über das Internet verfügbar machen können, ohne sie direkt bereitstellen zu müssen. Ngrok ermöglicht es, eine lokale Anwendung über eine öffentliche URL erreichbar zu machen, was beispielsweise für die Überprüfung von Anwendungen durch andere Benutzer oder das Debugging von Problemen nützlich sein kann. Wir verwenden Ngrok um ein Tunneling-Service nach außen für unseren localhost Agent für die *"Alice Gets a Mobile Agent!"* Demo zu bauen.
+
+BCovrin (Ledger):: http://test.bcovrin.vonx.io[BCoverin] ist ein Test-Ledger (Verifiable Data Register), welches bei der Initiallisierung unserer *"Alice Gets a Mobile Agent" Anwendung als Ledger dient.
+
+Indy Tails Server:: Indy Tails ist ein Projekt innerhalb der Hyperledger Indy Community, das sich auf die Bereitstellung von Anonymität und Datenschutz in der Identitätsbranche konzentriert. Ein https://github.com/bcgov/indy-tails-server[Indy Tails Server] ist ein Server, der Teil des Indy Tails-Projekts ist und Anwendern Anonymität bei der Verwendung von Hyperledger Indy-basierten Identitätslösungen bietet. Es handelt sich dabei um einen anonymen Proxy-Server, der eine Verbindung zwischen Anwendern und einer Hyperledger Indy-basierten Identitätslösung herstellt. Durch die Verwendung eines Indy Tails-Servers können Anwender ihre Identitätsdaten und ihre Online-Aktivitäten schützen, indem sie ihre echte Identität verborgen halten und stattdessen eine anonyme Identität verwenden.
+
+*=> Daraus ergibt sich der folgender technische Aufbau*
+
+// Image Technischer Aufbau
+
+=== Technische Umsetzung
+
+(1.) *Initialisierung Indy Tails Server*
+
+Zuerst muss der Indy Tails Server initialisiert werden. Dazu wird ein Dockerimage gebaut, welches wiederum später von unserem lokalen Agent als Serverinstanz genutzt werden kann.
+
+(2.) *Aufbau einer Bridge (ngrok)*
+
+Um später lokal mit unserem Hochschul Agenten nach außen zu Alice kommunizieren zu können, müssen wir vorab über ngrok eine http Bridge aufbauen. Dabei findet ein Portmapping des _localhost_ auf eine öffentliche URL statt.
+
+    https://bf6a-2003-fa-af0a-25ad-a0ee-11e7-2b91.eu.ngrok.io -> http://localhost:8020
+
+(3.) *Initialisierung des lokalen Agents*
+
+Über das Tails Netzwerk wird ein Agent initialisiert, welcher wiederum BCovrin als Test Ledger nutzt. Der folgende Befehl zeigt die detaillierte Initialisierung des Agenten. 
+
+    TAILS_NETWORK=docker_tails-server LEDGER_URL=http://test.bcovrin.vonx.io ./run_demo faber --aip 10 --revocation --events
+
+Auflistung der Parameter:
+
+TAILS_NETWORK=docker_tails-server:: Legt die Art des Tails-Netzwerks fest, auf dem das Demo ausgeführt wird. Hier wird "docker_tails-server" angegeben, so dass ein Docker-Container als Tails-Server verwendet wird.
+
+LEDGER_URL=http://test.bcovrin.vonx.io:: Legt die URL des Ledger fest, mit dem Faber kommunizieren soll. Hier wird eine Test-URL angegeben, die auf einen vonx.io-Ledger-Server verweist.
+/run_demo:: Ist der Befehl, der die Demo startet.
+
+faber:: Ist das Argument, das an den Befehl übergeben wird und das Faber-System angibt, welches Teil der Demos sein soll.
+
+--aip 10:: Gibt an, dass die Demo gemäß den Anforderungen des AIP (Agent Interaction Protocol) 10 ausgeführt werden soll.
+
+--revocation:: Gibt an, dass die Demo die Verwendung von Widerrufskomponenten beinhalten soll.
+
+--events:: gibt an, dass die Demo die Überwachung von Ereignissen unterstützen soll.
+
+(4.) *Installation des esatus Wallets*
+
+Zuletzt müssen wir noch ein Wallet auf unserem Smartphone installieren. Die Installation findet klassich über den App-Store oder Play-Store statt. Dabei sind keine Spezifischkeiten zu beachten. Nach erfolgreicher Installation muss das Wallet auf das BCGov Test Ledger (BCovrin) umgestellt werden.
+
+=== Ausführung
+
+Nachdem wir die technischen Grundlagen für unsere Demonstration geschaffen haben, wollen wir zuletzt einen Auszug aus der *"Alice Gets a Mobile Agent!"* Demo zeigen.
+
+(1.) *Start der ngrok Bridge*
+
+image::./7_POC/img/ngrok.png[]
+
+Zu erkennen ist vor allem das Mapping der lokalen Adresse _localhost:8020_ auf eine öffentlich zugängliche URL.
+
+(2.) *Provisionierung eines Agents und einer Wallet*
+
+image::./7_POC/img/start.png[]
+
+Als nächstes wird der Tails Server gestartet und die Endpunkte des Servers mit ngrok gefetcht, so dass dieser einen neuen Endpunkt für die Kommunikation nach außen mit ngrok als Verbindungsbrücke erhält.
+
+Danach werden wiederrum Agent und Wallet provisioniert, indem eine neue DID erzeugt wird, welche wiederum im Test Ledger (test.bcoverin) registriert wird.
+
+(3.) *Erfolgreiche Provisionierung*
+
+image::./7_POC/img/start.png[]
+
+Nach erfolgreicher Provisionierung werden die Daten für den Agent und dem Wallet einschließlich der öffentlichen DID Information ausgegeben und gespeichert.
+
+(4.) *Schema und weitere Einstellunge*
+
+image::./7_POC/img/schema.png[]
+
+Im Anschluss wird das Schema geladen, welches später für die Erzeugnung der Credentials verwendet wird. Es werden zusätzliche Konfigurationen abgeschlossen, die in dieser Darstellung jedoch nicht abgebildet sind.
+
+(5.) *Erstellung einer Einladung*
+
+image::./7_POC/img/schema.png[]
+
+Nach erfolgreichen Abschluss aller Konfigurationen wird eine einmalige Einladung erstellt, die über einen mobilen Agenten (vorzugsweise den von Alice) gescannt werden kann. Danach hat Alice die Möglichkeit die Verbindung anzunehmen oder abzulehnen.
+
+(6.) *Aufbau einer Verbindung zwischen Alice und dem Hochschul Agenten*
+
+image::./7_POC/img/verbindung.png[]
+
+Nachdem Alice die Einladung angenommen hat, wird eine Peer-to-Peer Verbindung zwischen dem Agenten von Alice und dem Agenten der Hochschule hergestellt.
+
+(7.) *Austellung der Credentials*
+
+image::./7_POC/img/issues.png[]
+
+Sowohl Alice hat nun die Möglichkeit Credentials anzufordern, als auch die Hochschule besitzt die Möglichkeit diese eigenständig auszustellen. Dabei kann Alice die Korrektheit dieser Daten überprüfen und diese auch jederzeit ablehnen. Alice ist nicht dazu gezwungen die Credentials auch annehmen zu müssen. Damit behält Alice stets ihre Datenhohheit.
+
+(8). *Speicherung der Credentials*
+
+image::./7_POC/img/credentials.png[]
+
+Die Credentials werden im eigenen persönlichen Wallet von Alice dezentral (aus Netzwerkperspektive) und zentral (aus ihrer eigenen Perspektive) gespeichert und sind dadurch lokal für Alice jederzeit abrufbar. 
+
+(9.) *Überprüfung der Credentials*
+
+image::./7_POC/img/credentials.png[]
+
+Wichtig ist dabei vor allem die Überprüfung der Credentials. Dies geschieht durch die Zertifizierung des Ausstellers. In diesem Demo Beispiel ist Aussteller (Issuer bzw. die Hochschule) und Verifizierer (Verifier bzw. der Arbeitgeber) ein und der selbe Agent. In einem Real-Case-Szenario findet die Verifizierug durch die Überprüfung der DID des Ausstellers im Daten Register (Ledger) statt.

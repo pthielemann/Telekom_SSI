@@ -1,0 +1,8 @@
+== Quellenverzeichnis
+
+1. https://www.windley.com/archives/2021/11/zero_knowledge_proofs.shtml
+2. https://openid.net/specs/openid-connect-4-verifiable-presentations-1_0-10.html
+3. https://www.windley.com/archives/2020/11/didcomm_and_the_self-sovereign_internet.shtml
+4. https://www.w3.org/TR/vc-data-model/ 
+5. https://medium.com/decentralized-identity/understanding-didcomm-14da547ca36b
+6. https://identity.foundation/didcomm-messaging/spec

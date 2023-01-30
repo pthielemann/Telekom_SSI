@@ -10,20 +10,22 @@
 
 include::aufgabenstellung.adoc[]
 
-include::../Belegabgabe/4_Schlussfolgerungen/OIDC.adoc[]
+include::../Belegabgabe/1_digitale_Identität/Einführung.adoc[]
 
-include::../Belegabgabe/2_Einführung_SSI/SSI_ALL.adoc[]
+include::../Belegabgabe/2_OIDC/OIDC.adoc[]
 
-include::../Belegabgabe/2_Einführung_SSI/VC.adoc[]
+include::../Belegabgabe/3_SSI/SSI_Allgemein.adoc[]
 
-include::../Belegabgabe/2_Einführung_SSI/DID.adoc[]
+include::../Belegabgabe/3_SSI/VC.adoc[]
 
-include::../Belegabgabe/3_DIDComm/DIDComm.adoc[]
+include::../Belegabgabe/3_SSI/DID.adoc[]
 
-include::../Belegabgabe/4_Schlussfolgerungen/didcommVSoidc.adoc[]
+include::../Belegabgabe/4_DIDComm/DIDComm.adoc[]
 
-include::../Belegabgabe/4_Schlussfolgerungen/oidcvc.adoc[]
+include::../Belegabgabe/5_OIDCvsDIDComm/didcommVSoidc.adoc[]
 
-include::../Belegabgabe/5_POC/POC.adoc[]
+include::../Belegabgabe/6_OIDC4VC/oidcvc.adoc[]
 
-include::../Belegabgabe/6_Kritik/kritik.adoc[]
+include::../Belegabgabe/7_POC/POC.adoc[]
+
+include::../Belegabgabe/8_Beurteilung/kritik.adoc[]

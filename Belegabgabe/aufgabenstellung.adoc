@@ -1,4 +1,4 @@
-Unser Team
+*Unser Team*
 
 Studenten der HTW Dresden:
 
@@ -18,9 +18,9 @@ Betreung durch T-Systems MMS:
 
 * Dr. Ivan Gudymenko
 
-Ein besonderes Dankeschön möchten wir an dieser Stelle auch an *Danil Tolonbekov* geben, der uns bei der Umsetzung des PoC geholfen hat.
+Ein besonderes Dankeschön möchten wir an dieser Stelle auch an Danil Tolonbekov geben, der uns bei der Umsetzung des PoC geholfen hat.
 
-Aufgabenstellung
+*Aufgabenstellung*
 
 Unsere Aufgabenstellung für das Praxisprojekt lautete wie folgt:
 
@@ -29,7 +29,8 @@ Unsere Aufgabenstellung für das Praxisprojekt lautete wie folgt:
 . Different between traditional OIDC and OpenID4VC / VP. How does OpenID4VC / VP support the idea of SSI?
 . Does OpenID4VC / VP supports selective attribute disclosure / ZKP?
 . Working POC
-. Umfang der Ausarbeit
+
+*Umfang der Projektarbeit*
 
 Diese Arbeit dient dem Einstieg in die Thematik "Self-Sovereign Identity". Sie soll die Grundlage für das Verständnis selbstbestimmter Identitäten bilden und weiterhin einen Ausblick über technologische Umsetzungsmöglichkeiten geben.
 
