@@ -1,6 +1,18 @@
 // === Was ist eine digitale Identität?
 
-//Frage: Was ist eine digitale Identität?
+Eine digitale Identität ist eine Online-Repräsentation einer Person oder einer Organisation, die verwendet wird, um ihre Präsenz und Interaktionen im digitalen Raum zu verwalten. Im Web 2.0 wird die digitale Identität durch die Verwendung von E-Mail-Adressen, sozialen Netzwerken und anderen Online-Konten abgebildet.
+
+Die wichtigsten Standards und Möglichkeiten zur Abbildung einer digitalen Identität im Web 2.0 sind:
+
+* *OAuth:* ein Protokoll zur Berechtigungsdelegation, das es Benutzern ermöglicht, ihre Online-Konten bei einem Dienstanbieter zu nutzen, um Zugriff auf andere Anwendungen zu erlangen, ohne ihre Anmeldeinformationen an jedes Mal anzugeben.
+
+* *OpenID:* ein Single-Sign-On-Protokoll, das Benutzern ermöglicht, sich mit einem einzigen Konto bei mehreren Websites anzumelden.
+
+* *SAML:* ein Standard zur Übertragung von Authentifizierungs- und Autorisierungsdaten, der es Organisationen ermöglicht, Benutzerauthentifizierung und -autorisierung zwischen verschiedenen Anwendungen und Websites zu koordinieren.
+
+* *Self-Sovereign Identity (SSI) / Decentralized Identifier (DID):* Ein neuer Ansatz zur Abbildung von digitalen Identitäten, bei dem Benutzer die volle Kontrolle über ihre Identitätsdaten haben und diese dezentral gespeichert sind, ohne dass eine zentrale Autorität oder ein Unternehmen für ihre Verwaltung verantwortlich ist.
+
+Im Rahmen dieser Ausarbeitung wollen wir uns näher mit OpenID (OICD) und dem Konzept der Self-Sovereign Identity (SSI) / Decentralized Identifier (DID) beschäftigen.
 
 ==== Praktisches Beispiel
 
