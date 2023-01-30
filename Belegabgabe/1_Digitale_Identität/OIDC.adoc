@@ -4,7 +4,7 @@
 
 OpenID Connect ist ein Authentifizierungsprotokoll und eine Erweiterung des OAuth 2.0 Standards. Es ermöglicht Clients die Überprüfung der Identität des Endbenutzers auf der Grundlage der von einem Autorisierungsserver durchgeführten Authentifizierung sowie den Erhalt grundlegender Profilinformationen über den Endbenutzer in einer interoperablen und REST-ähnlichen Schnittstelle. Mit OpenID Connect können Clients aller Art, einschließlich webbasierter, mobiler und JavaScript-Clients, Informationen über authentifizierte Sitzungen und Endbenutzer anfordern und empfangen.
 
-Bei einer OpenID-Connect-Anfrage wird der Benutzer an einen Identitätsanbieter wie zb. Google oder Facebook weitergeleitet, der die angeforderten Informationen authentifiziert und autorisiert und dann mit einem ID-Token und optional einem Zugriffstoken an die anfordernde Anwendung (zb. einer App) zurückgeschickt.
+Bei einer OpenID-Connect-Anfrage wird der Benutzer an einen Identitätsanbieter wie zb. Google oder Facebook weitergeleitet, der die angeforderten Informationen authentifiziert und autorisiert und dann mit einem ID-Token und optional einem Zugriffstoken an die anfordernde Anwendung (zb. einer App) zurückschickt.
 
 NOTE: *Authentifizierung:* _"Bist du das wirklich?"_ Authentifizierung ist die Möglichkeit, zu beweisen, dass ein Benutzer oder eine Anwendung wirklich die Person oder die Anwendung ist, der/die die Anwendung beansprucht.
 
@@ -14,15 +14,15 @@ NOTE: *Autorisierung:* _"Bist du berechtigt das zu tun?"_ Autorisierung bezeichn
 
 ==== Erweiterung des OAuth 2.0 Authorization Request
 
-Ursprünglich ist OIDC eine Erweiterung des OAuth 2.0 Standards um die Authentifizierung des Nutzers. Dabei wird der *OAuth 2.0 Authorization Request* um den Parameter *Scope* erweitert. Hiermit kann festgelegt werden, auf welche Informationen der Client vom Nutzer zugreifen darf. Diese Informationen werden in Form eines *Claims* zurückgesendet. 
+Ursprünglich ist OIDC eine Erweiterung des OAuth 2.0 Standards um die Authentifizierung des Nutzers zu gewährleisten. Dabei wird der *OAuth 2.0 Authorization Request* um den Parameter *Scope* erweitert. Hiermit kann festgelegt werden, auf welche Informationen der Client vom Nutzer zugreifen darf. Diese Informationen werden in Form eines *Claims* zurückgesendet. 
 
 ===== Scope
 
-Scope ist ein Konzept in OIDC, das die Zugriffsberechtigungen eines Access Tokens auf bestimmte Ressourcen zb. die eines Nutzers beschreibt. Es ist eine Liste von Claims, die angeben, für welche Bereiche ein Anwendung berechtigt ist, wenn diese eine Anfrage an eine Ressource stellt.
+Scope ist ein Konzept in OIDC, das die Zugriffsberechtigungen eines Access Tokens auf bestimmte Ressourcen z.B. die eines Nutzers beschreibt. Es ist eine Liste von Claims, die angeben, für welche Bereiche ein Anwendung berechtigt ist, wenn diese eine Anfrage an eine Ressource stellt.
 
 Ein Beispiel für den Einsatz von Scope könnte sein, dass eine Anwendung, die auf Gesundheitsdaten zugreifen möchte, über einen Access Token verfügt, das "read:patient" berechtigt. Das bedeutet, dass sie Zugriff auf die Patientendaten hat, aber keinen Zugriff auf administrative Daten oder andere Daten, die nicht Teil des _"read:patient"_ Scopes sind.
 
-In OIDC werden Scopes verwendet, um die Zugriffsberechtigungen für Benutzerdaten und -ressourcen zu beschreiben und zu regeln. Dies hilft, sicherzustellen, dass Benutzerdaten geschützt bleiben und dass Anwendungen nur die Berechtigungen erhalten, die sie zur Ausführung ihrer Funktionen benötigen. Häufig stimmen Nutzer jedoch bei der Anmledung zu, dass Anwendung alle ihre Nutzerdaten lesen und verarbeiten dürfen und sich dessen nicht bewusst. Dadurch entsteht ein Verlust der Datenkontrolle auf Seiten des Endnutzers.
+In OIDC werden Scopes verwendet, um die Zugriffsberechtigungen für Benutzerdaten und -ressourcen zu beschreiben und zu regeln. Dies hilft, sicherzustellen, dass Benutzerdaten geschützt bleiben und dass Anwendungen nur die Berechtigungen erhalten, die sie zur Ausführung ihrer Funktionen benötigen. Häufig stimmen Nutzer jedoch bei der Anmledung zu, dass Anwendung alle ihre Nutzerdaten lesen und verarbeiten dürfen und sind sich dessen nicht bewusst. Dadurch entsteht ein Verlust der Datenkontrolle auf Seiten des Endnutzers.
 
 ===== Claims
 
@@ -38,7 +38,7 @@ In diesem Beispiel beschreiben die Claims den vollständigen Namen, die E-Mail-A
 
 ===== ID-Token
 
-Um einen Nutzer zu identifizieren, wird ein ein ID-Token verwendet. Es handelt sich hierbei um ein signiertes und optional verschlüsseltes Datenelement, das *Informationen über den Benutzer* enthält, wie z.B. den Namen, die E-Mail-Adresse und andere identifizierende Merkmale. ID-Tokens werden zur Authentifizierung des Benutzers für eine eimalige Sitzung verwendet.
+Um einen Nutzer zu identifizieren, wird ein ID-Token verwendet. Es handelt sich hierbei um ein signiertes und optional verschlüsseltes Datenelement, das *Informationen über den Benutzer* enthält, wie z.B. den Namen, die E-Mail-Adresse und andere identifizierende Merkmale. ID-Tokens werden zur Authentifizierung des Benutzers für eine eimalige Sitzung verwendet.
 
 Ein Beispiel für einen ID-Token im JSON-Format:
 ----
@@ -106,9 +106,9 @@ In OIDC werden 4 Teilnehmer benötigt um einen Authentifizierungsprozess durchzu
 
 NOTE: *Identifizierung:* _"Wer bist du?"_ Identifikation ist die Fähigkeit, eindeutig einen Benutzer eines Systems oder einer Anwendung zu identifizieren, die im System ausgeführt wird.
 
-* *OpenID Provider (OP):* Ein OP ist ein Dienst, der eine OpenID Connect-Schnittstelle zwischen dem IdP und der RP bereitstellt. Der OP ist verantwortlich für die sichere Bereitstellung der notwendigen Protokoll- und Kommunikationsinfrastruktur, um den Authentifizierungsprozess zu erleichtern.
+* *OpenID Provider (OP):* Ein OP ist ein Dienst, der eine OpenID Connect-Schnittstelle zwischen dem IdP und der RP bereitstellt. Der OP ist verantwortlich für die sichere Bereitstellung der notwendigen Protokolle und Kommunikationsinfrastruktur, um den Authentifizierungsprozess zu erleichtern.
 
-* *Resource Owner (RO):* Ein RO ist die Entität, die den Zugriff auf eine geschützte Ressource (zb. Personeninformationen) gewährt, z.B. ein Endnutzer. Der RO ist für die Autorisierung des Zugriffs auf die Ressource verantwortlich und kann entweder der Endbenutzer selbst oder eine Entität sein, der die Autorität übertragen wurde, im Namen des Endbenutzers handeln zu dürfen.
+* *Resource Owner (RO):* Ein RO ist die Entität, die den Zugriff auf eine geschützte Ressource (z.B. Personeninformationen) gewährt, z.B. ein Endnutzer. Der RO ist für die Autorisierung des Zugriffs auf die Ressource verantwortlich und kann entweder der Endbenutzer selbst oder eine Entität sein, der die Autorität übertragen wurde, im Namen des Endbenutzers handeln zu dürfen.
 
 ==== Einfacher Beispiel Ablauf
 
@@ -116,7 +116,7 @@ Der Ablauf des OIDC-Protokolles wird im folgenden aus einfacher Sicht der Teilne
 
 image::img/Ablauf_OIDC.png[]
 
-. Ein Endbenutzer (Resource Owner) besucht eine Website (Relying Partie), die OpenID Connect unterstützt und klickt zb. auf eine Schaltfläche "Anmelden über [IdP]".
+. Ein Endbenutzer (Resource Owner) besucht eine Website (Relying Partie), die OpenID Connect unterstützt und klickt z.B. auf eine Schaltfläche "Anmelden über [IdP]".
 
 . Die Webseite (auch Client genannt) leitet den Endbenutzer an den OpenID Provider (OP), häufig gleichzeitig auch den Identity Provider, mit einer Anfrage zur Authentifizierung des Benutzers weiter.
 
@@ -126,14 +126,14 @@ image::img/Ablauf_OIDC.png[]
 
 . Die Relying Partie überprüft den ID-Token, um sicherzustellen, dass dieser gültig ist und dass der Benutzer derjenige ist, der er vorgibt zu sein.
 
-. Die Reyling Partie kann nun das Access Token verwenden, um im Namen des Benutzers API-Aufrufe an den OpenID Provider zu tätigen.
+. Die Relying Partie kann nun das Access Token verwenden, um im Namen des Benutzers API-Aufrufe an den OpenID Provider zu tätigen.
 
 . Die Website kann dadurch dem Nutzer ein personalisiertes Erlebnis auf der Website auf Grundlagen seiner persönlichen Daten bieten.
 
 ==== Einordnung von OIDC
 
-OIDC ist der derzeitige Standard für die Identifizierung, Authentifizierung und Autorisierung im Web 2.0 ist und wird unteranderem am häufigsten eingesetzt. Dabei tretten gewisse Herausforderungen und Bedenken auf, die im ersten Abschnitt bereits erläutert worden sind.
+OIDC ist der derzeitige Standard für die Identifizierung, Authentifizierung und Autorisierung im Web 2.0 und wird unteranderem am häufigsten eingesetzt. Dabei tretten gewisse Herausforderungen und Bedenken auf, die im ersten Abschnitt bereits erläutert worden sind.
 
-Ein neuer konzeptioneller Ansatz diese Herusforderungen zu lösen, bietet SSI (Self-Sovereign Identity). Dieses Konzept schiebt den Nutzer in den zentralen Mittelpunkt der Verwaltung seiner eigenen Daten und stellt eine Verschiebung der zentralen digitalen Identität zur dezentralen digitalen Identität dar. 
+Ein neuer konzeptioneller Ansatz diese Herausforderungen zu lösen, bietet SSI (Self-Sovereign Identity). Dieses Konzept schiebt den Nutzer in den zentralen Mittelpunkt der Verwaltung seiner eigenen Daten und stellt eine Verschiebung der zentralen digitalen Identität zur dezentralen digitalen Identität dar. 
 
 Im nächsten Abschnitt wollen wir das Konzept von SSI genauer erläutern und kurz auf die technischen Grundrahmenbedingungen eingehen. SSI kann durch verschiedenen Methoden und Protokolle implementiert werden. Eines der am häufigsten verwendeten Protokolle ist dabei DIDComm, welches wir später nochmal konkreter im Vergleich zu OIDC betrachten werden.
