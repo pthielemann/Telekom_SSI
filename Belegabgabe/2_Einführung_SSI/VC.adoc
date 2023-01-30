@@ -4,34 +4,34 @@
 
 *Einführung in VC*
 
-Ausweise sind Teil unseres täglichen Lebens: Mit dem Führerschein können wir nachweisen, dass wir in der Lage sind, ein Kraftfahrzeug zu führen, mit einem Universitätsabschluss können wir unseren Bildungsstand nachweisen und mit einem vom Staat ausgestellten Reisepass können wir zwischen Ländern reisen. Diese Nachweise bieten uns in der realen Welt Vorteile, aber ihre Verwendung im Web ist nach wie vor schwer zu fassen.
+Ausweise sind Teil unseres täglichen Lebens: Mit dem Führerschein können wir nachweisen, dass wir in der Lage sind, ein Kraftfahrzeug zu führen, mit einem Universitätsabschluss können wir unseren Bildungsstand nachweisen und mit einem vom Staat ausgestellten Reisepass können wir zwischen Ländern reisen und unsere Identität nachweisen. Diese Nachweise bieten uns in der realen Welt Vorteile, aber ihre Verwendung im Web ist nach wie vor schwer zu fassen.
 
-Derzeit ist es schwierig, Bildungsabschlüsse, Gesundheitsdaten, Details zu Finanzkonten und andere Arten von durch Dritte überprüften, maschinenlesbaren persönlichen Informationen im Internet darzustellen. Die Schwierigkeit, digitale Ausweise im Web auszudrücken, macht es schwierig, über das Web die gleichen Vorteile zu erhalten, die uns physische Ausweise in der realen Welt bieten.
+Derzeit ist es schwierig, Bildungsabschlüsse, Gesundheitsdaten, Details zu Finanzkonten und andere Arten von durch Dritte überprüften, maschinenlesbaren persönlichen Informationen im Internet darzustellen. Die Problematik, digitale Ausweise im Web auszudrücken, macht es schwierig, über das Web die gleichen Vorteile zu erhalten, die uns physische Ausweise in der realen Welt bieten.
 
 In der physischen Welt kann ein Berechtigungsnachweis aus folgenden Elementen bestehen:
 
-* Informationen zur Identifizierung der Person, für die der Ausweis ausgestellt wurde (z. B. Foto, Name oder Identifikationsnummer)
+* Informationen zur Identifizierung der Person, für die der Ausweis ausgestellt wurde (z.B. Foto, Name oder Identifikationsnummer)
 
 * Informationen über die ausstellende Behörde (z.B. eine Stadtverwaltung, eine nationale Behörde oder eine Zertifizierungsstelle)
 
 * Informationen über die Art des Ausweises (z.B. ein niederländischer Reisepass, ein amerikanischer Führerschein oder eine Krankenversicherungskarte)
 
-* Informationen zu bestimmten Attributen oder Eigenschaften, die von der ausstellenden Behörde über die betreffende Person behauptet werden (z.B. Staatsangehörigkeit, Fahrzeugklassen, die zum Führen von Fahrzeugen berechtigt sind, oder Geburtsdatum)
+* Informationen zu bestimmten Attributen oder Eigenschaften, die von der ausstellenden Behörde über die betreffende Person behauptet werden (z.B. Staatsangehörigkeit, Fahrzeugklassen, die zum Führen von Fahrzeugen berechtigt sind oder das Geburtsdatum)
 
 * Hinweise darauf, wie der Berechtigungsnachweis zustande gekommen ist
 Informationen zu den Einschränkungen der Berechtigung (z.B. Ablaufdatum oder Nutzungsbedingungen).
 
-Ein überprüfbarer Berechtigungsnachweis kann alle Informationen enthalten, die auch ein physischer Berechtigungsnachweis enthält. Durch die Hinzufügung von Technologien wie digitalen Signaturen sind überprüfbare Berechtigungsnachweise fälschungssicherer und vertrauenswürdiger als ihre physischen Gegenstücke.
+Ein überprüfbarer Berechtigungsnachweis kann alle Informationen enthalten, die auch ein physischer Berechtigungsnachweis enthält. Durch das Hinzufügen von Technologien wie digitalen Signaturen sind überprüfbare Berechtigungsnachweise fälschungssicherer und vertrauenswürdiger als ihre physischen Gegenstücke.
 
 Inhaber von überprüfbaren Berechtigungsnachweisen können überprüfbare Präsentationen erstellen und diese überprüfbaren Präsentationen dann mit Überprüfern teilen, um zu beweisen, dass sie über überprüfbare Berechtigungsnachweise mit bestimmten Merkmalen verfügen.
 
-Sowohl überprüfbare Ausweise als auch überprüfbare Darstellungen können schnell übertragen werden, was sie bequemer als ihre physischen Gegenstücke macht, wenn es darum geht, aus der Ferne Vertrauen aufzubauen. Jedoch stell die Dauerhaftigkeit digitaler Informationen und die Leichtigkeit, mit der unterschiedliche Quellen digitaler Daten gesammelt und miteinander in Beziehung gesetzt werden können, ein Problem für den Datenschutz dar, das durch die Verwendung überprüfbarer und leicht maschinenlesbarer Berechtigungsnachweise noch verstärkt wird. 
+Sowohl überprüfbare Ausweise als auch überprüfbare Darstellungen können schnell übertragen werden, was sie bequemer als ihre physischen Gegenstücke macht, wenn es darum geht, aus der Ferne Vertrauen aufzubauen. Jedoch stellt die Dauerhaftigkeit digitaler Informationen und die Leichtigkeit, mit der unterschiedliche Quellen digitaler Daten gesammelt und miteinander in Beziehung gesetzt werden können, ein Problem für den Datenschutz dar, welches durch die Verwendung überprüfbarer und leicht maschinenlesbarer Berechtigungsnachweise noch verstärkt wird. 
 
-Das Wort "verifizierbar" in den Begriffen "verifizierbarer Berechtigungsnachweis" und "verifizierbare Darstellung" bezieht sich auf die Eigenschaft eines Berechtigungsnachweises oder einer Darstellung, von einem Verifizierer überprüft werden zu können, wie in diesem Dokument definiert. Die Überprüfbarkeit eines Berechtigungsnachweises bedeutet nicht, dass der Wahrheitsgehalt der darin kodierten Behauptungen bewertet werden kann; der Aussteller kann jedoch Werte in die Beweiseigenschaft aufnehmen, um dem Überprüfer bei der Anwendung seiner Geschäftslogik zu helfen, um festzustellen, ob die Behauptungen für seine Bedürfnisse ausreichend wahr sind.
+Das Wort "verifizierbar" in den Begriffen "verifizierbarer Berechtigungsnachweis" und "verifizierbare Darstellung" bezieht sich auf die Eigenschaft eines Berechtigungsnachweises oder einer Darstellung, von einem Verifizierer überprüft werden zu können, wie in diesem Dokument definiert. Die Überprüfbarkeit eines Berechtigungsnachweises bedeutet nicht, dass der Wahrheitsgehalt der darin kodierten Behauptungen bewertet werden kann - der Aussteller kann jedoch Werte in die Beweiseigenschaft aufnehmen, um dem Überprüfer bei der Anwendung seiner Geschäftslogik zu helfen und um festzustellen zu können, ob die Behauptungen für seine Bedürfnisse ausreichend wahr sind.
 
 ==== Ökosystem
 
-In diesem Abschnitt werden die Rollen der Hauptakteure und die Beziehungen zwischen ihnen in einem Ökosystem beschrieben, in dem überprüfbare Berechtigungsnachweise (VC) von Nutzen sein sollen. Dies ist eine Weiterführung und Anknüpfung an das SSI Trust Triangle, dass auf Verifiable Credentials bassiert. Dabei überschneiden sich die Begriffe in ihrer Bedeutung und Definition und werden nochmal in einer weiteren Perspektive dargestellt. Eine Rolle ist eine Abstraktion, die auf viele verschiedene Arten implementiert werden kann. Die Trennung der Rollen legt wahrscheinliche Schnittstellen und Protokolle für die Standardisierung nahe. Die folgenden Rollen werden in dieser Spezifikation zusätzlich erweitert beschrieben:
+In diesem Abschnitt werden die Rollen der Hauptakteure und die Beziehungen zwischen ihnen in einem Ökosystem beschrieben, in dem überprüfbare Berechtigungsnachweise (VC) von Nutzen sein sollen. Dies ist eine Weiterführung und Anknüpfung an das SSI Trust Triangle, dass auf Verifiable Credentials basiert. Dabei überschneiden sich die Begriffe in ihrer Bedeutung und Definition und werden nochmal in einer weiteren Perspektive dargestellt. Eine Rolle ist eine Abstraktion, die auf viele verschiedene Arten implementiert werden kann. Die Trennung der Rollen legt wahrscheinliche Schnittstellen und Protokolle für die Standardisierung nahe. Die folgenden Rollen werden in dieser Spezifikation zusätzlich erweitert beschrieben:
 
 *Holder*
 
