@@ -1,4 +1,4 @@
-== SSI
+== Self Sovereign Identity (SSI)
 
 Self Sovereign Identity ist ein Konzept, welches den Nutzer in den zentralen Mittelpunkt bei der Verwaltung seiner eigenen digitalen Identität stellt und damit die Autonomie des Nutzers gewährleistet.
 

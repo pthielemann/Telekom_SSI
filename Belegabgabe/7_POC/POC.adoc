@@ -63,7 +63,7 @@ Indy Tails Server:: Indy Tails ist ein Projekt innerhalb der Hyperledger Indy Co
 
 *=> Daraus ergibt sich der folgender technische Aufbau*
 
-// Image Technischer Aufbau
+image::./7_POC/img/aufbau.png[]
 
 === Technische Umsetzung
 

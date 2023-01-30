@@ -3,6 +3,11 @@
 1. https://www.windley.com/archives/2021/11/zero_knowledge_proofs.shtml
 2. https://openid.net/specs/openid-connect-4-verifiable-presentations-1_0-10.html
 3. https://www.windley.com/archives/2020/11/didcomm_and_the_self-sovereign_internet.shtml
-4. https://www.w3.org/TR/vc-data-model/ 
-5. https://medium.com/decentralized-identity/understanding-didcomm-14da547ca36b
-6. https://identity.foundation/didcomm-messaging/spec
+4. https://www.w3.org/TR/vc-data-model/
+5. https://www.w3.org/TR/did-core/ 
+6. https://medium.com/decentralized-identity/understanding-didcomm-14da547ca36b
+7. https://identity.foundation/didcomm-messaging/spec
+8. https://learning.edx.org/course/course-v1:LinuxFoundationX+LFS178x+3T2022/home
+9. https://www.oose.de/blogpost/oauth-openid-connect-und-jwt-wie-haengt-das-alles-zusammen-teil-1/
+10. https://www.oose.de/blogpost/oauth-openid-connect-und-jwt-wie-haengt-das-alles-zusammen-teil-2/
+11. https://openid.net/connect/

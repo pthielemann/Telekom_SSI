@@ -29,3 +29,5 @@ include::../Belegabgabe/6_OIDC4VC/oidcvc.adoc[]
 include::../Belegabgabe/7_POC/POC.adoc[]
 
 include::../Belegabgabe/8_Beurteilung/kritik.adoc[]
+
+include::../Belegabgabe/9_Quellen/sammlung.adoc[]
