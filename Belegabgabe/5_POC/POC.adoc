@@ -1,8 +1,8 @@
-// == Proof-of-Conecpt
+== Proof-of-Concept (SSI)
 
 Um das Konzept von SSI in seiner Machbarkeit und seinem Potenzial zur Umsetzung zu belegen, wollen wir eine eine praktische Demonstration dieser Technologie umsetzen. Es handelt sich dabei um einen einfache experimentellen Ansatz, um die Funktionsfähigkeit dieses Konzeptes zu testen. Der Zweck dieses PoC ist es, ein besseres Verständnis für die technischen und geschäftlichen Auswirkungen von SSI zu gewinnen.
 
-Dazu nutzen wir das Hyperledger Aries Framework, welches für die Entwicklung von Interoperable Identity Solutions innerhalb des Hyperledger-Projekts eingesetzt wird. Es ist eine Bibliothek von Protokollen, Formaten und Komponenten, die es Entwicklern erleichtern, Anwendungen für Verifiable Credentials und die Übertragung von Informationen in einer SSI-Umgebung zu erstellen. Das Framework basiert auf dem DIDComm Protokoll und beinhaltet dessen technologischen Umsetzung.
+Dazu wird das Hyperledger Aries Framework verwendet. Es ist eine Bibliothek von Protokollen, Formaten und Komponenten, die es Entwicklern erleichtern, Anwendungen für Verifiable Credentials und die Übertragung von Informationen in einer SSI-Umgebung zu erstellen. Das Framework basiert auf dem DIDComm Protokoll und beinhaltet dessen technologischen Umsetzung.
 
 Hyperledger Aries unterstützt zudem eine Vielzahl von Identity-Systemen, einschließlich Decentralized Identifier (DID) und Verifiable  Credentials. Es bietet eine einheitliche API für die Übertragung von Daten zwischen verschiedenen Identity-Systemen, die Interoperabilität und Austauschbarkeit gewährleisten. Das Hyperledger Aries-Framework bietet auch Funktionen wie Identitätsmanagement, Übertragung von Daten, Schlüsselverwaltung und mehr, die für die Entwicklung von Anwendungen erforderlich sind, die auf SSI basieren.
 
@@ -108,13 +108,13 @@ Nachdem wir die technsichen Grundlagen für unsere Demonstration geschaffen habe
 
 (1.) *Start der ngrok Bridge*
 
-image::img/ngrok.png[]
+image::./5_POC/img/ngrok.png[]
 
 Zu erkennen ist vor allem das Mapping der lokalen Adresse _localhost:8020_ auf eine öffentlich zugängliche URL.
 
 (2.) *Provisionierung eines Agents und einer Wallet*
 
-image::img/start.png[]
+image::./5_POC/img/start.png[]
 
 Als nächstes wird der Tails Server gestartet und die Endpunkte des Servers mit ngrok gefetcht, so dass dieser einen neuen Endpunkt für die Kommunikation nach außen mit ngrok als Verbindungsbrücke erhält.
 
@@ -122,43 +122,43 @@ Danach werden wiederrum Agent und Wallet provisioniert, indem eine neue DID erze
 
 (3.) *Erfolgreiche Provisionierung*
 
-image::img/start.png[]
+image::./5_POC/img/start.png[]
 
 Nach erfolgreicher Provisionierung werden die Daten für den Agent und dem Wallet einschließlich der öffentlichen DID Information ausgegeben und gespeichert.
 
 (4.) *Schema und weitere Einstellunge*
 
-image::img/schema.png[]
+image::./5_POC/img/schema.png[]
 
 Im Anschluss wird das Schema geladen, welches später für die Erzeugnung der Credentials verwendet wird. Es werden zusätzliche Konfigurationen abgeschlossen, die in dieser Darstellung jedoch nicht abgebildet sind.
 
 (5.) *Erstellung einer Einladung*
 
-image::img/schema.png[]
+image::./5_POC/img/schema.png[]
 
 Nach erfolgreichen Abschluss aller Konfigurationen wird eine einmalige Einladung erstellt, die über einen mobilen Agenten (vorzugsweise den von Alice) gescannt werden kann. Danach hat Alice die Möglichkeit die Verbindung anzunehmen oder abzulehnen.
 
 (6.) *Aufbau einer Verbindung zwischen Alice und dem Hochschul Agenten*
 
-image::img/verbindung.png[]
+image::./5_POC/img/verbindung.png[]
 
 Nachdem Alice die Einladung angenommen hat, wird eine Peer-to-Peer Verbindung zwischen dem Agenten von Alice und dem Agenten der Hochschule hergestellt.
 
 (7.) *Austellung der Credentials*
 
-image::img/issues.png[]
+image::./5_POC/img/issues.png[]
 
 Sowohl Alice hat nun die Möglichkeit Credentials anzufordern, als auch die Hochschule besitzt die Möglichkeit diese eigenständig auszustellen. Dabei kann Alice die Korrektheit dieser Daten überprüfen und diese auch jederzeit ablehnen. Alice ist nicht dazu gezwungen die Credentials auch annehmen zu müssen. Damit behält Alice stets ihre Datenhohheit.
 
 (8). *Speicherung der Credentials*
 
-image::img/credentials.png[]
+image::./5_POC/img/credentials.png[]
 
 Die Credentials werden im eigenen persönlichen Wallet von Alice dezentral (aus Netzwerkperspektive) und zentral (aus ihrer eigenen Perspektive) gespeichert und sind dadurch lokal für Alice jederzeit abrufbar. 
 
 (9.) *Überprüfung der Credentials*
 
-image::img/credentials.png[]
+image::./5_POC/img/credentials.png[]
 
 Wichtig ist dabei vor allem die Überprüfung der Credentials. Dies geschieht durch dei Zertifizierung des Ausstellers. In diesem Demo Beispiel ist Aussteller (Issuer bzw. die Hochschule) und Verifizierer (Verifier bzw. der Arbeitgeber) ein und der selbe Agent. In einem Real-Case-Szenario findet die Verifizierug durch die Überprüfung der DID des Ausstellers im Daten Register (Ledger) statt.
 
@@ -185,3 +185,20 @@ Ein weiterer Anwendungsfall wäre, dass dadurch eine Möglichkeit ensteht, wie R
 ==== SSI für Objekte
 
 Das SSI Konzept lässt sich auch auf Objekte übertragen. Wann hat die letzte TÜV Prüfung stattgefunden? Wie ist die Lieferkette einer Maschine aufgebaut? Woher stammen die Rohstoffe oder Materialien? Durch SSI lassen sich all diese Punkte eindeutig durch verifizierbare Credentials nachweisen.
+
+== Kritiken
+
+Zuletzt wollen wir auch einige Kritiken an SSI und DIDComm äußern, die zum jetzigen Zeitpunkt noch teils ungelöst erscheinen.
+
+*Der Verlust des Wallets*
+
+Ein Wallet, das für SSI und DIDComm verwendet wird, speichert die Verifikations- und Kryptoschlüssel einer DID (Decentralized Identifier). Der Verlust des Wallets bedeutet in diesem Kontext den Verlust des Zugangs zu den Identitätsinformationen und den damit verbundenen Daten und Aktivitäten, die damit verknüpft sind. Dies kann für eine Person oder ein Unternehmen erhebliche Folgen haben, insbesondere wenn es sich um sensiblen oder vertraulichen Informationen handelt.
+
+Dies ist ein möglicher Kritikpunkt von SSI und DIDComm, da der Verlust des Wallets eine Barriere für den Zugang zu den Identitätsinformationen darstellt und die Datensicherheit gefährdet.
+
+*Weitere mögliche Kritikpunkte und Schwachstellen sind:*
+
+* Interoperabilitätsprobleme: Obwohl es einen gemeinsamen Standard für DIDs und DIDComm-Nachrichten gibt, kann es Probleme bei der Interoperabilität zwischen verschiedenen Implementierungen und Plattformen geben.
+* Datenschutzprobleme: Da DIDs und DIDComm-Nachrichten über ein dezentralisiertes Netzwerk übertragen werden, ist es schwierig, die Datenschutzrichtlinien und -anforderungen für verschiedene Anwendungen und Gerichtsbarkeiten einzuhalten.
+* Skalierbarkeitsprobleme: Die Verarbeitung von DIDComm-Nachrichten und die Speicherung von DID-Informationen kann eine Herausforderung für dezentralisierte Netzwerke sein, die häufig nicht so leistungsstark wie zentralisierte Netzwerke sind.
+* Benutzerfreundlichkeitsprobleme: Es kann schwierig sein, Benutzern ein einfaches und intuitives Verständnis von DIDs und DIDComm zu vermitteln, und die Verwendung von Wallets und anderen SSI-Tools kann für viele Benutzer eine Herausforderung darstellen

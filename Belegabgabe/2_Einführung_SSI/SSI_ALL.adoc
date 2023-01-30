@@ -1,0 +1,36 @@
+== SSI
+
+Self-Sovereign Identity ist ein Konzept, welches den Nutzer in den Mittelpunkt bei der Verwaltung seiner eigenen digitalen Identität stellt und damit die Autonomie des Nutzers gewährleistet.
+
+Die Self-Sovereign Identity (SSI) wurde als Lösung für die Herausforderungen des digitalen Identitätsmanagements entwickelt. Sie ermöglicht es Menschen, Daten über sich selbst zu verwalten, zu kontrollieren und zu teilen, ohne auf eine zentrale Behörde oder ein Unternehmen angewiesen zu sein. Damit können Menschen ihre Daten besser schützen und sicherstellen, dass sie nur dann verwendet werden, wenn sie es wünschen.
+
+
+=== SSI Trust Triangle
+
+Um das Konzept hinter Self-Sovereign Identity umsetzen zu können gibt es ein "SSI-Trust Triangle", welches aufzeigt, wie die Echtheit einer Identität bewiesen werden kann.
+
+image::./2_Einführung_SSI/img/SSI_Triangle.png[]
+
+Holder:: eine Person oder Organisation, die über eine digitale Identität verfügt und diese verwaltet. Ein Holder hat die Kontrolle über seine Daten und entscheidet, wem er diese Daten zugänglich macht. Dieser erhält und hält Verifiable Credentials, welche wiederum in seiner digitalen Wallet gespeichert sind.
+
+NOTE: *Wallet/Agent:* Eine Software-Anwendung, die es einem Holder ermöglicht, seine digitale Identität und Verifable Credentials zu verwalten und zu nutzen. Ein Wallet/Agent dient als Schnittstelle zwischen dem Holder und anderen Teilnehmern im SSI-System und ist für die Verwaltung der privaten Schlüssel des Holders und die Übertragung von Daten zuständig. Es hilft dem Holder, seine digitale Identität sicher zu speichern und zu nutzen, und ermöglicht es ihm, Verifiable Credentials an andere Teilnehmer zu übertragen.
+
+Issuer:: Eine Instanz welche autorisiert ist, Verifiable Credentials auszustellen. Dabei handelt es sich beispielsweise um eine öffentliche Einrichtung wie eine Hochschule oder ein Bürgeramt. Die ausgestellten Credentials werden mit der DID des Issuers versehen, um die Daten später überprüfbar zu machen. 
+
+Verifier:: Eine Entität welche Daten anfordert und nach Erhalt prüft. Der Holder möchte sich gegenüber dem Verifier authentifizieren.
+
+=== Austellung und Verifizierung von VC
+
+Im Folgenden werden die einzelnen Schritte beschrieben, die in einem Austellungs- und Verifizierungsprozess für Verifiable Credentials innerhalb des SSI-Trust-Triangles stattfinden:
+
+. *Ausstellung:* Ein Issuer erstellt Verifiable Credentials, die Informationen über eine Person enthalten und stellt diese Credentials an den Holder aus.
+
+. *Speicherung:* Der Holder speichert die ausgestellten Verifiable Credentials in seinem Wallet/Agent.
+
+. *Identitätsbereitstellung:* Der Holder möchte eine Dienstleistung des Verifiers in Anspruch nehmen. Um seine Identität zu bestätigen, fordert der Verifier die Verifiable Credentials vom Holder an.
+
+. *Überprüfung:* Der Verifier überprüft, ob die Verifiable Credentials des Holders von einem vertrauenswürdigen Issuer ausgestellt wurden.
+
+.. *Überprüfung erfolgreich:* Wenn die Verifiable Credentials von einem vetrauenswürdigem Issuer ausgestellt wurden, kann der Verifier die Identität des Holders bestätigen und die gewünschte Dienstleistung erbringen. (Durch DID referenziert)
+
+.. *Überprüfung fehlgeschlagen:* Wird erkannt dass die Verifiable Credentials durch einen nicht autorisierten Issuer ausgestellt wurden, so kann der Holder nicht authentifiziert werden.

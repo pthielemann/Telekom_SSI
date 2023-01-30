@@ -1,8 +1,0 @@
-// If OIDC already exists, then why OIDC for Verifiable Credentials?
-// === Wenn OIDC bereits existiert, warum gibt es dann OpenID4VC?
-
-// Wo ist aktuell die Schwachstelle des OIDC-Workflows? 
-
-Der Grund für den Wandel von standardmäßigem OIDC zu OIDC4VC und OIDC4VP ist der steigende Druck der dezentralen Datenhaltung durch den Nutzer. Durch aktuelle Entwicklungen soll eine Unabhängigkeit der großen Konzerne erreicht werden, welche nach Registrierung die Daten zentral halten. So sind alle Daten der Resource Owner zwar ihr Eigentum, sie liegen aber auf Servern von Google, Facebook & Co. 
-
-// Quellen: https://www.windley.com/archives/2020/11/didcomm_and_the_self-sovereign_internet.shtml

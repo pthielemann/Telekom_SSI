@@ -1,4 +1,0 @@
-// How does OpenID4VC / VP support the idea of SSI?
-// === Wie unterstützt OpenID4V/VP die Idee auf SSI?
-
-...

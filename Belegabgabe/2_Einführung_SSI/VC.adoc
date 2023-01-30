@@ -1,65 +1,45 @@
-// === Verifiable Credential
+=== Verifiable Credentials
 
 // Quelle: https://www.w3.org/TR/vc-data-model/
 
-*Einführung in VC*
+Bei Verifiable Credentials handelt es sich um digitalisierte Nachweise, welche man verschiedenen Instanzen zur Verifizierung seiner Identität vorlegen kann. 
 
-Ausweise sind Teil unseres täglichen Lebens: Mit dem Führerschein können wir nachweisen, dass wir in der Lage sind, ein Kraftfahrzeug zu führen, mit einem Universitätsabschluss können wir unseren Bildungsstand nachweisen und mit einem vom Staat ausgestellten Reisepass können wir zwischen Ländern reisen. Diese Nachweise bieten uns in der realen Welt Vorteile, aber ihre Verwendung im Web ist nach wie vor schwer zu fassen.
-
-Derzeit ist es schwierig, Bildungsabschlüsse, Gesundheitsdaten, Details zu Finanzkonten und andere Arten von durch Dritte überprüften, maschinenlesbaren persönlichen Informationen im Internet darzustellen. Die Schwierigkeit, digitale Ausweise im Web auszudrücken, macht es schwierig, über das Web die gleichen Vorteile zu erhalten, die uns physische Ausweise in der realen Welt bieten.
-
-In der physischen Welt kann ein Berechtigungsnachweis aus folgenden Elementen bestehen:
-
-* Informationen zur Identifizierung der Person, für die der Ausweis ausgestellt wurde (z. B. Foto, Name oder Identifikationsnummer)
+Mögliche Attribute eines Verifiable Credentials:
 
 * Informationen über die ausstellende Behörde (z.B. eine Stadtverwaltung, eine nationale Behörde oder eine Zertifizierungsstelle)
 
-* Informationen über die Art des Ausweises (z.B. ein niederländischer Reisepass, ein amerikanischer Führerschein oder eine Krankenversicherungskarte)
+* Informationen über die Art des Nachweises (z.B. Personalausweis, Bachelorzertifikat, Krankenkassenkarte oder auch ein Fahrzeugschein)
 
-* Informationen zu bestimmten Attributen oder Eigenschaften, die von der ausstellenden Behörde über die betreffende Person behauptet werden (z.B. Staatsangehörigkeit, Fahrzeugklassen, die zum Führen von Fahrzeugen berechtigt sind, oder Geburtsdatum)
+* Informationen zu bestimmten Eigenschaften, die von der ausstellenden Behörde über die betreffende Person behauptet werden. (Geburtsdatum, Abschlussnote, Versichertennummer oder Fahrzeugklasse)
 
-* Hinweise darauf, wie der Berechtigungsnachweis zustande gekommen ist
-Informationen zu den Einschränkungen der Berechtigung (z.B. Ablaufdatum oder Nutzungsbedingungen).
+Im Gegensatz zu analogen Ausweisen ist es für den Issuer einfacher die Authentizität und Integrität der Verifiable Credentials zu überprüfen. Zum Beispiel muss ein Arbeitgeber eine vorliegende Bachelorurkunde manuell auf Echtheit prüfen, indem die betreffende Hochschule angefragt wird. Im Anschluss daran muss auf Antwort der Hochschule gewartet werden, was mehrere Tage dauern kann.
+Durch die Nutzung von Verifiable Credentials wäre es möglich, die Echtheit innerhalb weniger Sekunden festzustellen indem ein Verifiable Credential in Form eines QR-Codes auf dem Handy des Bewerbes eingescannt wird.
 
-Ein überprüfbarer Berechtigungsnachweis kann alle Informationen enthalten, die auch ein physischer Berechtigungsnachweis enthält. Durch die Hinzufügung von Technologien wie digitalen Signaturen sind überprüfbare Berechtigungsnachweise fälschungssicherer und vertrauenswürdiger als ihre physischen Gegenstücke.
+==== Teilnehmer
 
-Inhaber von überprüfbaren Berechtigungsnachweisen können überprüfbare Präsentationen erstellen und diese überprüfbaren Präsentationen dann mit Überprüfern teilen, um zu beweisen, dass sie über überprüfbare Berechtigungsnachweise mit bestimmten Merkmalen verfügen.
-
-Sowohl überprüfbare Ausweise als auch überprüfbare Darstellungen können schnell übertragen werden, was sie bequemer als ihre physischen Gegenstücke macht, wenn es darum geht, aus der Ferne Vertrauen aufzubauen. Jedoch stell die Dauerhaftigkeit digitaler Informationen und die Leichtigkeit, mit der unterschiedliche Quellen digitaler Daten gesammelt und miteinander in Beziehung gesetzt werden können, ein Problem für den Datenschutz dar, das durch die Verwendung überprüfbarer und leicht maschinenlesbarer Berechtigungsnachweise noch verstärkt wird. 
-
-Das Wort "verifizierbar" in den Begriffen "verifizierbarer Berechtigungsnachweis" und "verifizierbare Darstellung" bezieht sich auf die Eigenschaft eines Berechtigungsnachweises oder einer Darstellung, von einem Verifizierer überprüft werden zu können, wie in diesem Dokument definiert. Die Überprüfbarkeit eines Berechtigungsnachweises bedeutet nicht, dass der Wahrheitsgehalt der darin kodierten Behauptungen bewertet werden kann; der Aussteller kann jedoch Werte in die Beweiseigenschaft aufnehmen, um dem Überprüfer bei der Anwendung seiner Geschäftslogik zu helfen, um festzustellen, ob die Behauptungen für seine Bedürfnisse ausreichend wahr sind.
-
-==== Ökosystem
-
-In diesem Abschnitt werden die Rollen der Hauptakteure und die Beziehungen zwischen ihnen in einem Ökosystem beschrieben, in dem überprüfbare Berechtigungsnachweise (VC) von Nutzen sein sollen. Dies ist eine Weiterführung und Anknüpfung an das SSI Trust Triangle, dass auf Verifiable Credentials bassiert. Dabei überschneiden sich die Begriffe in ihrer Bedeutung und Definition und werden nochmal in einer weiteren Perspektive dargestellt. Eine Rolle ist eine Abstraktion, die auf viele verschiedene Arten implementiert werden kann. Die Trennung der Rollen legt wahrscheinliche Schnittstellen und Protokolle für die Standardisierung nahe. Die folgenden Rollen werden in dieser Spezifikation zusätzlich erweitert beschrieben:
+image::./2_Einführung_SSI/img/structure_VC.png[]
 
 *Holder*
 
-Eine Rolle, die eine Entität ausüben kann, indem sie einen oder mehrere überprüfbare Berechtigungsnachweise besitzt und daraus überprüfbare Darstellungen erzeugt. Beispiele für Inhaber sind Studenten, Angestellte und Kunden.
+Eine Entität welche digitale Nachweise (VC) erstellen und verwalten kann. Holder könnten sein:
+* Personen
+* Organisationen
+* Dinge
 
 *Issuer*
 
-Eine Rolle, die eine Entität übernimmt, indem sie Ansprüche über ein oder mehrere Subjekte geltend macht, aus diesen Ansprüchen einen überprüfbaren Berechtigungsnachweis erstellt und den überprüfbaren Berechtigungsnachweis an einen Inhaber (Holder) überträgt. Zu den Ausstellern gehören beispielsweise Unternehmen, gemeinnützige Organisationen, Handelsverbände, Regierungen, Einzelpersonen und Universitäten.
-
-*Subject*
-
-Eine Entität, über die Angaben gemacht werden. Beispiele für Subjekte sind Menschen, Tiere und Dinge. In vielen Fällen ist der Inhaber (Holder) eines überprüfbaren Berechtigungsnachweises das Subjekt, aber in bestimmten Fällen ist er es nicht. So kann beispielsweise ein Elternteil (der Inhaber) die überprüfbare Bescheinigung eines Kindes (das Subjekt) besitzen, oder ein Tierbesitzer (der Inhaber) kann die überprüfbare Bescheinigung seines Haustiers (das Subjekt) besitzen.
+Eine Instanz welche die Fähigkeit besitzt Verifiable Credentials auszustellen. Beispiele dafür wären:
+* Universität zum Ausstellen von Abschlussurkunden
+* Bürgeramt zum Ausstellen eines Personalausweises
 
 *Verifier*
 
-Eine Rolle, die eine Entität ausübt, indem sie einen oder mehrere prüfbare Berechtigungsnachweise, optional innerhalb einer prüfbaren Präsentation, zur Verarbeitung entgegennimmt. Beispiele für Überprüfer sind Arbeitgeber, Sicherheitspersonal und Websites.
+Die Instanz welche die vorgelegten Credentials der Holder prüft. Dies könnten sein:
+* Arbeitgeber
+* Verkäufer
+* Polizei
 
-*Verifiable Data Registry*
+*Claims*
 
-Eine Rolle, die ein System übernehmen kann, indem es die Erstellung und Überprüfung von Identifikatoren, Schlüsseln und anderen relevanten Daten vermittelt, wie z. B. überprüfbare Berechtigungsschemata, Widerrufsregister, öffentliche Schlüssel des Ausstellers usw., die für die Verwendung überprüfbarer Berechtigungsnachweise erforderlich sein können. Einige Konfigurationen können korrelierbare Identifikatoren für Subjekte erfordern. Beispiele für überprüfbare Datenregister sind vertrauenswürdige Datenbanken, dezentralisierte Datenbanken, staatliche ID-Datenbanken und verteilte Ledger. Häufig wird in einem Ökosystem mehr als eine Art von überprüfbaren Datenregistern verwendet.
-
-image::img/structure_VC.png[]
-
-==== Claims
-
-==== Credentials
-
-==== Presentation
-
-==== Lifecyle
+Bei Claims handelt es sich um Behauptungen welche der Holder über sich selbst aufstellt. Diese sollen durch den Issuer in Form von Verifiable Credentials ausgestellt und somit mit der Signatur des Issuers, welche die Echtheit beweist, versehen werden. 
 

@@ -10,94 +10,20 @@
 
 include::aufgabenstellung.adoc[]
 
-// Kapitel 1.
-== Digitale Identität
+include::../Belegabgabe/4_Schlussfolgerungen/OIDC.adoc[]
 
-=== Was ist eine digitale Identität?
+include::../Belegabgabe/2_Einführung_SSI/SSI_ALL.adoc[]
 
-*Autor:* Pascal Thielemann, Ludwig Schönthier
+include::../Belegabgabe/2_Einführung_SSI/VC.adoc[]
 
-include::1_Digitale_Identität/Einführung.adoc[]
+include::../Belegabgabe/2_Einführung_SSI/DID.adoc[]
 
-=== OpenID Connect
+include::../Belegabgabe/3_DIDComm/DIDComm.adoc[]
 
-*Autor:* Kenneth-Raphael Keil
+include::../Belegabgabe/4_Schlussfolgerungen/didcommVSoidc.adoc[]
 
-include::1_Digitale_Identität/OIDC.adoc[]
+include::../Belegabgabe/4_Schlussfolgerungen/oidcvc.adoc[]
 
-// Kapitel 2
-== Einführung in SSI
+include::../Belegabgabe/5_POC/POC.adoc[]
 
-*Autor:* Kenneth-Raphael Keil
-
-include::2_Einführung_SSI/SSI_Einführung.adoc[]
-
-=== SSI Trust Triangle
-
-*Autor:* Kenneth-Raphael Keil
-
-include::2_Einführung_SSI/SSI_Trust_Triangle.adoc[]
-
-=== Decentralized Identifiers (DID)
-
-*Autor:* Kenneth-Raphael Keil
-
-include::2_Einführung_SSI/DID.adoc[]
-
-=== Verifiable Credential (VC)
-
-*Autor:* Kenneth-Raphael Keil
-
-include::2_Einführung_SSI/VC.adoc[]
-
-=== Digital Wallets/Agents
-
-*Autor:* Pascal Thielemann, Ludwig Schönthier
-include::2_Einführung_SSI/agents_wallets.adoc[]
-
-// Kapitel 3
-== DIDComm Protocol
-
-// Kapitel 4
-== Schlussfolgerungen
-
-// A technical comparison of DIDComm and OIDC
-=== Technischer Vergleich zwischen DIDComm und OIDC
-
-*Autor:* Kenneth-Raphael Keil
-
-include::4_Schlussfolgerungen/A1.adoc[]
-
-// If OIDC already exists, why OIDC for Verifiable Credentials?
-=== Wenn OIDC bereits existiert, warum gibt es dann OpenID4VC?
-
-include::4_Schlussfolgerungen/A2.adoc[]
-
-// Different between traditional OIDC and OpenID4VC / VP
-=== Unterschied zwischen traditionellen OIDC und OpenID4V/VP
-
-include::4_Schlussfolgerungen/A3_1.adoc[]
-
-// How does OpenID4VC / VP support the idea of SSI?
-=== Wie unterstützt OpenID4V/VP die Idee auf SSI?
-
-include::4_Schlussfolgerungen/A3_2.adoc[]
-
-// Does OpenID4VC / VP supports selective attribute disclosure / ZKP?
-=== Unterstützt OpenID4VC/VP die selektive Offenlegung von Attributen?
-
-include::4_Schlussfolgerungen/A4.adoc[]
-
-// Kapitel 5
-== Proof-of-Conecpt
-
-*Autor:* Kenneth-Raphael Keil
-
-include::5_POC/POC.adoc[]
-
-// Kapitel 6
-== Kritiken
-
-*Autor:* Kenneth-Raphael Keil
-
-include::6_Kritik/kritik.adoc[]
+include::../Belegabgabe/6_Kritik/kritik.adoc[]
