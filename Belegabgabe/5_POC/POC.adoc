@@ -26,21 +26,21 @@ Diese Credentials werden wiederrum durch den Arbeitgeber, mit dem  Abgleich der 
 
 === Komponenten
 
-Um beide Szenarien technisch umsetzen zu können, benötigen wir mehrere Komponenten, die wir erstellen und nach simulieren müssen.
+Um beide Szenarien technisch umsetzen zu können, benötigen wir mehrere Komponenten, die wir erstellen und simulieren müssen.
 
-Alice:: Damit wir Alice simulieren können, verwenden wir ein geeignetes Smartphone (iPhone 13) auf dem ein Wallet installiert ist, welches über einen eigenen Agent kommuniziert.
+Alice:: Damit wir Alice simulieren können, verwenden wir ein geeignetes Smartphone (iPhone 13) auf dem ein Wallet installiert ist, welches über seinen eigenen Agent kommuniziert.
 
 Wallet/Agent:: Beim Wallet haben wir uns für das *esatus Wallet* entschieden. Esatus ist eine Eigenentwicklung der esatus AG, welche ein Treiber von Self-Sovereign Identity (SSI) in Deutschland und einer der globalen Technologieführer ist. Das Wallet bietet für die Demonstration folgenden Funktionsumfang:
 
 . Das Scannen eines QR-Codes (Einladungen der Hochschule)
-. Verbindungsaufbau und zu einem anderen Agent (Hochschule/Arbeitgeber)
+. Verbindungsaufbau zu einem anderen Agent (Hochschule/Arbeitgeber)
 . Die Verwaltung von Verbindungen
 . Die Möglichkeit ein Test-Ledger auszuwählen (BCGov Test Ledger/BCovrin)
 . Das halten, speichern und vorzeigen von Credentials
 
 -> Darüber hinaus werden auch noch weitere Funktionen angeboten, die wir im Umfang dieser Demonstration jedoch nicht betrachten werden.
 
-Hochschule:: Damit wir unseren Issuer, die Hochschule, nach simulieren können, müssen wir diese als Agent lokal installieren und simulieren. Dieser verfügt dann über folgende Funktionen.
+Hochschule:: Damit wir unseren Issuer, die Hochschule, imulieren können, müssen wir diese als Agent lokal installieren und hosten. Der Agent verfügt dann über folgende Funktionen:
 
 * Issue Credential
 * Send Proof Request
@@ -51,13 +51,13 @@ Hochschule:: Damit wir unseren Issuer, die Hochschule, nach simulieren können, 
 * Publish Revocations
 * Toggle tracing in credential/proof exchange
 
--> Für die Simulation verwenden wir die ersten 2 Funktionen.
+-> Für die Simulation verwenden wir hauptsächlich die ersten 2 Funktionen.
 
-Arbeitgeber:: Der Arbeitgeber wird auf die gleiche Weise wie die Hochschule simuliert. Wir beschränken uns dabei auf *einen lokalhost*, welcher gleichzeitig Arbeitgeber und Hochschule simuliert. In einem Real Case Szenraio wären diese zwei getrennte Parteien. Der Issuer (Hochschule) und der Verifier (Arbeitgeber) der im OIDC Kontext dann die Reyling Party darstellt.
+Arbeitgeber:: Der Arbeitgeber wird auf die gleiche Weise wie die Hochschule simuliert. Wir beschränken uns dabei auf *EINEN localhost*, welcher gleichzeitig Arbeitgeber und Hochschule simuliert. In einem Real Case Szenraio wären diese zwei getrennte Parteien. Der Issuer (Hochschule) und der Verifier (Arbeitgeber) der im OIDC Kontext die Reyling Party darstellt.
 
-ngrok:: Ngrok ist ein Tunneling-Service, mit dem Entwickler lokale Anwendungen und Dienste über das Internet verfügbar machen können, ohne sie direkt bereitstellen zu müssen. Es ermöglicht es, eine lokale Anwendung über eine öffentliche URL erreichbar zu machen, was beispielsweise für die Überprüfung von Anwendungen durch andere Benutzer oder das Debugging von Problemen nützlich sein kann. Wir verwenden Ngrok um ein Tunneling-Service nach außen für unseren localhost Agent für die *"Alice Gets a Mobile Agent!"* Demo zu bauen.
+ngrok:: Ngrok ist ein Tunneling-Service, mit dem Entwickler lokale Anwendungen und Dienste über das Internet verfügbar machen können, ohne sie direkt bereitstellen zu müssen. Ngrok ermöglicht es, eine lokale Anwendung über eine öffentliche URL erreichbar zu machen, was beispielsweise für die Überprüfung von Anwendungen durch andere Benutzer oder das Debugging von Problemen nützlich sein kann. Wir verwenden Ngrok um ein Tunneling-Service nach außen für unseren localhost Agent für die *"Alice Gets a Mobile Agent!"* Demo zu bauen.
 
-BCovrin (Ledger):: http://test.bcovrin.vonx.io[BCoverin] ist ein Test-Ledger, welches bei der Initiallisierung unserer *"Alice Gets a Mobile Agent" Anwendung als Ledger ausgewählt werden kann.
+BCovrin (Ledger):: http://test.bcovrin.vonx.io[BCoverin] ist ein Test-Ledger (Verifiable Data Register), welches bei der Initiallisierung unserer *"Alice Gets a Mobile Agent" Anwendung als Ledger dient.
 
 Indy Tails Server:: Indy Tails ist ein Projekt innerhalb der Hyperledger Indy Community, das sich auf die Bereitstellung von Anonymität und Datenschutz in der Identitätsbranche konzentriert. Ein https://github.com/bcgov/indy-tails-server[Indy Tails Server] ist ein Server, der Teil des Indy Tails-Projekts ist und Anwendern Anonymität bei der Verwendung von Hyperledger Indy-basierten Identitätslösungen bietet. Es handelt sich dabei um einen anonymen Proxy-Server, der eine Verbindung zwischen Anwendern und einer Hyperledger Indy-basierten Identitätslösung herstellt. Durch die Verwendung eines Indy Tails-Servers können Anwender ihre Identitätsdaten und ihre Online-Aktivitäten schützen, indem sie ihre echte Identität verborgen halten und stattdessen eine anonyme Identität verwenden.
 
@@ -73,19 +73,34 @@ Zuerst muss der Indy Tails Server initialisiert werden. Dazu wird ein Dockerimag
 
 (2.) *Aufbau einer Bridge (ngrok)*
 
-Um im späteren Verlauf lokal mit unserem Agent nach außen kommunizieren zu können, müssen vorab über ngrok ein http Bridge aufbauen. Dabei findet ein Portmapping statt.
+Um später lokal mit unserem Hochschul Agenten nach außen zu Alice kommunizieren zu können, müssen wir vorab über  ngrok ein http Bridge aufbauen. Dabei findet ein Portmapping des _localhost_ auf eine öffentliche URL statt.
 
     https://bf6a-2003-fa-af0a-25ad-a0ee-11e7-2b91.eu.ngrok.io -> http://localhost:8020
 
 (3.) *Initialisierung des lokalen Agents*
 
-Über das Tails Netzwerk wird ein Agent initialisiert, welcher wiederum BCovrin als Test Ledger nutzt. Der folgende Befehl zeigt die detaillierte Initialisierung. Auf die einzelnen Parameter wollen wir in diesem Kontext nicht weiter auführlich eingehen.
+Über das Tails Netzwerk wird ein Agent initialisiert, welcher wiederum BCovrin als Test Ledger nutzt. Der folgende Befehl zeigt die detaillierte Initialisierung des Agenten. 
 
     TAILS_NETWORK=docker_tails-server LEDGER_URL=http://test.bcovrin.vonx.io ./run_demo faber --aip 10 --revocation --events
 
+Auflistung der Parameter:
+
+TAILS_NETWORK=docker_tails-server:: Legt die Art des Tails-Netzwerks fest, auf dem das Demo ausgeführt wird. Hier wird "docker_tails-server" angegeben, so dass ein Docker-Container als Tails-Server verwendet wird.
+
+LEDGER_URL=http://test.bcovrin.vonx.io:: Legt die URL des Ledger fest, mit dem Faber kommunizieren soll. Hier wird eine Test-URL angegeben, die auf einen vonx.io-Ledger-Server verweist.
+/run_demo:: Ist der Befehl, der die Demo startet.
+
+faber:: Ist das Argument, das an den Befehl übergeben wird und das Faber-System angibt, das Teil der Demos sein soll.
+
+--aip 10:: Gibt an, dass das Demo gemäß den Anforderungen des AIP (Agent Interaction Protocol) 10 ausgeführt werden soll.
+
+--revocation:: Gibt an, dass das Demo die Verwendung von Widerrufskomponenten beinhalten soll.
+
+--events:: gibt an, dass das Demo die Überwachung von Ereignissen unterstützen soll.
+
 (4.) *Installation des esatus Wallets*
 
-Zuletzt müssen wir noch ein Wallet auf unserem Smartphone installieren. Die Installation findet klassich über den App-Store oder Play-Store. Dabei sind keine Spezifischkeiten zu beachten. Nach erfolgreicher Installation muss das Wallet auf das BCGov Test Ledger (BCovrin) umgestellt werden.
+Zuletzt müssen wir noch ein Wallet auf unserem Smartphone installieren. Die Installation findet klassich über den App-Store oder Play-Store statt. Dabei sind keine Spezifischkeiten zu beachten. Nach erfolgreicher Installation muss das Wallet auf das BCGov Test Ledger (BCovrin) umgestellt werden.
 
 === Ergebnis
 
@@ -95,21 +110,21 @@ Nachdem wir die technsichen Grundlagen für unsere Demonstration geschaffen habe
 
 image::img/ngrok.png[]
 
-Zu erkennen ist vor allem das Mapping der lokalen Adresse (localhost:8020) auf eine öffentlich zugängliche URL.
+Zu erkennen ist vor allem das Mapping der lokalen Adresse _localhost:8020_ auf eine öffentlich zugängliche URL.
 
 (2.) *Provisionierung eines Agents und einer Wallet*
 
 image::img/start.png[]
 
-Als nächstes wird Tails Server gestartet und die Endpunkte des Servers mit ngrok gefetcht, so dass dieser einen neuen Endpunkt für die Kommunikation nach außen mit ngrok als Verbindungsbrücke erhält.
+Als nächstes wird der Tails Server gestartet und die Endpunkte des Servers mit ngrok gefetcht, so dass dieser einen neuen Endpunkt für die Kommunikation nach außen mit ngrok als Verbindungsbrücke erhält.
 
-Danach werden wiederrum Agent und Wallet provisioniert, indem eine neue DID erzeugt wird, wleche wiederum im Test Ledger (test.bcoverin) registriert wird.
+Danach werden wiederrum Agent und Wallet provisioniert, indem eine neue DID erzeugt wird, welche wiederum im Test Ledger (test.bcoverin) registriert wird.
 
 (3.) *Erfolgreiche Provisionierung*
 
 image::img/start.png[]
 
-Nach erfolgreicher Provisionierung werden die Daten für den Agent und dem Wallet einschließlich der öffentlichen DID Information angezeigt.
+Nach erfolgreicher Provisionierung werden die Daten für den Agent und dem Wallet einschließlich der öffentlichen DID Information ausgegeben und gespeichert.
 
 (4.) *Schema und weitere Einstellunge*
 
@@ -121,19 +136,19 @@ Im Anschluss wird das Schema geladen, welches später für die Erzeugnung der Cr
 
 image::img/schema.png[]
 
-Nach erfolgreichen Abschluss aller Konfigurationen wird eine einmalige Einladung erstellt, die über einen mobilen Agenten (vorzugsweise Alice) gescannt werden kann. Danach hat Alice die Möglichkeit die Verbindung anzunehmen oder abzulehnen.
+Nach erfolgreichen Abschluss aller Konfigurationen wird eine einmalige Einladung erstellt, die über einen mobilen Agenten (vorzugsweise den von Alice) gescannt werden kann. Danach hat Alice die Möglichkeit die Verbindung anzunehmen oder abzulehnen.
 
 (6.) *Aufbau einer Verbindung zwischen Alice und dem Hochschul Agenten*
 
 image::img/verbindung.png[]
 
-Nachdem Alice die Einladung angenommen hat, wird eine Verbindung zwischen dem Agenten von Alice und dem Agenten der Hochschule hergestellt. Diese Verbindung besteht Peer-to-Peer.
+Nachdem Alice die Einladung angenommen hat, wird eine Peer-to-Peer Verbindung zwischen dem Agenten von Alice und dem Agenten der Hochschule hergestellt.
 
 (7.) *Austellung der Credentials*
 
 image::img/issues.png[]
 
-Sowohl Alice hat nun die Möglichkeit Credentials anzufordern, als auch die Hochschule besitzt die Möglichkeit diese eigenständig azustellen. Dabei kann Alice die Korrektheit dieser Daten überprüfen und diese auch jederzeit ablehnen. Sie ist nicht dazu gezwungen diese auch annehmen zu müssen. Damit behält Alice ihre Datenhohheit.
+Sowohl Alice hat nun die Möglichkeit Credentials anzufordern, als auch die Hochschule besitzt die Möglichkeit diese eigenständig auszustellen. Dabei kann Alice die Korrektheit dieser Daten überprüfen und diese auch jederzeit ablehnen. Alice ist nicht dazu gezwungen die Credentials auch annehmen zu müssen. Damit behält Alice stets ihre Datenhohheit.
 
 (8). *Speicherung der Credentials*
 
@@ -145,24 +160,28 @@ Die Credentials werden im eigenen persönlichen Wallet von Alice dezentral (aus 
 
 image::img/credentials.png[]
 
-Wichtig ist dabei vor allem die Überprüfung der Credentials. Dies geschieht durch dei Zertifizierung des Ausstellers. In diesem Demo Beispiel ist Aussteller (Hochschule) und Verifizierer (Arbeitgeber) der selbe Agent. In einem Real-Case-Szenario findet die Verifizierug durch die DID des Ausstellers im Ledger statt.
+Wichtig ist dabei vor allem die Überprüfung der Credentials. Dies geschieht durch dei Zertifizierung des Ausstellers. In diesem Demo Beispiel ist Aussteller (Issuer bzw. die Hochschule) und Verifizierer (Verifier bzw. der Arbeitgeber) ein und der selbe Agent. In einem Real-Case-Szenario findet die Verifizierug durch die Überprüfung der DID des Ausstellers im Daten Register (Ledger) statt.
 
 === Beurteilung
 
-Die Demo stellt eine vereinfachte Implementierung von SSI da. Das Grundkonzept wird damit veranschaulicht, jedoch werden nicht alle Parteien über verschiedene Agents simuliert. Auch wird keine detaillierte Überprüfung der DID im Ledger gezeigt, was wiederum wesentlicher Bestandteil für die Verifizierung von Credentials ist. Diese Vorgehensweise bleibt in einer Blackbox verborgen. Dennoch kann die Demo als ein Grundverständnis für SSI genutzt werden.
+Das PoC stellt eine vereinfachte Implementierung von SSI dar. Das Grundkonzept wird damit veranschaulicht, jedoch werden nicht alle Parteien über verschiedene Agenten hinweg simuliert. Auch wird keine detaillierte Überprüfung der DID im Ledger aufgeführt, was wiederum ein wesentlicher Bestandteil für die Verifizierung von Credentials ist. Diese Vorgehensweise bleibt in einer Blackbox verborgen. Dennoch kann die Demo als ein Grundverständnis für die Vorgehensweise mit SSI genutzt werden.
 
-Über das Hyperledger Aries Framework lassen sich dan spezifischere Anwendungen bauen, erweitern und auf Real-Case.Szenrien anpassen. Dazu braucht es jedoch eine intensive Einarbeitung in das DIDComm Protokoll, ein tiefes Verständnis für SSI und einen starken Technologichen Bachground. Die Implementierung von SSI ist daher wesentlich aufwendiger als das standardmäßige OICD, jedoch lohnen sich dei Vorteile aus Sich des Nutzers enorm. 
+Über das Hyperledger Aries Framework lassen sich weitere spezifischere Anforderungen implementieren, programmieren, erweitern und auf Real-Case-Szenrien anpassen. Dazu braucht es jedoch eine intensive Einarbeitung in das DIDComm Protokoll, ein tiefes Verständnis für SSI und einen starken technologischen Bachground. Die Implementierung von SSI ist daher wesentlich aufwendiger als das standardmäßige Arbeiten mit OICD, jedoch lohnen sich die Vorteile aus verschiedenen Perspektive.
 
-Da nicht nur Personen von SSI profetieren können, sondern auch UseCases für Unternehmen und selbst Objekte existieren, die eine Implementierung von SSI als sinnvoll erachten, wollen wir zuletzt einige sinnvolle Szenarien für die Implementierung von SSI vorstellen und ergänzen.
+Da nicht nur Personen von SSI profitieren können, sondern gleichermaßen auch Organisationen oder Objekte einen Vorteil dadurch SSI erhalten, wollen wir im letzten Abschnitt ein Szenario je Gruppe vorstellen, welches die Implementierung von SSI sinnvoll macht.
 
 ==== SSI für Personen
 
-...
+Die wesentlichen Vorteile für die Implementierung von SSI für Personen haben wir bereits ausführlich erläutert. Zusammenfassend lässt sich jedoch sagen, dass durch die Implementierung von SSI, Nutzer die Möglichkeit erhalten, ihre eigenen Daten eigenständig zu speichern, zu verwalten und nachweisen zu können, ohne das es die wiederholte Interaktion oder die Speicherung durch eine Dritte Partei benötigt. Ein solches Szenario wird in unserem PoC beschrieben.
 
 ==== SSI für Organisationen
 
-...
+Auch Unternehmen oder organisationen können von SSI profitieren. Ein Mögliches Szenario wäre zb. die Liefernanten Beziehung zweier Unternehmen, die zum derzeitigen Zeitpunkt noch keine Geschäftsbeziehung besitzen. Wie lässt sich digital die Echtheit und Glaubhaftigkeit eines Unternehmens, dass zb. im Ausland sitzt, überprüfen?
+
+Auch können Unternehmen durch SSI ihre Echtheit, zb. beim Online-Shopping auf weniger Bekannten Webseiten oder Plattformen, nachweisen und somit Vertrauen gegenüber potentiellen Kunden gewinnen.
+
+Ein weiterer Anwendungsfall wäre, dass dadurch eine Möglichkeit ensteht, wie Rechte von Unternehmen auf natürliche Personen übertragen werden können. Ein Bankvertreter kann sich somit zb. gegenüber einen Clienten oder als juristischer Vertreter seiner Instutition ausweisen.
 
 ==== SSI für Objekte
 
-...
+Das SSI Konzept lässt sich auch auf Objekte übertragen. Wann hat die letzte TÜV Prüfung stattgefunden? Wie ist die Lieferkette einer Maschine aufgebaut? Woher stammen die Rohstoffe oder Materialien? Durch SSI lassen sich all diese Punkte eindeutig durch verifizierbare Credentials nachweisen.

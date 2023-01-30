@@ -8,6 +8,8 @@
 :sectnums:
 :icons: font
 
+include::aufgabenstellung.adoc[]
+
 // Kapitel 1.
 == Digitale Identität
 
@@ -92,3 +94,10 @@ include::4_Schlussfolgerungen/A4.adoc[]
 *Autor:* Kenneth-Raphael Keil
 
 include::5_POC/POC.adoc[]
+
+// Kapitel 6
+== Kritiken
+
+*Autor:* Kenneth-Raphael Keil
+
+include::6_Kritik/kritik.adoc[]

@@ -1,0 +1,15 @@
+*Teammitglieder*
+
+...
+
+*Aufgabenstellung*
+
+...
+
+*Umfang der Ausarbeit*
+
+Diese Arbeit dient dem Einstieg in die Thematik der Self-Sovereign Identity. Sie soll die Grundlage für das Verständnis selbstbestimmter Identitäten im digitalen Kontext bilden und weiterhin einen Ausblick über technologische Umsetzungsmöglichkeiten geben. 
+
+Dabei werden die Leser an aktuelle Autorisierungs- und Authentifizierungsprotokolle und Web-Standards wie OIDC herangeführt, um ein Verständnis für die derzeitige Problematik und Situation im Web zu entwickeln. Im Anschluss wenden wir den Blick in eine mögliche Lösungsalternative, welche durch "Decentralized Identifier" (DID) und das Protokoll "DIDComm" versucht das Konzept von SSI technisch zu realisieren. 
+
+Zuletzt wollen wir durch ein PoC die technische Realisierbarkeit von SSI nachweisen und einige Vorteile und Anwendungsfälle näher erläutern.
