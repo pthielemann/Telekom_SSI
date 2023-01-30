@@ -1,3 +1,16 @@
 // === Digital Wallets/Agents
 
-...
+Ein Agent ist eine Softwarekomponente, die als Repräsentant für eine Person oder ein Unternehmen im Kontext von SSI fungiert. Dieser verwaltet die digitalen Identitäten und Beziehungen einer Person oder eines Unternehmens und ermöglicht es ihnen, Interaktionen mit anderen Agenten durchzuführen.
+
+Ein Wallet ist eine spezielle Art von Agent, die als sicherer Aufbewahrungsort für digitale Identitäten und andere private Informationen verwendet wird. Es dient auch als Schnittstelle für die Interaktion mit anderen Agenten, indem es Nachrichten übermittelt und empfängt.
+
+Einige Beispiele für Wallets, die für SSI verwendet werden können, sind:
+
+* Hyperledger Aries
+* Esatus
+* uPort
+* Jolocom
+* Microsoft ION
+* Transmute
+
+Jedes dieser Wallets bietet unterschiedliche Funktionalitäten und Merkmale, aber alle unterstützen den Einsatz von SSI und DIDComm, indem sie digitale Identitäten verwalten und Nachrichtenkommunikation ermöglichen. In unserem Praxisprojekt werden wir uns näher mit dem Hyperledger Aries und esatus Wallet beschäftigen.
