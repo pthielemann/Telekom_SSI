@@ -1,4 +1,4 @@
-= Self-Sorvereign Identity (SSI)
+= Self Sovereign Identity (SSI)
 :doctype: book
 :revnumber: 1.01
 :toclevels: 3

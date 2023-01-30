@@ -14,7 +14,7 @@ Um das Ganze anschaulicher zu demonstrieren, verwenden wir dazu die https://gith
 
 Im ersten Szenario baut Alice eine Verbindung zu Ihrer Hochschule durch die Annahme einer Einladung in Form eines QR-Codes auf. Im zweiten Schritt sendet ihr die Hochschule Verifiable Credentials (VC) zu, welche das Datum ihres Abschlusses und das Studienfach beinhalten. Das Szenario ist im Folgenden nochmals als Ablauf grafisch dargestellt.
 
-// Image 1 einfügen
+image::./7_POC/img/szenario1.png[]
 
 (2.) *Verifizierung der Credentials*
 
@@ -22,7 +22,7 @@ Im zweiten Szenario möchte sich Alice bei einem neuen Arbeitgeber bewerben. Daz
 
 Diese Credentials werden wiederrum durch den Arbeitgeber, mit dem Abgleich der DID der Hochschule als Issuer der Credetials aus dem Verifiable Data Register verifiziert und bestätigt.
 
-// Image 3 einfügen
+image::./7_POC/img/szenario2.png[]
 
 === Komponenten
 
