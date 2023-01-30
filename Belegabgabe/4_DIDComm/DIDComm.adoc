@@ -2,13 +2,13 @@
 
 === Was ist DIDComm?
 
-DIDComm ist ein Kommunikationsprotokoll, das von der Decentralized Identity Foundation (DIF) entwickelt wurde, um sichere Peer-to-Peer-Interaktionen zwischen Anwendungen (bzw. Benutzern) mit dezentraler Identität (DID) zu ermöglichen. Es ist als 
+DIDComm ist ein Kommunikationsprotokoll basierend auf SSI, das von der Decentralized Identity Foundation (DIF) entwickelt wurde, um sichere Peer-to-Peer-Interaktionen zwischen Anwendungen (bzw. Benutzern) mit dezentraler Identität (DID) zu ermöglichen. Es ist als
 
 * sicheres
 * offenes
 * standardbasiertes 
 
-Nachrichtenprotokoll konzipiert, das eien 
+Nachrichtenprotokoll konzipiert, das eine 
 
 * zuverlässige und
 * vertrauenswürdige 
@@ -19,18 +19,15 @@ NOTE: *Peer-to-Peer:* Eine Netzwerkarchitektur, bei der jeder Computer (oder Kno
 
 === DIDComm Ablauf
 
-image:./4_DIDComm/img/didcomm_flow.jpeg[]
-
-*1. Verbindungsaufbau:* Austausch der DIDs durch eine Out-Of-Band-Nachricht. Diese kann in Form einer Email, SMS oder auch eines QR-Codes gesendet werden.
+*1. Verbindungsaufbau:* Austausch der DIDs durch eine Out-Of-Band-Nachricht. Diese kann zb. in Form einer Email, SMS oder auch eines QR-Codes gesendet werden.
 
 *2. Akzeptanz:* Bestätigt der Empfänger die Kommunikation, so wird ein Kommunikationskanal initialisiert. 
 
-*3. Nachricht verschlüsseln und senden:* Eine Partei verschlüsselt ihre Nachricht mit Hilfe des öffentlichen Schlüssels(public key) der empfangenden Partei und sendet diese über den vorher aufgebauten Kommunikationskanal.
+*3. Nachricht verschlüsseln und senden:* Eine Partei verschlüsselt ihre Nachricht mit Hilfe des öffentlichen Schlüssels (public Key) der empfangenden Partei und sendet diese über den vorher aufgebauten Kommunikationskanal.
 
 *4. Nachricht empfangen und entschlüsseln:* Der Empfänger entschlüsselt die Nachricht nach Empfang mit seinem private Key.
 
-*5. Ende des Protokolls:* Die beiden Parteien schließen den sicheren Kanal und geben alle verwendeten Ressourcen frei.
-
+*5. Ende des Protokolls:* Die Initialisierung des Nachrichtenkanals ist abgeschlossen.
 
 === Wie funktioniert DIDComm?
 
@@ -44,7 +41,6 @@ Um zu verstehen wie das funktioniert, muss man zunächst wissen, was ein dezentr
 
 Bei DIDComm haben die, an einem Kommunikationsaustausch beteiligten Parteien, jeweils ihre eigenen DIDs, die als Adressen für die Nachrichten verwendet werden. Um eine Nachricht zu versenden, verschlüsselt der Absender die Nachricht mit seinem privaten Schlüssel. Der Empfänger kann dann die Nachricht, mit Hilfe des öffentlichen Schlüssels des Absenders, entschlüsseln.
 Dadurch wird sichergestellt, dass der Inhalt der Nachricht nur für die vorgesehenen Parteien zugänglich ist und von niemandem sonst gelesen werden kann.
-
 
 ==== DID Erzeugung
 

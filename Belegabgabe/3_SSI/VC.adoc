@@ -10,25 +10,24 @@ Mögliche Attribute eines Verifiable Credentials:
 
 * Informationen zu bestimmten Eigenschaften, die von der ausstellenden Behörde über die betreffende Person behauptet werden. (Geburtsdatum, Abschlussnote, Versichertennummer oder Fahrzeugklasse)
 
-Im Gegensatz zu analogen Ausweisen ist es für den Issuer einfacher die Authentizität und Integrität der Verifiable Credentials zu überprüfen. Zum Beispiel muss ein Arbeitgeber eine vorliegende Bachelorurkunde manuell auf Echtheit prüfen, indem die betreffende Hochschule angefragt wird. Im Anschluss daran muss auf Antwort der Hochschule gewartet werden, was mehrere Tage dauern kann.
-Durch die Nutzung von Verifiable Credentials wäre es möglich, die Echtheit innerhalb weniger Sekunden festzustellen, indem ein Verifiable Credential in Form eines QR-Codes auf dem Handy des Bewerbers eingescannt wird.
+Im Gegensatz zu analogen Ausweisen ist es für den Verifizierer einfacher, die Authentizität und Integrität der Verifiable Credentials zu überprüfen, da er durch die Aufschlüsselung der DID des Austellers (Issuers) dessen Authentizität nachweisen kann. Zum Beispiel muss ein Arbeitgeber (Verifier) eine vorliegende Bachelorurkunde manuell zuerst auf Echtheit prüfen, indem er die betreffende Hochschule anfragt. Durch die Nutzung von Verifiable Credentials wäre es möglich, die Überprüfung in Echtheitzeit vorzunehmen.
 
 ==== Teilnehmer
 
 image::./3_SSI/img/structure_vc.png[]
 
-* *Holder:* Eine Entität, welche digitale Nachweise (VC) erstellen und verwalten kann. Holder können sein:
+* *Holder:* Eine Entität, welche digitale Nachweise (VC) anfordern, verwalten und digital in seiner Wallet speichern kann. Holder können zb. sein:
 
-** Personen
+** natürliche Personen
 ** Organisationen
 ** Sachen (Objekte)
 
 * *Issuer:* Eine Instanz, welche die Fähigkeit besitzt, Verifiable Credentials auszustellen. Beispiele dafür wären:
 
 ** Universität zum Ausstellen von Abschlussurkunden
-** Bürgeramt (bzw. die Bundesdruckerei= zum Ausstellen eines Personalausweisdokumentes
+** Bürgeramt (bzw. die Bundesdruckerei) zum Ausstellen eines Personalausweisdokumentes
 
-* *Verifier:* Die Instanz, welche die vorgelegten Credentials der Holder prüft. Dies könnten sein:
+* *Verifier:* Die Instanz, welche die vorgelegten Credentials des Holders anfordert und überprüft. Dies könnten sein:
 
 ** Arbeitgeber
 ** Online Shop

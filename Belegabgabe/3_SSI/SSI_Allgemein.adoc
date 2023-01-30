@@ -18,6 +18,12 @@ Issuer:: Eine Instanz welche autorisiert ist, Verifiable Credentials auszustelle
 
 Verifier:: Eine Entität, welche Daten anfordert und nach Erhalt prüft. Der Holder möchte sich gegenüber dem Verifier authentifizieren.
 
+Verifiable Data Registry:: Eine zentrale oder dezentrale Datenbank, in welcher die DID des Issuer's gespeichert wird.
+
+NOTE: Auch eine Blockchain kann als Verifiable Data Registry im Kontext von Self-sovereign Identity (SSI) verwendet werden. Eine Blockchain-basierte VDR bietet ein dezentrales und sicheres System der DID-Speicherung. Durch die Verwendung einer Blockchain kann sichergestellt werden, dass die Daten in der VDR unveränderlich und sicher sind, da jede Transaktion in der Blockchain durch Kryptographie geschützt ist. Außerdem stellt eine Blockchain-basierte VDR eine Überprüfbarkeit und Integrität der Daten sicher, da jeder Teilnehmer im Netzwerk Zugriff auf eine einheitliche Version der Daten hat.
+
+NOTE: In der VDR wird die DID von öffentlichen Instutitionen oder Organisationen gespeichert, welche Verifiable Credentials ausstellen. Wiederum werden keine privaten DIDs von einzelnen Personen gespeichert.
+
 ==== Austellung und Verifizierung von VC
 
 Im Folgenden werden die einzelnen Schritte beschrieben, die in einem Austellungs- und Verifizierungsprozess für Verifiable Credentials innerhalb des SSI-Trust-Triangles stattfinden:
