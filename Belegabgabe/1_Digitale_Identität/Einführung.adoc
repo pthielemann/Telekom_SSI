@@ -16,4 +16,10 @@ Im Rahmen dieser Ausarbeitung wollen wir uns näher mit OpenID (OICD) und dem Ko
 
 ==== Praktisches Beispiel
 
-...
+Ein praktisches Beispiel für die digitale Identität ist der Einsatz von OIDC für die Anmeldung bei einer Web-Anwendung mit einem Google- oder Facebook- Account. Der Benutzer wird aufgefordert, sich bei Google oder Facebook anzumelden, und dann wird seine Identität an die Web-Anwendung weitergeleitet, anstatt dass der Benutzer ein neues Konto erstellen oder seine Anmeldeinformationen eingeben muss.
+
+Eines der größten Bedenken im Zusammenhang mit OIDC ist die Datenschutzfrage. Wenn Benutzer ihre Identität bei einem Autorisierungsdienstanbieter verifizieren, geben sie ihm Zugang zu ihren persönlichen Daten, einschließlich ihres Namens, ihrer E-Mail-Adresse und anderer Informationen, die der Dienstanbieter sammeln kann. Dies kann zu einer Überwachung und Verwendung dieser Daten durch den Dienstanbieter führen, wodurch die Privatsphäre und die digitale Identität des Benutzers gefährdet werden können.
+
+Weitere mögliche Nachteile von OIDC können sein, dass es möglicherweise keine umfassende Kontrolle über die Art und Weise gibt, wie Benutzerdaten gespeichert, verarbeitet und verwendet werden, und dass es ein hohes Maß an Abhängigkeit von Dritten gibt, die die Authentifizierung und Autorisierung durchführen.
+
+Um OIDC besser verstehen zu können und um eine Frage darauf zu finden, warum SSI einen neuen Ansatz für die digitale Identität darstellt, der versucht zukünftig einige der Probleme von OIDC zu lösen, beschäfigen wir uns im nächsten Abschnitt intensiver mit dem Protokoll von OIDC.
