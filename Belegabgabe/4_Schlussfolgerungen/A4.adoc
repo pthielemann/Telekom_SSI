@@ -17,7 +17,6 @@ Eigenschaften ZKP:
     - echte Aussagen können immer bewiesen werden 
     - es können nur echte Aussagen getroffen werden; besteht nur schmale Chance dass Verifier sagt, statement ist true obwohl es false ist
     - der Issuer weiß am Ende nichts über den Holder, außer dass er einen Führerschein besitzt -> alle anderen Details werden nicht erst rausgegeben
-    - 
 
 Zero-knowledge Typen 
 - perfect zero-knowledge
