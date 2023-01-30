@@ -1,10 +1,10 @@
-== Technischer Vergleich zwischen DIDComm und OIDC
+=== Technischer Vergleich zwischen DIDComm und OIDC
 
-DIDComm und OpenID Connect (OIDC) sind beide Protokolle für die Verwaltung von Identitäten, aber sie haben einige Unterschiede:
+DIDComm und OpenID Connect (OIDC) sind beides Protokolle für die Verwaltung von Identitäten, haben aber einige Unterschiede:
 
-. *Architektur:* DIDComm ist ein dezentralisiertes Protokoll für die Kommunikation zwischen DIDs (Decentralized Identifiers), während OIDC ein zentralisiertes Protokoll ist, das von einem Identity Provider (IdP) bereitgestellt wird.
+. *Architektur:* DIDComm ist ein dezentralisiertes Protokoll für die Kommunikation zwischen DIDs (Decentralized Identifiers), während OIDC ein zentralisiertes Protokoll ist, welches von einem Identity Provider (IdP) bereitgestellt wird.
 
-. *Kontrolle über Identitätsdaten:* In DIDComm haben Benutzer volle Kontrolle über ihre Identitätsdaten und Credentials, während bei OIDC der Identity Provider die Kontrolle hat.
+. *Kontrolle über Identitätsdaten:* In DIDComm haben Benutzer die volle Kontrolle über ihre Identitätsdaten und Credentials, während bei OIDC der Identity Provider die Kontrolle hat.
 
 . *Authentifizierung:* OIDC verwendet eine Client-Server-Architektur und einen Auth-Code-Flow zur Authentifizierung von Benutzern, während DIDComm eine Peer-to-Peer-Kommunikation nutzt, um direkt zwischen den Endpunkten zu authentifizieren.
 
@@ -12,7 +12,7 @@ DIDComm und OpenID Connect (OIDC) sind beide Protokolle für die Verwaltung von 
 
 . *Interoperabilität:* DIDComm nutzt ein dezentralisiertes Identitätsmodell und ist dadurch in der Lage, mit anderen dezentralisierten Systemen zu kommunizieren, während OIDC auf eine zentralisierte Infrastruktur angewiesen ist.
 
-Zusammenfassend ist DIDComm ein dezentralisiertes Protokoll, das eine größere Kontrolle und Datensicherheit für Benutzer bietet und eine starke Unterstützung für verifizierbare Credentials hat, während OIDC ein zentralisiertes Protokoll ist, das einfacher zu integrieren ist, aber weniger Kontrolle und Datensicherheit für Benutzer bietet.
+Zusammenfassend ist DIDComm ein dezentralisiertes Protokoll, das eine größere Kontrolle und Datensicherheit für Benutzer bietet und eine starke Unterstützung für verifizierbare Credentials hat, während OIDC ein zentralisiertes Protokoll ist, welches einfacher zu integrieren ist, jedoch weniger Kontrolle und Datensicherheit für Benutzer bietet.
 
 [cols="3,3,3"]
 |===
@@ -37,6 +37,6 @@ Zusammenfassend ist DIDComm ein dezentralisiertes Protokoll, das eine größere 
 |Nein**
 |===
 
-_*korrekterweise benötigt es zu Beginn eine dritte Entität, welche die Credentials einmalig ausstellt. Im nachhinein kann aber ein Peer-to-Peer Kommunikation stattfinden, ohne Einbezug eines Issuer's._
+_*korrekterweise benötigt es zu Beginn eine dritte Entität, welche die Credentials einmalig ausstellt. Im Nachhinein kann aber ein Peer-to-Peer Kommunikation stattfinden, ohne Einbezug eines Issuers._
 
 _**OpenID4VC als Erweiterung von OIDC erfüllt diesen Ansatz._

@@ -1,4 +1,4 @@
-== Erweiterung des OIDC Protokolls
+=== OIDC4VC/VP
 
 Als Erweiterung des OpenID Connect Protokolls gibt es die Möglichkeit der Verifiable Credentials und Verifiable Presentation. 
 Diese wurden basierend auf dem Konzept von SSI umgesetzt. 
@@ -10,10 +10,10 @@ Das Grundkonzept beschreibt die Bereitstellung der Identität in Form von Verifi
 === OIDC4VP
 
 Im nächsten Schritt muss der Resource Owner in der Lage sein, sich gegenüber einer Relying Party auszuweisen. Die Grundlage dafür bilden die Verifiable Credentials, welche durch "Selective-Attribute Disclosure" zu einer Verifiable Presentation zusammengefasst werden. Dabei werden nur die notwendigen, vom Nutzer ausgewählten, Attribute präsentiert. 
-Der Identity Provider rückt bei der Datenübergabe in den Hintergrund. Die Verifiable Presentation beinhaltet, für die spätere Überprüfung der Identität, immer die DID des Identity Providers. Die Relying Party ist somit in der Lage die Herkunft und Echtheit der Verifiable Presentation zu authentifizieren.
-Möchte der Resource Owner jedoch kein Attribut seiner Identität übermitteln, besteht die Möglichkeit für einen Zero-Knowledge Proof (ZKP).
-Dieser beschreibt eine kryptografische Methode durch diese ein Resource Owner gegenüber einer Relying Party ein Attribut beweisen kann ohne dieses offen zu legen. 
-Beispielsweise übergibt man bei der Überprüfung der Volljährigkeit an Stelle des Alters nur einen Beweis, mindestens 18 Jahre alt zu sein. Das Ziel dabei ist es, so wenig Informationen über die eigene Identität preiszugeben wie möglich. 
+Der Identity Provider rückt bei der Datenübergabe in den Hintergrund. Die Verifiable Presentation beinhaltet, für die spätere Überprüfung der Identität, immer den DID des Identity Providers. Die Relying Party ist somit in der Lage die Herkunft und Echtheit der Verifiable Presentation zu authentifizieren.
+Möchte der Resource Owner jedoch kein Attribut seiner Identität übermitteln, besteht die Möglichkeit eines Zero-Knowledge Proof (ZKP).
+Dieser beschreibt eine kryptografische Methode, durch welche ein Resource Owner gegenüber einer Relying Party ein Attribut beweisen kann, ohne dieses offen zu legen. 
+Beispielsweise übergibt man bei der Überprüfung der Volljährigkeit an Stelle des Alters nur einen Beweis, mindestens 18 Jahre alt zu sein. Das Ziel dabei ist es, so wenig Informationen über die eigene Identität preiszugeben, wie möglich. 
 
 
 
