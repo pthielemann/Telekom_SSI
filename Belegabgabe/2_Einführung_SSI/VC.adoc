@@ -55,11 +55,11 @@ Eine Rolle, die ein System übernehmen kann, indem es die Erstellung und Überpr
 
 image::img/structure_VC.png[]
 
-==== Claims (offen)
+==== Claims
 
-==== Credentials (offen)
+==== Credentials
 
-==== Presentation (offen)
+==== Presentation
 
-==== Lifecyle (offen)
+==== Lifecyle
 

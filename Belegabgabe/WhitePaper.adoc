@@ -11,7 +11,7 @@
 // Kapitel 1.
 == Digitale Identität
 
-=== Was ist eine digitale Identität? (ergänzen!)
+=== Was ist eine digitale Identität?
 
 *Autor:* Pascal Thielemann, Ludwig Schönthier
 
@@ -54,7 +54,7 @@ include::2_Einführung_SSI/VC.adoc[]
 include::2_Einführung_SSI/agents_wallets.adoc[]
 
 // Kapitel 3
-== DIDComm Protocol (ergänzen!)
+== DIDComm Protocol
 
 // Kapitel 4
 == Schlussfolgerungen
@@ -67,22 +67,22 @@ include::2_Einführung_SSI/agents_wallets.adoc[]
 include::4_Schlussfolgerungen/A1.adoc[]
 
 // If OIDC already exists, why OIDC for Verifiable Credentials?
-=== Wenn OIDC bereits existiert, warum gibt es dann OpenID4VC? (überarbeiten!)
+=== Wenn OIDC bereits existiert, warum gibt es dann OpenID4VC?
 
 include::4_Schlussfolgerungen/A2.adoc[]
 
 // Different between traditional OIDC and OpenID4VC / VP
-=== Unterschied zwischen traditionellen OIDC und OpenID4V/VP (überarbeiten!)
+=== Unterschied zwischen traditionellen OIDC und OpenID4V/VP
 
 include::4_Schlussfolgerungen/A3_1.adoc[]
 
 // How does OpenID4VC / VP support the idea of SSI?
-=== Wie unterstützt OpenID4V/VP die Idee auf SSI? (ergänzen!)
+=== Wie unterstützt OpenID4V/VP die Idee auf SSI?
 
 include::4_Schlussfolgerungen/A3_2.adoc[]
 
 // Does OpenID4VC / VP supports selective attribute disclosure / ZKP?
-=== Unterstützt OpenID4VC/VP die selektive Offenlegung von Attributen? (überarbeiten!)
+=== Unterstützt OpenID4VC/VP die selektive Offenlegung von Attributen?
 
 include::4_Schlussfolgerungen/A4.adoc[]
 
