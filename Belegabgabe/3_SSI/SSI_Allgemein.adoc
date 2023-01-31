@@ -6,7 +6,7 @@ Die Self-Sovereign Identity (SSI) wurde als Lösung für die Herausforderungen d
 
 === SSI Trust Triangle
 
-Um das Konzept hinter Self-Sovereign Identity umsetzen zu können gibt es ein "SSI-Trust Triangle", welches aufzeigt, wie die Echtheit einer Identität bewiesen werden kann.
+Um das Konzept hinter Self-Sovereign Identity umsetzen zu können, gibt es das Prinzip des "SSI-Trust Triangle", welches aufzeigt, wie die Echtheit einer Identität und ihrer Daten (Behauptungen) in einer digitalen Welt bewiesen werden kann.
 
 image::./3_SSI/img/SSI_Triangle.png[]
 
@@ -24,7 +24,7 @@ NOTE: Auch eine Blockchain kann als Verifiable Data Registry im Kontext von Self
 
 NOTE: In der VDR wird die DID von öffentlichen Instutitionen oder Organisationen gespeichert, welche Verifiable Credentials ausstellen. Wiederum werden keine privaten DIDs von einzelnen Personen gespeichert.
 
-==== Austellung und Verifizierung von VC
+==== Austellung und Verifizierung von Verifiable Credentials
 
 Im Folgenden werden die einzelnen Schritte beschrieben, die in einem Austellungs- und Verifizierungsprozess für Verifiable Credentials innerhalb des SSI-Trust-Triangles stattfinden:
 

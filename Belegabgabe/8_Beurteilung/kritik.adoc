@@ -24,7 +24,7 @@ Das SSI Konzept lässt sich auch auf Objekte übertragen. Wann hat die letzte T�
 
 === Kritiken
 
-Zuletzt wollen wir auch einige Kritiken an SSI und DIDComm äußern, die zum jetzigen Zeitpunkt noch teils ungelöst erscheinen.
+Zuletzt wollen wir einen kritischen Blick auf SSI und mögliche Schwachstellen und Szenarien werfen, die Kritikpunkte aufwerfen.
 
 *Der Verlust des Wallets*
 

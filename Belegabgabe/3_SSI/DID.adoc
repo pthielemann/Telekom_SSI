@@ -1,10 +1,8 @@
 === Decentralized Identifiers (DID)
 
-Ein möglicher Lösungsansatz von SSI kann durch Decentralized Identifiers (DID) erreicht werden.
+Eine DID (Decentralized Identifier) ist eine spezifische Art von Identifikator in einer SSI (Self-Sovereign Identity) Lösung, die es einer Person, Organisation oder einem Gegenstand ermöglicht, seine Identität unabhängig und dezentral zu verwalten. Eine DID kann in einer zb. in einer dezentralen Datenbank (z.B. einer Blockchain) erstellt,verwaltet und gespeichert werden, was wiederum bedeutet, dass es keine zentrale Stelle gibt, die über die Kontrolle oder Verwaltung dieser Identität verfügt. Stattdessen liegt die Kontrolle der DID direkt beim Inhaber der Identität. Dabei fungiert die DID als ein Adressverweis auf ein DID-Dokument.
 
-Decentralized Identifiers sind eine Art von eindeutigen Identifikatoren, welche es Entitäten ermöglichen, den Besitz von Identitäten zu beweisen. Dabei fungiert ein DID als Adresse auf ein DID-Dokument.
-
-Eine DID ist eine einfache Textzeichenfolge, die aus drei Bestandteilen besteht: 
+Die DID ist eine Textzeichenfolge, die aus drei Bestandteilen besteht: 
 
 image::./3_SSI/img/did_example.png[]
 
@@ -12,15 +10,17 @@ image::./3_SSI/img/did_example.png[]
 
 image::./3_SSI/img/did_structure.png[]
 
-DID and DID URL:: Ein dezentraler Bezeichner (Decentralized Identifier), welcher in ein DID-Dokumente aufgelöst wird. Eine DID-URL erweitert die Syntax eines grundlegenden DID um andere Standard-URI-Komponenten, wie Pfad, Abfrage und Fragment, um eine bestimmte Ressource zu lokalisieren - beispielsweise einen kryptografischen öffentlichen Schlüssel innerhalb eines DID-Dokuments oder eine Ressource außerhalb des DID-Dokuments. 
+DID and DID URL:: Ein dezentraler Bezeichner (Decentralized Identifier), welcher in ein DID-Dokument aufgelöst wird. Eine DID-URL erweitert die Syntax eines grundlegenden DID um andere Standard-URI-Komponenten, wie Pfad, Abfrage und Fragment, um eine bestimmte Ressource zu lokalisieren - beispielsweise einen kryptografischen öffentlichen Schlüssel innerhalb eines DID-Dokumentes oder eine Ressource außerhalb des DID-Dokumentes. 
 
-_did:example:123456789abcdefghi/path/to/rsrc_
+    did:example:123456789abcdefghi/path/to/rsrc
 
 DID Subject:: Die Entität, auf welche sich eine DID bezieht wird als "DID Subject" bezeichnet. Dabei handelt es sich um eine Person, Organisation oder einen Gegenstand. 
 
-DID Controller:: Ein DID Controller besitzt die Fähigkeit, Informationen eines DID Documents zu ändern und kann auch das DID Subject sein.
+DID Controller:: Ein DID Controller besitzt die Fähigkeit, Informationen eines DID Documents zu ändern und kann auch das DID Subject sein, muss es aber nicht.
 
-Verifiable Data Registry:: Damit DIDs in DID-Dokumente aufgelöst werden können, werden sie in der Regel in einem zugrunde liegenden System oder Netzwerk gespeichert. Dabei handelt es sich beispielsweise um Blockchains. 
+NOTE: Ein Beispiel dafür, dass ein DID Conroller nicht gleichzeitig das DID Subject ist, wäre eine Eltern-Kind Beziehung, wo die Eltern Rechte (Controlling) über das Kind (Subjekt) verfügen.
+
+Verifiable Data Registry:: Damit DIDs in DID-Dokumente aufgelöst werden können, werden sie in der Regel in einem zugrunde liegenden System oder Netzwerk gespeichert. Dabei handelt es sich beispielsweise um Blockchain oder sonstige Datenbank. 
 
 DID Document:: DID-Dokumente enthalten Informationen, die mit einer DID verbunden sind. Sie stellen Informationen bereit, welche für die Interaktionen mit dem DID-Subjekt relevant sind. Darunter fallen zum Beispiel public keys oder Endpoints, welche zum Verschlüsseln und Übermitteln von Nachrichten benötigt werden. 
 

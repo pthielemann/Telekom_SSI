@@ -2,37 +2,20 @@
 
 Bei Verifiable Credentials handelt es sich um digitalisierte Nachweise, welche man verschiedenen Instanzen zur Verifizierung seiner Identität vorlegen kann. 
 
-Mögliche Attribute eines Verifiable Credentials:
+Mögliche Attribute von Verifiable Credentials können sein:
 
-* Informationen über die ausstellende Behörde (z.B. eine Stadtverwaltung, eine nationale Behörde oder eine Zertifizierungsstelle)
+* Informationen über die ausstellende Behörde (z.B. eine Stadtverwaltung, eine nationale Behörde oder eine Zertifizierungsstelle) *(Pflicht, mindestens in Form der DID!)*
 
 * Informationen über die Art des Nachweises (z.B. Personalausweis, Bachelorzertifikat, Krankenkassenkarte oder auch ein Fahrzeugschein)
 
 * Informationen zu bestimmten Eigenschaften, die von der ausstellenden Behörde über die betreffende Person behauptet werden. (Geburtsdatum, Abschlussnote, Versichertennummer oder Fahrzeugklasse)
 
-Im Gegensatz zu analogen Ausweisen ist es für den Verifizierer einfacher, die Authentizität und Integrität der Verifiable Credentials zu überprüfen, da er durch die Aufschlüsselung der DID des Austellers (Issuers) dessen Authentizität nachweisen kann. Zum Beispiel muss ein Arbeitgeber (Verifier) eine vorliegende Bachelorurkunde manuell zuerst auf Echtheit prüfen, indem er die betreffende Hochschule anfragt. Durch die Nutzung von Verifiable Credentials wäre es möglich, die Überprüfung in Echtheitzeit vorzunehmen.
+Im Gegensatz zu analogen Ausweisen ist es für den Verifizierer einfacher, die Authentizität und Integrität der Verifiable Credentials zu überprüfen, da er durch die Aufschlüsselung der DID des Austellers (Issuers) dessen Authentizität durch den Datenbankeintrag im Ledger nachweisen kann. Zum Beispiel muss ein Arbeitgeber (Verifier) eine vorliegende Bachelorurkunde manuell zuerst auf Echtheit prüfen, indem er die betreffende Hochschule anfragt. Durch die Nutzung von Verifiable Credentials wäre es möglich, die Überprüfung in nahezu Echtheitzeit vorzunehmen.
 
-==== Teilnehmer
+==== Architektur
+
+Die folgende Darstellung stellt nochmal grafisch die Beziehung zwischen *Issuer*, *Holder* und *Verifier* im Hinblick auf Verifiable Credentials dar.
 
 image::./3_SSI/img/structure_vc.png[]
 
-* *Holder:* Eine Entität, welche digitale Nachweise (VC) anfordern, verwalten und digital in seiner Wallet speichern kann. Holder können zb. sein:
-
-** natürliche Personen
-** Organisationen
-** Sachen (Objekte)
-
-* *Issuer:* Eine Instanz, welche die Fähigkeit besitzt, Verifiable Credentials auszustellen. Beispiele dafür wären:
-
-** Universität zum Ausstellen von Abschlussurkunden
-** Bürgeramt (bzw. die Bundesdruckerei) zum Ausstellen eines Personalausweisdokumentes
-
-* *Verifier:* Die Instanz, welche die vorgelegten Credentials des Holders anfordert und überprüft. Dies könnten sein:
-
-** Arbeitgeber
-** Online Shop
-** Polizei
-
-*Claims*
-
-Bei einem Claim handelt es sich um Behauptungen, welche der Holder über sich selbst aufstellt. Diese soll durch den Issuer in Form von Verifiable Credentials ausgestellt und somit mit der Signatur des Issuers, welche die Echtheit beweist, versehen werden. 
+NOTE: Ein Schema beschreibt das Format und die Struktur von Verifiable Credentials. Es legt fest, welche Eigenschaften und Daten ein bestimmter Typ von Credentials enthalten sollte, beispielsweise ein Führerschein, ein Abschlusszeugnis oder ein Pass. Es dient als Standard, der die Interoperabilität und Übertragbarkeit der Credentials sicherstellt.

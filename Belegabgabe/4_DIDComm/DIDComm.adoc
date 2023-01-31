@@ -2,54 +2,42 @@
 
 === Was ist DIDComm?
 
-DIDComm ist ein Kommunikationsprotokoll basierend auf SSI, das von der Decentralized Identity Foundation (DIF) entwickelt wurde, um sichere Peer-to-Peer-Interaktionen zwischen Anwendungen (bzw. Benutzern) mit dezentraler Identität (DID) zu ermöglichen. Es ist als
-
-* sicheres
-* offenes
-* standardbasiertes 
-
-Nachrichtenprotokoll konzipiert, das eine 
-
-* zuverlässige und
-* vertrauenswürdige 
-
-Kommunikationsverbindung zwischen Anwendungen erstellt. DIDComm bietet eine Möglichkeit für Anwendungen und Benutzer, miteinander zu interagieren und Daten, Dokumente und andere Informationen auszutauschen, während sie gleichzeitig kryptografisch verschlüsselt sind.
+DIDComm ist ein Kommunikationsprotokoll basierend auf dem Konzept SSI, das von der Decentralized Identity Foundation (DIF) entwickelt wurde, um sichere Peer-to-Peer-Interaktionen zwischen Anwendungen (bzw. Benutzern) mit dezentraler Identität (DID) zu ermöglichen. Es ist ein Satz an Funktionen, Vorgehensweisen und Methoden die spezifisch implementiert werden können. Es ist als offenes, sicheres, standardbasiertes Nachrichtenprotokoll so konzipiert, das es eine zuverlässige und vertrauenswürdige Kommunikationsverbindung zwischen Anwendungen herstellt. DIDComm bietet eine Möglichkeit für Anwendungen und Benutzer, miteinander zu interagieren und Daten, Dokumente und andere Informationen auszutauschen, während diese gleichzeitig kryptografisch verschlüsselt sind.
 
 NOTE: *Peer-to-Peer:* Eine Netzwerkarchitektur, bei der jeder Computer (oder Knoten) sowohl als Client, als auch als Server fungieren kann, so dass die Benutzer Ressourcen direkt miteinander teilen können, ohne einen zentralen Server zu benötigen.
 
-=== DIDComm Ablauf
+=== DIDComm v2
 
-*1. Verbindungsaufbau:* Austausch der DIDs durch eine Out-Of-Band-Nachricht. Diese kann zb. in Form einer Email, SMS oder auch eines QR-Codes gesendet werden.
+DIDComm v2 ist eine Weiterentwicklung von DIDComm. Die Neuerungen von DIDComm v2 umfassen:
 
-*2. Akzeptanz:* Bestätigt der Empfänger die Kommunikation, so wird ein Kommunikationskanal initialisiert. 
+* Verbesserte Skalierbarkeit und Leistung durch eine bessere Verwaltung von Verbindungen und Datenströmen
+* Unterstützung für neue Kryptografie-Standards wie Ed25519 und secp256k1
+* Unterstützung für eine Vielzahl von Messaging-Kanälen, einschließlich IPFS und anderen Netzwerken
+* Erweiterte Integrationsmöglichkeiten mit anderen Tools und Diensten
+* Verringerte Komplexität und verbesserte Benutzerfreundlichkeit durch eine bessere Dokumentation und ein verbessertes Ökosystem
 
-*3. Nachricht verschlüsseln und senden:* Eine Partei verschlüsselt ihre Nachricht mit Hilfe des öffentlichen Schlüssels (public Key) der empfangenden Partei und sendet diese über den vorher aufgebauten Kommunikationskanal.
+=== DIDComm Ablauf (vereinfacht!)
 
-*4. Nachricht empfangen und entschlüsseln:* Der Empfänger entschlüsselt die Nachricht nach Empfang mit seinem private Key.
+Bob und Alice wollen miteinander über ein DIDComm Protokoll kommunizieren. Folgender Ablauf (vereinfacht) entsteht dabei:
 
-*5. Ende des Protokolls:* Die Initialisierung des Nachrichtenkanals ist abgeschlossen.
+1. *DID Generierung:* Alice generiert eine DID.
 
-=== Wie funktioniert DIDComm?
+2. *Verbindungsaufbau* Alice teilt ihre DID durch eine Out-Of-Band-Nachricht (sicherer Kommunikationskanal) dem Empfänger Bob mit. Dies kann zb. in Form einer Email, SMS oder auch eines QR-Codes geschehen.
 
-Das DIDComm Protokoll basiert auf einer Reihe von verschlüsselten Nachrichten, die zwischen verschiedenen Parteien ausgetauscht werden, wobei die Decentralized Identifiers (DIDs) der Parteien als Adressen für die Nachrichten verwendet werden.
+3. *Kommunikationsaufforderung:* Bob sendet eine Nachricht an Alice, die ihre Zustimmung für die Kommunikation benötigt, um eine sichere Verbindung herzustellen.
 
-Um zu verstehen wie das funktioniert, muss man zunächst wissen, was ein dezentraler Identifikator (DID) ist. Ein DID ist ein eindeutiger, Blockchain-basierter Identifikator, der zur Identifizierung von Personen, Organisationen oder anderen Einheiten in einem dezentralen System verwendet wird. Er ähnelt einem herkömmlichen Identifikator, wie z.B. einem Benutzernamen oder einer E-Mail-Adresse, ist jedoch dezentralisiert, d.h. er wird nicht von einer zentralen Behörde kontrolliert. Stattdessen wird der DID vom Eigentümer der Kennung kontrolliert, der die volle Kontrolle über seine eigene Identität und seine Daten hat.
+4. *Akzeptanz:* Alice bestätigt die Verbindung und gibt Bob Zugriff auf ihre Verifizierungsdokumente. 
 
-    did:example:1234567890
+5. *Verifizierung:* Bob verwendet die Verifizierungsdokumente, um Alice zu authentifizieren und sicherzustellen, dass er mit der richtigen Person kommuniziert.
 
-    In diesem Beispiel ist "did" der Bezeichner für eine dezentrale Kennung, "example" ist der Methodenbezeichner (der den Typ der DID angibt) und "1234567890" ist der spezifische DID-Bezeichner. Dieser DID wäre für den Besitzer der Kennung eindeutig und kann zur Identifizierung innerhalb eines dezentralen Systems verwendet werden.
-
-Bei DIDComm haben die, an einem Kommunikationsaustausch beteiligten Parteien, jeweils ihre eigenen DIDs, die als Adressen für die Nachrichten verwendet werden. Um eine Nachricht zu versenden, verschlüsselt der Absender die Nachricht mit seinem privaten Schlüssel. Der Empfänger kann dann die Nachricht, mit Hilfe des öffentlichen Schlüssels des Absenders, entschlüsseln.
-Dadurch wird sichergestellt, dass der Inhalt der Nachricht nur für die vorgesehenen Parteien zugänglich ist und von niemandem sonst gelesen werden kann.
+6. *Erfolgreiche Initialisierung:* Bob und Alice können nun sicher miteinander kommunizieren und Transaktionen durchführen die verschlüsselt sind, ohne dass eine zentrale Partei involviert ist.
 
 ==== DID Erzeugung
 
-Das DIDComm-Protokoll ist ein sicheres Kommunikationsprotokoll für dezentralisierte Identitätssysteme, das sich nicht direkt mit der Erstellung oder Erzeugung von DIDs befasst. Stattdessen ist das Protokoll so konzipiert, dass es den Austausch von Nachrichten und Daten zwischen verschiedenen Parteien unter Verwendung von DIDs als Adressen für die Nachrichten erleichtert.
-
-Das DIDComm-Protokoll enthält jedoch bestimmte Funktionen und Mechanismen, die für die Verwaltung und Überprüfung von DIDs verwendet werden können, z.B. die Möglichkeit, die Echtheit von DID-Dokumenten und die Identität des Inhabers eines DID zu überprüfen.
+Auch wenn sich das Protokoll nicht direkt mit der Erstellung oder Erzeugung von DIDs befasst, enthält das DIDComm-Protokoll jedoch bestimmte Funktionen und Mechanismen, die für die Verwaltung und Überprüfung von DIDs verwendet werden können, z.B. die Möglichkeit, die Echtheit von DID-Dokumenten und die Identität des Inhabers eines DID zu überprüfen.
 
 Wenn beispielsweise eine Partei einen neuen DID erstellen möchte, kann sie das DIDComm-Protokoll verwenden, um ein DID-Dokument zu erstellen, das die erforderlichen Informationen wie den DID selbst, die mit dem DID verbundenen öffentlichen Schlüssel und alle anderen relevanten Daten enthält. Das DID-Dokument kann dann mit dem privaten Schlüssel des Besitzers signiert werden, was als Beweis für die Authentizität des Dokuments und die Identität des Besitzers dient.
 
 Nach der Erstellung des signierten DID-Dokuments, kann es in einem dezentralen Register veröffentlicht werden, z.B. in einer Blockchain oder einem Distributed Ledger. Andere Parteien können dann das DIDComm-Protokoll verwenden, um die Authentizität des DID-Dokuments und die Identität des Eigentümers anhand der DID und der zugehörigen öffentlichen Schlüssel zu überprüfen.
 
-Obwohl das DIDComm-Protokoll die Erstellung oder Erzeugung von DIDs nicht direkt abwickelt, enthält es Funktionen und Mechanismen, die zur Verwaltung und Überprüfung von DIDs verwendet werden können, die bei der Erstellung und Veröffentlichung neuer DIDs eingesetzt werden können.
+Obwohl das DIDComm-Protokoll die Erstellung oder Erzeugung von DIDs nicht direkt abwickelt, enthält es Funktionen und Mechanismen, die zur Verwaltung und Überprüfung von DIDs verwendet werden können, die bei der Erstellung und zur Veröffentlichung neuer DIDs eingesetzt werden können.

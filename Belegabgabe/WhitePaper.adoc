@@ -16,9 +16,9 @@ include::../Belegabgabe/2_OIDC/OIDC.adoc[]
 
 include::../Belegabgabe/3_SSI/SSI_Allgemein.adoc[]
 
-include::../Belegabgabe/3_SSI/VC.adoc[]
-
 include::../Belegabgabe/3_SSI/DID.adoc[]
+
+include::../Belegabgabe/3_SSI/VC.adoc[]
 
 include::../Belegabgabe/4_DIDComm/DIDComm.adoc[]
 
