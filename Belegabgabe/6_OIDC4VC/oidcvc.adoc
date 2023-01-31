@@ -1,16 +1,37 @@
 == OIDC4/VC und OIDC4/VP
 
-Als Erweiterung des OpenID Connect Protokolls gibt es die Möglichkeit der Verifiable Credentials und Verifiable Presentation. 
-Diese wurden basierend auf dem Konzept von SSI umgesetzt. 
+Als Erweiterung des OIDC Protokolls wurde OIDC4/VC und OIDC4/CP eingeführt und um die Möglichkeit von Verifiable Credentials und Verifiable Presentations ergänzt. Diese wurden basierend auf dem SSI Konzept umgesetzt. 
 
 === OIDC4/VC
 
-Das Grundkonzept beschreibt die Bereitstellung der Identität in Form von Verifiable Credentials für den Resource Owner (Nutzer) durch den Identity Provider. Die digitalisierte Identität wird in der Wallet des RO gespeichert und ist für keine Dritten zugänglich. Somit liegt die Datenhoheit beim Nutzer.
+OIDC4/VC steht für "OpenID Connect for Verifiable Credentials". Es ist ein Protokoll, das Verifiable Credentials (VCs) in die Authentifizierungs- und Autorisierungsprozesse von OIDC (OpenID Connect) integriert.
+
+In der Praxis wird OIDC4/VC durch die Verwendung von VCs als Claims in einem ID-Token implementiert, das von einem OpenID-Provider ausgestellt und an eine Anwendung geliefert wird. Die Anwendung kann dann die in den VCs enthaltenen Informationen verwenden, um eine authentische und verifizierbare Überprüfung der Identität des Benutzers durchzuführen.
+
+Das Grundkonzept beschreibt die Bereitstellung der Identität in Form von Verifiable Credentials für den Resource Owner (Nutzer) durch den Identity Provider. Die verifizierte digitale Identität wird in der Wallet des Resource Owners gespeichert und ist für keine Dritte Partei öffentlich zugänglich. Somit liegt die Datenhoheit beim Nutzer, was dem Gedanken von SSI entspricht.
 
 === OIDC4/VP
 
-Im nächsten Schritt muss der Resource Owner in der Lage sein, sich gegenüber einer Relying Party auszuweisen. Die Grundlage dafür bilden die Verifiable Credentials, welche durch "Selective-Attribute Disclosure" zu einer Verifiable Presentation zusammengefasst werden. Dabei werden nur die notwendigen, vom Nutzer ausgewählten, Attribute präsentiert. 
-Der Identity Provider rückt bei der Datenübergabe in den Hintergrund. Die Verifiable Presentation beinhaltet, für die spätere Überprüfung der Identität, immer den DID des Identity Providers. Die Relying Party ist somit in der Lage die Herkunft und Echtheit der Verifiable Presentation zu authentifizieren.
-Möchte der Resource Owner jedoch kein Attribut seiner Identität übermitteln, besteht die Möglichkeit eines Zero-Knowledge Proof (ZKP).
-Dieser beschreibt eine kryptografische Methode, durch welche ein Resource Owner gegenüber einer Relying Party ein Attribut beweisen kann, ohne dieses offen zu legen. 
-Beispielsweise übergibt man bei der Überprüfung der Volljährigkeit an Stelle des Alters nur einen Beweis, mindestens 18 Jahre alt zu sein. Das Ziel dabei ist es, so wenig Informationen über die eigene Identität preiszugeben, wie möglich. 
+OIDC4/VD steht für "OpenID Connect for Verifiable Presentations". Es ist ein Protokoll, das es Anwendungen ermöglicht, Verifiable Presentations von einem Relying Party anzufordern und zu empfangen, die von einem Issuer ausgestellt wurden. Es ist eine Technologie, die darauf abzielt, eine einfache und sichere Übertragung von Verifiable Presentations im Kontext von SSI (Selbstsovereign Identity) zu ermöglichen.
+
+Dieses Protokoll wird genutzt, um Verifiable Presentations zu verwalten und zu übertragen. Es nutzt OAuth2- und OpenID Connect-Mechanismen, um eine sichere Kommunikation zwischen Relying Party und Issuer zu gewährleisten.
+
+OIDC4/VD setzt OAuth2-Flows um, um die Übertragung von Verifiable Presentations zu steuern und zu sichern. Es wird eine OAuth2-basierte Interaktion genutzt, bei der der Issuer einer Verifiable Presentation eine Zustimmungserklärung an die Relying Party sendet, die die Übertragung von Verifiable Presentations genehmigt. Die Relying Party kann dann eine Verifiable Presentation abrufen, indem sie eine Anfrage an den Issuer sendet. Die Interaktion endet, wenn die Relying Party die Verifiable Presentation erhält.
+
+=== Requested Claims
+
+"Selective Attribute Disclosure" (ZKP) wird in OIDC4VC und OIDC4VP durch das Konzept der "Requested Claims" realisiert.
+
+OpenID Connect für Verifiable Credentials (OIDC4VC) und Verifiable Presentations (OIDC4VP) unterstützt die selektive Offenlegung von Attributen (kurz ZPK oder "selective attribute disclosure"), indem sie den Prozess der Übermittlung von Verifiable Credentials und Verifiable Presentations erleichtern. Ein Relying Party kann bei der Übermittlung von Verifiable Credentials oder Verifiable Presentations nur die relevanten Attribute anfordern und eine Reduktion auf notwendige Daten erreichen. OIDC4VC und OIDC4VP ermöglichen es außerdem einem Resource Owner, nur bestimmte Informationen, die für diese Interaktion erforderlich sind, auszuwählen und zu teilen, anstatt alle Informationen Preisgeben zu müssen.
+
+Requested Claims werden in OIDC konkret durch den "claim"-Parameter im OIDC-Authorization-Request realisiert. Dieser Parameter enthält eine JSON-Struktur, die definiert, welche Claims zb. für die Interaktion mit der Anwendung benötigt werden. Ein Beispiel (Ausschnitt) für den Claim-Parameter könnte wie folgt aussehen:
+
+----
+{
+  "userinfo": {
+    "given_name": {"essential": true},
+    "family_name": {"essential": true}
+  }
+}
+----
+

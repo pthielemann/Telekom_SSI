@@ -12,15 +12,15 @@ Um das Ganze anschaulicher zu demonstrieren, verwenden wir dazu die https://gith
 
 (1.) *Das Ausstellen von Credentials*
 
-Im ersten Szenario baut Alice eine Verbindung zu Ihrer Hochschule durch die Annahme einer Einladung in Form eines QR-Codes auf. Im zweiten Schritt sendet ihr die Hochschule Verifiable Credentials (VC) zu, welche das Datum ihres Abschlusses und das Studienfach beinhalten. Das Szenario ist im Folgenden nochmals als Ablauf grafisch dargestellt.
+In einem ersten Szenario baut Alice eine Verbindung zu Ihrer Hochschule durch die Annahme einer Einladung in Form eines QR-Codes auf. Im zweiten Schritt sendet ihr die Hochschule Verifiable Credentials (VC) zu, welche das Datum ihres Abschlusses und das Studienfach beinhalten. Das Szenario ist im Folgenden als Ablauf grafisch dargestellt.
 
 image::./7_POC/img/szenario1.png[]
 
 (2.) *Verifizierung der Credentials*
 
-Im zweiten Szenario möchte sich Alice bei einem neuen Arbeitgeber bewerben. Dazu muss sie nachweisen, dass sie tatsächlich über einen Abschluss in Mathematik verfügt. Ihr Arbeitgeber fordert Sie dazu auf, ihre Credentials zuzusenden. Alice kann den Umfang der geforderten Daten vorab einsehen und diese bestätigen. Ein *Selective Attribute Disclosure* wird in dieser Demo nicht gezeigt.
+Im zweiten Szenario möchte sich Alice bei einem neuen Arbeitgeber bewerben. Dazu muss sie nachweisen, dass sie tatsächlich über einen Abschluss in Mathematik verfügt. Ihr Arbeitgeber fordert Sie dazu auf, ihre Credentials zuzusenden. Alice kann den Umfang der geforderten Daten vorab einsehen und diese bestätigen. Ein *Selective Attribute Disclosure* wird in dieser Demo nicht demonstriert.
 
-Diese Credentials werden wiederrum durch den Arbeitgeber, mit dem Abgleich der DID der Hochschule als Issuer der Credetials aus dem Verifiable Data Register verifiziert und bestätigt.
+Diese Credentials werden wiederrum durch den Arbeitgeber, mit dem Abgleich der DID der Hochschule, als Issuer der Credetials, aus dem Verifiable Data Register verifiziert und bestätigt.
 
 image::./7_POC/img/szenario2.png[]
 
@@ -28,19 +28,19 @@ image::./7_POC/img/szenario2.png[]
 
 Um beide Szenarien technisch umsetzen zu können, benötigen wir mehrere Komponenten, die wir erstellen und simulieren müssen.
 
-Alice:: Damit wir Alice simulieren können, verwenden wir ein geeignetes Smartphone (iPhone 13) auf dem ein Wallet installiert ist, welches über seinen eigenen Agent kommuniziert.
+Alice:: Damit wir Alice simulieren können, verwenden wir ein geeignetes Smartphone (iPhone 13) auf dem ein Wallet installiert ist, welches über seinen eigenen besitzt Agent.
 
 Wallet/Agent:: Beim Wallet haben wir uns für das *esatus Wallet* entschieden. Esatus ist eine Eigenentwicklung der esatus AG, welche ein Treiber von Self-Sovereign Identity (SSI) in Deutschland und einer der globalen Technologieführer ist. Das Wallet bietet für die Demonstration folgenden Funktionsumfang:
 
 . Das Scannen eines QR-Codes (Einladungen der Hochschule)
 . Verbindungsaufbau zu einem anderen Agent (Hochschule/Arbeitgeber)
-. Die Verwaltung von Verbindungen
+. Die Verwaltung von Verbindungen (Speicherung)
 . Die Möglichkeit ein Test-Ledger auszuwählen (BCGov Test Ledger/BCovrin)
 . Das Halten, Speichern und Vorzeigen von Credentials
 
--> Darüber hinaus werden auch noch weitere Funktionen angeboten, die wir im Umfang dieser Demonstration jedoch nicht betrachten werden.
+-> Darüber hinaus werden auch noch weitere Funktionen angeboten, die wir im Umfang dieser Demonstration jedoch nicht weiter betrachten werden.
 
-Hochschule:: Damit wir unseren Issuer, die Hochschule, imulieren können, müssen wir diese als Agent lokal installieren und hosten. Der Agent verfügt dann über folgende Funktionen:
+Hochschule:: Damit wir unseren Issuer, die Hochschule, simulieren können, müssen wir diese als Agent lokal installieren und gleichzeitig hosten. Der Agent verfügt über folgende Funktionen:
 
 * Issue Credential
 * Send Proof Request
@@ -53,7 +53,7 @@ Hochschule:: Damit wir unseren Issuer, die Hochschule, imulieren können, müsse
 
 -> Für die Simulation verwenden wir hauptsächlich die ersten zwei Funktionen.
 
-Arbeitgeber:: Der Arbeitgeber wird auf die gleiche Weise wie die Hochschule simuliert. Wir beschränken uns dabei auf *EINEN localhost*, welcher gleichzeitig Arbeitgeber und Hochschule simuliert. In einem Real Case Szenario wären diese, zwei getrennte Parteien. Der Issuer (Hochschule) und der Verifier (Arbeitgeber) der im OIDC Kontext die Relying Party darstellt.
+Arbeitgeber:: Der Arbeitgeber wird auf die gleiche Weise wie die Hochschule simuliert. Wir beschränken uns dabei auf *EINEN localhost*, welcher gleichzeitig Arbeitgeber und Hochschule simuliert. In einem Real Case Szenario wären diese zwei getrennte Parteien. Der Issuer (Hochschule) und der Verifier (Arbeitgeber) der im OIDC Kontext die Relying Party darstellt.
 
 ngrok:: Ngrok ist ein Tunneling-Service, mit dem Entwickler lokale Anwendungen und Dienste über das Internet verfügbar machen können, ohne sie direkt bereitstellen zu müssen. Ngrok ermöglicht es, eine lokale Anwendung über eine öffentliche URL erreichbar zu machen, was beispielsweise für die Überprüfung von Anwendungen durch andere Benutzer oder das Debugging von Problemen nützlich sein kann. Wir verwenden Ngrok um ein Tunneling-Service nach außen für unseren localhost Agent für die *"Alice Gets a Mobile Agent!"* Demo zu bauen.
 
@@ -83,7 +83,7 @@ Um später lokal mit unserem Hochschul Agenten nach außen zu Alice kommuniziere
 
     TAILS_NETWORK=docker_tails-server LEDGER_URL=http://test.bcovrin.vonx.io ./run_demo faber --aip 10 --revocation --events
 
-Auflistung der Parameter:
+*Auflistung der einzelnen Parameter:*
 
 TAILS_NETWORK=docker_tails-server:: Legt die Art des Tails-Netzwerks fest, auf dem das Demo ausgeführt wird. Hier wird "docker_tails-server" angegeben, so dass ein Docker-Container als Tails-Server verwendet wird.
 

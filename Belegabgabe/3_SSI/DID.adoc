@@ -8,9 +8,11 @@ image::./3_SSI/img/did_example.png[]
 
 ==== Komponenten
 
+Im folgenden werden die einzelnen Komponenten der DID und deren Beziehungen zueinander grafisch dargestellt und erläutert.
+
 image::./3_SSI/img/did_structure.png[]
 
-DID and DID URL:: Ein dezentraler Bezeichner (Decentralized Identifier), welcher in ein DID-Dokument aufgelöst wird. Eine DID-URL erweitert die Syntax eines grundlegenden DID um andere Standard-URI-Komponenten, wie Pfad, Abfrage und Fragment, um eine bestimmte Ressource zu lokalisieren - beispielsweise einen kryptografischen öffentlichen Schlüssel innerhalb eines DID-Dokumentes oder eine Ressource außerhalb des DID-Dokumentes. 
+DID and DID URL:: Ein dezentraler Bezeichner (Decentralized Identifier), welcher in ein DID-Dokument aufgelöst wird. Eine DID-URL erweitert die Syntax eines grundlegenden DID um andere Standard-URI-Komponenten, wie Pfad, Abfrage und Fragment, um eine bestimmte Ressource zu lokalisieren - beispielsweise einen kryptografischen öffentlichen Schlüssel innerhalb eines DID-Dokumentes oder eine Ressource außerhalb des DID-Dokumentes. Eine Beispiel DID URL:
 
     did:example:123456789abcdefghi/path/to/rsrc
 
