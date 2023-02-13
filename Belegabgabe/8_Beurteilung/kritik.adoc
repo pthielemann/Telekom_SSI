@@ -34,7 +34,24 @@ Dies ist ein möglicher Kritikpunkt von SSI und DIDComm, da der Verlust des Wall
 
 *Weitere mögliche Kritikpunkte und Schwachstellen sind:*
 
-* Interoperabilitätsprobleme: Obwohl es einen gemeinsamen Standard für DIDs und DIDComm-Nachrichten gibt, kann es Probleme bei der Interoperabilität zwischen verschiedenen Implementierungen und Plattformen geben.
-* Datenschutzprobleme: Da DIDs und DIDComm-Nachrichten über ein dezentralisiertes Netzwerk übertragen werden, ist es schwierig, die Datenschutzrichtlinien und -anforderungen für verschiedene Anwendungen und Gerichtsbarkeiten einzuhalten.
-* Skalierbarkeitsprobleme: Die Verarbeitung von DIDComm-Nachrichten und die Speicherung von DID-Informationen kann eine Herausforderung für dezentralisierte Netzwerke sein, die häufig nicht so leistungsstark wie zentralisierte Netzwerke sind.
-* Benutzerfreundlichkeitsprobleme: Es kann schwierig sein, Benutzern ein einfaches und intuitives Verständnis von DIDs und DIDComm zu vermitteln, und die Verwendung von Wallets und anderen SSI-Tools kann für viele Benutzer eine Herausforderung darstellen
+*Interoperabilitätsprobleme:* Obwohl es einen gemeinsamen Standard für DIDs und DIDComm-Nachrichten gibt, kann es Probleme bei der Interoperabilität zwischen verschiedenen Implementierungen und Plattformen geben.
+
+*Datenschutzprobleme:* Da DIDs und DIDComm-Nachrichten über ein dezentralisiertes Netzwerk übertragen werden, ist es schwierig, die Datenschutzrichtlinien und -anforderungen für verschiedene Anwendungen und Gerichtsbarkeiten einzuhalten und zu überwachen.
+
+*Skalierbarkeitsprobleme:* Die Verarbeitung von DIDComm-Nachrichten und die Speicherung von DID-Informationen kann eine Herausforderung für dezentralisierte Netzwerke sein, die häufig nicht so leistungsstark wie zentralisierte Netzwerke sind. Gründe dafür sind:
+
+1. Umfang der Nachrichten: Obwohl es sich bei der Verarbeitung von DIDComm-Nachrichten um ein P2P-Verfahren handelt, kann das Volumen der zu verarbeitenden Nachrichten beträchtlich sein, insbesondere in dezentralen Netzen mit einer großen Anzahl von Knoten. Dies kann zu Problemen bei der Skalierbarkeit führen, da jeder Knoten in der Lage sein muss, die DID-Informationen zu verarbeiten und speichern zu können.
+
+2. Komplexität der Nachrichten: DIDComm-Nachrichten können komplexe Datenstrukturen enthalten, wie z.B. Verifiable Credentials und Zero-Knowledge-Proofs, deren Validierung und Speicherung erhebliche Rechenleistung erfordert.
+
+3. Begrenzte Ressourcen: Dezentrale Netze bestehen in der Regel aus Knoten mit begrenzten Ressourcen wie Speicher und Verarbeitungsleistung, was bei der Verarbeitung und Speicherung großer Mengen von DID-Informationen eine Einschränkung darstellen kann.
+
+4. Schutz der Daten: In einem dezentralen Netzwerk speichert jeder Knoten seine eigene Kopie der DID-Informationen, was zu Problemen mit dem Datenschutz führen kann, wenn die Informationen nicht ordnungsgemäß geschützt sind. Dies kann eine Herausforderung darstellen, wenn es um die Verarbeitung und Speicherung sensibler Daten, wie z.B. persönlicher Identitätsdaten geht.
+
+Um diesen Herausforderungen zu begegnen, müssen dezentrale Netzwerke effiziente und sichere Methoden zur Verarbeitung und Speicherung von DID-Informationen implementieren, die wiederum Rechenleistung benötigen und somit aufwendiger zu skalieren sind. So können Knoten beispielsweise Techniken zur Aufteilung und Partitionierung von Daten einsetzen, um die Verarbeitungs- und Speicherlast zu verteilen und kryptografische Algorithmenverwenden, um sensible Informationen zu schützen. Darüber hinaus können die Knoten die Blockchain-Technologie nutzen, um ein sicheres und ein fälschungssicheres Main Ledger (Hauptbuch) für DID-Informationen zu erstellen.
+
+NOTE: Die reine Peer-to-Peer (P2P) Kommunikation in Form von einzelnen Standard Nachrichten ist dagegen jedoch als einzelner Prozess betrachtet leistungseffektiv, da zur Verabreitung der Informationen keine Drittpartei notwendig ist und die Verschlüsselung auf ein einfaches symmetrisches Verfahren stattfinden kann, welches deutlich weniger Rechenleistung als die asymmetrische Verschlüsselung in Anspruch nimmt.
+
+Insgesamt hängt die Skalierbarkeit dezentraler Netzwerke für die Verarbeitung von DIDComm-Nachrichten und die Speicherung von DID-Informationen von der spezifischen Implementierung und den getroffenen Abwägungen zwischen Effizienz, Sicherheit und Datenschutz ab.
+
+*Benutzerfreundlichkeitsprobleme:* Es kann schwierig sein, Benutzern ein einfaches und intuitives Verständnis von DIDs und DIDComm zu vermitteln, und die Verwendung von Wallets und anderen SSI-Tools kann für viele Benutzer eine Herausforderung darstellen
