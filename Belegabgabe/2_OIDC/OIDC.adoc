@@ -115,6 +115,7 @@ NOTE: *Identifizierung:* _"Wer bist du?"_ Identifikation ist die Fähigkeit, ein
 Der Ablauf des OIDC-Protokolls wird im Folgenden aus einfacher Sicht der Teilnehmer dargestellt, ohne in die Tiefe technischer Details zu gehen. 
 
 image::./2_OIDC/img/Ablauf_OIDC.png[]
+_Abbildung: OpenID Connect Flow, auf Basis (Referenz) von (\https://images.pingidentity.com/image/upload/f_auto,q_80,w_778,c_scale/ping_dam/content/dam/ping-6-2-assets/images/resources/articles/oidc-diagram.png) (Quelle)_
 
 . Ein Endbenutzer (Resource Owner) besucht eine Webseite (Relying Party), welche OpenID Connect unterstützt und klickt zb. auf eine Schaltfläche "Anmelden über [IdP]".
 

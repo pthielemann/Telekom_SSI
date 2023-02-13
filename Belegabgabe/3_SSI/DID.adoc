@@ -5,12 +5,14 @@ Eine DID (Decentralized Identifier) ist eine spezifische Art von Identifikator i
 Die DID ist eine Textzeichenfolge, die aus drei Bestandteilen besteht: 
 
 image::./3_SSI/img/did_example.png[]
+_Abbildung: DID Beispiel (\https://courses.edx.org/asset-v1:LinuxFoundationX+LFS178x+3T2022+type@\asset+block@LFS178x_2022_Chapter3Images_Graphic_10.png) (Quelle)_
 
 ==== Komponenten
 
 Im folgenden werden die einzelnen Komponenten der DID und deren Beziehungen zueinander grafisch dargestellt und erläutert.
 
 image::./3_SSI/img/did_structure.png[]
+_Abbildung: DID Architektur Überblick, auf Basis (Referenz) von (\https://www.w3.org/TR/did-core/diagrams/did_brief_architecture_overview.svg) (Quelle)_
 
 DID and DID URL:: Ein dezentraler Bezeichner (Decentralized Identifier), welcher in ein DID-Dokument aufgelöst wird. Eine DID-URL erweitert die Syntax eines grundlegenden DID um andere Standard-URI-Komponenten, wie Pfad, Abfrage und Fragment, um eine bestimmte Ressource zu lokalisieren - beispielsweise einen kryptografischen öffentlichen Schlüssel innerhalb eines DID-Dokumentes oder eine Ressource außerhalb des DID-Dokumentes. Eine Beispiel DID URL:
 

@@ -17,5 +17,6 @@ Im Gegensatz zu analogen Ausweisen ist es für den Verifizierer einfacher, die A
 Die folgende Darstellung stellt nochmal grafisch die Beziehung zwischen *Issuer*, *Holder* und *Verifier* im Hinblick auf Verifiable Credentials dar.
 
 image::./3_SSI/img/structure_vc.png[]
+_Abbildung: Überblick über das Ökosystem von VC, auf Basis (Referenz) von (\https://www.w3.org/TR/vc-data-model/diagrams/ecosystem.svg) (Quelle)_
 
 NOTE: Ein Schema beschreibt das Format und die Struktur von Verifiable Credentials. Es legt fest, welche Eigenschaften und Daten ein bestimmter Typ von Credentials enthalten sollte, beispielsweise ein Führerschein, ein Abschlusszeugnis oder ein Pass. Es dient als Standard, der die Interoperabilität und Übertragbarkeit der Credentials sicherstellt.

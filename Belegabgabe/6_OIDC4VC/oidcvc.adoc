@@ -18,13 +18,13 @@ Dieses Protokoll wird genutzt, um Verifiable Presentations zu verwalten und zu �
 
 OIDC4/VD setzt OAuth2-Flows um, um die Übertragung von Verifiable Presentations zu steuern und zu sichern. Es wird eine OAuth2-basierte Interaktion genutzt, bei der der Issuer einer Verifiable Presentation eine Zustimmungserklärung an die Relying Party sendet, die die Übertragung von Verifiable Presentations genehmigt. Die Relying Party kann dann eine Verifiable Presentation abrufen, indem sie eine Anfrage an den Issuer sendet. Die Interaktion endet, wenn die Relying Party die Verifiable Presentation erhält.
 
-=== Requested Claims
+=== Selective Attribute Disclosure
 
-"Selective Attribute Disclosure" (ZKP) wird in OIDC4VC und OIDC4VP durch das Konzept der "Requested Claims" realisiert.
+Die selektive Offenlegung von Attributen oder im engl. "Selective Attribute Disclosure" ist eine Funktion zur Verbesserung der Privatsphäre in souveränen Identitätssystemen (Self-Sovereign Identity), bei der eine Person sich dafür entscheiden kann, nur eine bestimmte Gruppe von Attributen oder Informationen über ihre Identität preiszugeben, anstatt alle ihre persönlichen Daten teilen zu müssen.
 
-OpenID Connect für Verifiable Credentials (OIDC4VC) und Verifiable Presentations (OIDC4VP) unterstützt die selektive Offenlegung von Attributen (kurz ZPK oder "selective attribute disclosure"), indem sie den Prozess der Übermittlung von Verifiable Credentials und Verifiable Presentations erleichtern. Ein Relying Party kann bei der Übermittlung von Verifiable Credentials oder Verifiable Presentations nur die relevanten Attribute anfordern und eine Reduktion auf notwendige Daten erreichen. OIDC4VC und OIDC4VP ermöglichen es außerdem einem Resource Owner, nur bestimmte Informationen, die für diese Interaktion erforderlich sind, auszuwählen und zu teilen, anstatt alle Informationen Preisgeben zu müssen.
+"Selective Attribute Disclosure" wird in OIDC4VC und OIDC4VP durch das Konzept der "Requested Claims" realisiert. Ein Relying Party kann bei der Übermittlung von Verifiable Credentials nur die relevanten Attribute anfordern um eine Reduktion auf die notwendige Daten zu erreichen. OIDC4VC und OIDC4VP ermöglichen es außerdem einem Resource Owner, nur bestimmte Informationen, die für diese Interaktion erforderlich sind, auszuwählen und zu teilen, anstatt alle Informationen Preisgeben zu müssen.
 
-Requested Claims werden in OIDC konkret durch den "claim"-Parameter im OIDC-Authorization-Request realisiert. Dieser Parameter enthält eine JSON-Struktur, die definiert, welche Claims zb. für die Interaktion mit der Anwendung benötigt werden. Ein Beispiel (Ausschnitt) für den Claim-Parameter könnte wie folgt aussehen:
+Requested Claims werden in OIDC konkret durch den "claim"-Parameter im OIDC-Authorization-Request realisiert. Dieser Parameter enthält eine JSON-Struktur, die definiert, welche Claims zb. für die Interaktion mit der Anwendung benötigt werden. Ein Beispiel (Ausschnitt aus der JSON-Struktur) für den Claim-Parameter könnte wie folgt aussehen:
 
 ----
 {
@@ -35,3 +35,42 @@ Requested Claims werden in OIDC konkret durch den "claim"-Parameter im OIDC-Auth
 }
 ----
 
+NOTE: Dabei ist anzumerken, dass die Ablehnung essentzieller Attribute ggf. zur nicht Nutzung eines Dienstes führen kann. Eine selektive Offenlegung gewährleistet nicht gleichzeitig auch den vollen Umfungsumfanges eines Services, jedoch müssen nur die tatsächlich notwendige Informationen und Daten übertragen werden, die zur eigentlichen Nutzung des Dienstes essentziell sind.
+
+=== Zero-Knowledge Proof
+
+Im Kontext der Self-Sovereign Identity (SSI) ist ein Zero-Knowledge Proof (ZKP) eine kryptografische Technik, die es einer Person ermöglicht, die Authentizität bestimmter Informationen gegenüber einer anderen Partei zu beweisen, ohne die Informationen selbst preiszugeben. In der SSI werden ZKPs verwendet, um eine Authentifizierung unter Wahrung der Privatsphäre zu ermöglichen und um überprüfbare Aussagen über die Identität einer Person zu machen.
+
+Zum Beispiel möchte Alice, Bob beweisen, dass sie über 18 Jahre alt ist, aber sie möchte ihr Geburtsdatum geheim halten. Zu diesem Zweck verwendet sie einen Zero-Knowledge Proof. Der Prozess sieht folgendermaßen aus:
+
+1. Alice sendet ihr Geburtsdatum zur Überprüfung an eine vertrauenswürdige Stelle. Die Behörde oder Institution bestätigt, dass Alice tatsächlich über 18 Jahre alt ist und fügt den Daten eine kryptografische Signatur hinzu, um zu beweisen, dass sie überprüft wurden.
+
+2. Alice sendet die signierten Daten, die nun ein Hash ihres Geburtsdatums sind, an Bob.
+
+3. Bob verwendet die Signatur der vertrauenswürdigen Stelle, um zu überprüfen, ob die Daten verifiziert wurden. Er kann jedoch Alices tatsächliches Geburtsdatum nicht sehen, da es gehasht wurde und nur zur Bestätigung der Verifizierung der Daten verwendet werden kann.
+
+Auf diese Weise kann Alice Bob beweisen, dass sie über 18 Jahre alt ist, ohne ihr tatsächliches Geburtsdatum preiszugeben und so einen Zero-Knowledge Proof erstellen.
+
+OpenID4VC/VP unterstützt die Verwendung von Zero-Knowledge-Proofs. Ein gängiger Ansatz ist die Verwendung eines Zero-Knowledge Proof-Beweisprotokolls wie z.B. ZK-SNARK (Zero-Knowledge Succinct Non-Interactive Argument of Knowledge). Dabei handelt es sich um eine hocheffiziente Beweiskonstruktion, mit der der Besitz bestimmter Informationen, z.B. eines geheimen Schlüssels, bewiesen werden kann, ohne dass diese Informationen offengelegt werden und ohne dass es zu einer Interaktion zwischen dem Beweisführer und dem Überprüfer kommt.
+
+ZK-SNARKs kann in OIDC wie folgt verwendet werden:
+
+1. Der Benutzer erzeugt ein Paar aus privatem und öffentlichem Schlüssel, und der öffentliche Schlüssel ist in das OIDC-Identitäts-Token eingebettet.
+
+2. Wenn der Benutzer einer vertrauenden Partei beweisen möchte, dass er über 18 Jahre alt ist, sendet er eine Anfrage an den OIDC-Anbieter, einschließlich seines öffentlichen Schlüssels und eines ZK-SNARK-Beweises, dass der Hash seines Geburtsdatums größer ist als das für die Transaktion erforderliche Mindestalter.
+
+3. Der OIDC-Anbieter überprüft den ZK-SNARK-Beweis anhand des öffentlichen Schlüssels. Ist der Beweis gültig, stellt er ein OIDC-Identitäts-Token aus, das eine überprüfbare Behauptung enthält, die besagt, dass der Nutzer über 18 Jahre alt ist.
+
+4. Die vertrauende Partei kann die Behauptung im Identitäts-Token mit Hilfe des öffentlichen Schlüssels und des ZK-SNARK-Beweises verifizieren und bestätigen, dass der Benutzer über 18 Jahre alt ist, ohne jemals sein tatsächliches Geburtsdatum zu erfahren.
+
+Dies ist nur ein Beispiel dafür, wie Zero-Knowledge-Proofs im Rahmen von OIDC implementiert werden können. Es gibt neben den ZK-SNARKs noch mehrere andere Beweisprotokolle, die für die Implementierung von Zero-Knowledge Proofs verwendet werden können. Einige der anderen populären Beweisprotokolle sind:
+
+* *ZK-STARKs (Zero-Knowledge Succinct Transparent Argument of Knowledge):* Eine Beweiskonstruktion, die ähnliche Funktionen wie ZK-SNARKs bietet, jedoch mit verbesserter Transparenz und Sicherheit.
+
+* *Bulletproofs (Non-Interactive Zero-Knowledge Proofs for Confidential Transactions):* Eine hocheffiziente Beweiskonstruktion, mit der die Korrektheit von Berechnungen auf vertraulichen Daten bewiesen werden kann.
+
+* *Sigma-Protokolle:* Eine Familie von Beweiskonstruktionen, die auf rechnerischen Annahmen beruhen und bei der Implementierung von Zero-Knowledge-Beweisen weit verbreitet sind.
+
+* *Interaktive Zero-Knowledge (iZK)-Beweise:* Eine Beweiskonstruktion, die eine Interaktion zwischen dem Prover und dem Verifier beinhaltet, um die Gültigkeit des Beweises festzustellen.
+
+Jedes dieser Beweisprotokolle hat seine eigenen Stärken und Schwächen, und die Wahl eines Beweisprotokolls hängt von den spezifischen Anforderungen des Anwendungsfalls ab, wie Effizienz, Sicherheit und Datenschutz. Wenn das Ziel beispielsweise darin besteht, ein Maximum an Effizienz und Skalierbarkeit zu erreichen, sind ZK-SNARKs die beste Wahl, während ZK-STARKs die beste Wahl sind, wenn Transparenz und Sicherheit im Vordergrund stehen.

@@ -9,6 +9,7 @@ Die Self-Sovereign Identity (SSI) wurde als Lösung für die Herausforderungen d
 Um das Konzept hinter Self-Sovereign Identity umsetzen zu können, gibt es das Prinzip des "SSI-Trust Triangle", welches aufzeigt, wie die Echtheit einer Identität und ihrer Daten (Behauptungen) in einer digitalen Welt bewiesen werden kann.
 
 image::./3_SSI/img/SSI_Triangle.png[]
+_Abbildung: SSI Trust Triangle, auf Basis (Referenz) von (\https://courses.edx.org/asset-v1:LinuxFoundationX+LFS178x+3T2022+type@\asset+block@LFS178x_2022_Chapter3Images_Graphic_9.png) (Quelle)_
 
 Holder:: Eine Person oder Organisation, die über eine digitale Identität verfügt und diese verwaltet. Ein Holder hat die Kontrolle über seine Daten und entscheidet, wem er diese zugänglich macht. Dieser erhält und besitzt Verifiable Credentials, welche wiederum in seiner digitalen Wallet gespeichert sind.
 
