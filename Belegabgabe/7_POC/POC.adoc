@@ -63,15 +63,15 @@ BCovrin (Ledger):: http://test.bcovrin.vonx.io[BCoverin] ist ein Test-Ledger (Ve
 
 Indy Tails Server:: Indy Tails ist ein Projekt innerhalb der Hyperledger Indy Community, das sich auf die Bereitstellung von Anonymität und Datenschutz in der Identitätsbranche konzentriert. Ein https://github.com/bcgov/indy-tails-server[Indy Tails Server] ist ein Server, der Teil des Indy Tails-Projekts ist und Anwendern Anonymität bei der Verwendung von Hyperledger Indy-basierten Identitätslösungen bietet. Es handelt sich dabei um einen anonymen Proxy-Server, der eine Verbindung zwischen Anwendern und einer Hyperledger Indy-basierten Identitätslösung herstellt. Durch die Verwendung eines Indy Tails-Servers können Anwender ihre Identitätsdaten und ihre Online-Aktivitäten schützen, indem sie ihre echte Identität verborgen halten und stattdessen eine anonyme Identität verwenden. Zudem werden dadurch datenschutzfreundliche Widerrufsprozesse (Revocations) abgebildet.
 
-    Ergänzung:
+*Ergänzung:*
     
-    Im Kontext des Hyperledger Indy-Projekts bezieht sich der Begriff Revocation (Widerruf) auf den Prozess der Ungültigmachung eines zuvor ausgestellten Credentials oder den Widerruf des Zugriffs auf ein bestimmtes Attribut innerhalb eines Credentials. Hyperledger Indy verwendet dazu eine dezentralisierte Architektur und die Indy Tails-Server spielen eine Schlüsselrolle bei datenschutzfreundlichen Widerrufsprozessen. Indy Tails-Server sind für die Speicherung von Sperrinformationen und den sicheren Zugriff auf diese Informationen für Sperrprüfungen verantwortlich.
+Im Kontext des Hyperledger Indy-Projekts bezieht sich der Begriff Revocation (Widerruf) auf den Prozess der Ungültigmachung eines zuvor ausgestellten Credentials oder den Widerruf des Zugriffs auf ein bestimmtes Attribut innerhalb eines Credentials. Hyperledger Indy verwendet dazu eine dezentralisierte Architektur und die Indy Tails-Server spielen eine Schlüsselrolle bei datenschutzfreundlichen Widerrufsprozessen. Indy Tails-Server sind für die Speicherung von Sperrinformationen und den sicheren Zugriff auf diese Informationen für Sperrprüfungen verantwortlich.
 
-    Bei einem typischen Widerrufsprozess widerruft der Aussteller eines Credentials ein bestimmtes Attribut oder das gesamte Credential. Die Widerrufsinformationen werden in einer "tails" genannten Datenstruktur gespeichert, die von den Indy Tails-Servern verwaltet wird. Die Tails-Datei enthält die Widerrufsinformationen für alle vom Aussteller ausgestellten Berechtigungsnachweise und ist durch kryptografische Signaturen und Hash-Ketten geschützt, um ihre Integrität und Authentizität zu gewährleisten.
+Bei einem typischen Widerrufsprozess widerruft der Aussteller eines Credentials ein bestimmtes Attribut oder das gesamte Credential. Die Widerrufsinformationen werden in einer "tails" genannten Datenstruktur gespeichert, die von den Indy Tails-Servern verwaltet wird. Die Tails-Datei enthält die Widerrufsinformationen für alle vom Aussteller ausgestellten Berechtigungsnachweise und ist durch kryptografische Signaturen und Hash-Ketten geschützt, um ihre Integrität und Authentizität zu gewährleisten.
 
-    Wenn eine vertrauende Partei die Gültigkeit eines Berechtigungsnachweises überprüfen muss, fragt sie die Indy Tails-Server nach den neuesten Widerrufsinformationen ab. Die Indy Tails-Server geben die entsprechenden Informationen aus der Tails-Datei zurück, so dass die vertrauende Partei feststellen kann, ob der Berechtigungsnachweis oder ein bestimmtes Attribut innerhalb des Berechtigungsnachweises widerrufen wurde.
+Wenn eine vertrauende Partei die Gültigkeit eines Berechtigungsnachweises überprüfen muss, fragt sie die Indy Tails-Server nach den neuesten Widerrufsinformationen ab. Die Indy Tails-Server geben die entsprechenden Informationen aus der Tails-Datei zurück, so dass die vertrauende Partei feststellen kann, ob der Berechtigungsnachweis oder ein bestimmtes Attribut innerhalb des Berechtigungsnachweises widerrufen wurde.
 
-    Diese dezentrale Architektur und die Verwendung von Indy Tails-Servern ermöglichen einen datenschutzfreundlichen Widerrufsprozess, der die Privatsphäre der Benutzer schützt und gleichzeitig den vertrauenden Parteien die notwendigen Informationen zur Verfügung stellt, um die Gültigkeit von Berechtigungsnachweisen zu überprüfen. Die Tails-Datei kann von Datenschutzbehörden geprüft werden, um sicherzustellen, dass die Widerrufsinformationen korrekt sind und die Privatsphäre der Nutzer geschützt ist.
+Diese dezentrale Architektur und die Verwendung von Indy Tails-Servern ermöglichen einen datenschutzfreundlichen Widerrufsprozess, der die Privatsphäre der Benutzer schützt und gleichzeitig den vertrauenden Parteien die notwendigen Informationen zur Verfügung stellt, um die Gültigkeit von Berechtigungsnachweisen zu überprüfen. Die Tails-Datei kann von Datenschutzbehörden geprüft werden, um sicherzustellen, dass die Widerrufsinformationen korrekt sind und die Privatsphäre der Nutzer geschützt ist.
 
 *=> Daraus ergibt sich der folgender technische Aufbau*
 
@@ -137,49 +137,49 @@ Danach werden wiederrum Agent und Wallet provisioniert, indem eine neue DID erze
 
 (3.) *Erfolgreiche Provisionierung*
 
-image::./7_POC/img/erstellung.png[]
+image::./7_POC/img/erstellung.png[Provisionierung,70%,70%]
 _Abbildung: Ausschnitt aus der Agent-Konfiguration über die Kommandozeile (Screenshot)_
 
 Nach erfolgreicher Provisionierung werden die Daten für den Agent und dem Wallet einschließlich der öffentlichen DID Information ausgegeben und gespeichert.
 
 (4.) *Schema und weitere Einstellunge*
 
-image::./7_POC/img/schema.png[]
+image::./7_POC/img/schema.png[Schema,70%,70%]
 _Abbildung: Ausschnitt aus dem Ladeprozesses des Schemas über die Kommandozeile (Screenshot)_
 
 Im Anschluss wird das Schema geladen, welches später für die Erzeugnung der Credentials verwendet wird. Es werden zusätzliche Konfigurationen abgeschlossen, die in dieser Darstellung jedoch nicht abgebildet sind.
 
 (5.) *Erstellung einer Einladung*
 
-image::./7_POC/img/einladung.png[]
+image::./7_POC/img/einladung.png[Einladung,70%,70%]
 _Abbildung: Digitale Einladung (QR-Code) für einen Verbindungsaufbau zwischen Hochschule und Alice (Screenshot)_
 
 Nach erfolgreichen Abschluss aller Konfigurationen wird eine einmalige Einladung erstellt, die über einen mobilen Agenten (vorzugsweise den von Alice) gescannt werden kann. Danach hat Alice die Möglichkeit die Verbindung anzunehmen oder abzulehnen.
 
 (6.) *Aufbau einer Verbindung zwischen Alice und dem Hochschul Agenten*
 
-image::./7_POC/img/verbindung.png[]
+image::./7_POC/img/verbindung.png[Verbindungsaufbau,40%,40%]
 _Abbildung: Annahme der Einladung aus der Sicht von Alice über ihr Wallet/Agent (Screenshot)_
 
 Nachdem Alice die Einladung angenommen hat, wird eine Peer-to-Peer Verbindung zwischen dem Agenten von Alice und dem Agenten der Hochschule hergestellt.
 
 (7.) *Austellung der Credentials*
 
-image::./7_POC/img/issues.png[]
+image::./7_POC/img/issues.png[Ausstellung,40%,40%]
 _Abbildung: Annahme der Credentials aus der Sicht von Alice über ihr Wallet/Agent (Screenshot)_
 
 Sowohl Alice hat nun die Möglichkeit Credentials anzufordern, als auch die Hochschule besitzt die Möglichkeit diese eigenständig auszustellen. Dabei kann Alice die Korrektheit dieser Daten überprüfen und diese auch jederzeit ablehnen. Alice ist nicht dazu gezwungen die Credentials auch annehmen zu müssen. Damit behält Alice stets ihre Datenhohheit.
 
 (8). *Speicherung der Credentials*
 
-image::./7_POC/img/credentials.png[]
+image::./7_POC/img/credentials.png[Speicherung,40%,40%]
 _Abbildung: Ausschnitt der Credentials aus dem Wallet von Alice (Screenshot)_
 
 Die Credentials werden im eigenen persönlichen Wallet von Alice dezentral (aus Netzwerkperspektive) und zentral (aus ihrer eigenen Perspektive) gespeichert und sind dadurch lokal für Alice jederzeit abrufbar. 
 
 (9.) *Überprüfung der Credentials*
 
-image::./7_POC/img/proof.png[]
+image::./7_POC/img/proof.png[Nachweis,40%,40%]
 _Abbildung: Anforderung zur Übermittlung zur Überprüfung der Credentials durch die Hochschule aus der Sicht von Alice über ihr Wallet/Agent (Screenshot)_
 
 Wichtig ist dabei vor allem die Überprüfung der Credentials. Dies geschieht durch die Zertifizierung des Ausstellers. In diesem Demo Beispiel ist Aussteller (Issuer bzw. die Hochschule) und Verifizierer (Verifier bzw. der Arbeitgeber) ein und der selbe Agent. In einem Real-Case-Szenario findet die Verifizierug durch die Überprüfung der DID des Ausstellers im Daten Register (Ledger) statt.
